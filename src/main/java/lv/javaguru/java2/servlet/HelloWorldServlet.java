@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * @author <a href="mailto:viktor.savonin@odnoklassniki.ru">Viktor Savonin</a>
  */
+
 public class HelloWorldServlet extends HttpServlet {
 
 	@Override
