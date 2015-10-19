@@ -13,6 +13,10 @@ public class ConsoleOutput {
         System.out.println(usedArgument + message.toString());
     }
 
+    public static void printObject(Object object) {
+        System.out.println(object.toString());
+    }
+
     public static void printMapKeyValues(Map list, EConsoleMessages emptyMessage) {
         if (list.entrySet().size() > 0) {
             list
