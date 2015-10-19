@@ -1,7 +1,5 @@
 package MaximPackage;
 
-import javax.jws.soap.SOAPBinding;
-
 /**
  * Created by maksimspuskels on 18/10/15.
  */
@@ -30,6 +28,6 @@ public class User {
 
     @Override
     public String toString() {
-        return userID + "/n" + name + "/n" + lastName + "/n" + nickname + "/n" + email + "/n" + age + "/n" + city + "/n" + country + "/n" +  userTag + "/n" + reviews + "/n" + routes;
+        return "-== USER ==-" + "\n" +userID + "\n" + name + "\n" + lastName + "\n" + nickname + "\n" + email + "\n" + age + "\n" + city + "\n" + country + "\n" +  userTag + "\n" + reviews + "\n" + routes + "\n" + "-========-";
     }
 }
