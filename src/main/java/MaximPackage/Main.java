@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args){
 
         // Create user
-        User user = new User(001, "Tourist", "t@email.com", "Riga", "Latvia");
+        User user = new User(001, "Tourist", "t@email.com", "Riga", "Latvia","pass");
         // Print user
         ConsoleOutput.printObject(user);
         // Create Place
