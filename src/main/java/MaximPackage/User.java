@@ -26,6 +26,10 @@ public class User {
         this.country = country;
     }
 
+    public Integer getUserID() {
+        return userID;
+    }
+
     @Override
     public String toString() {
         return "-== USER ==-" + "\n" +userID + "\n" + name + "\n" + lastName + "\n" + nickname + "\n" + email + "\n" + age + "\n" + city + "\n" + country + "\n" +  userTag + "\n" + reviews + "\n" + routes + "\n" + "-========-";
