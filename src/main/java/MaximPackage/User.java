@@ -14,16 +14,18 @@ public class User {
     private String  city;
     private String  country;
     private String  userTag;
+    private String  password;
 
     private Review  reviews;
     private Route  routes;
 
-    public User(Integer userID, String nickname, String email, String city, String country) {
+    public User(Integer userID, String nickname, String email, String city, String country, String password) {
         this.userID = userID;
         this.nickname = nickname;
         this.email = email;
         this.city = city;
         this.country = country;
+        this.password = password;
     }
 
     public Integer getUserID() {
