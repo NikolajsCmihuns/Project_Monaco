@@ -34,6 +34,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "-== USER ==-" + "\n" +userID + "\n" + name + "\n" + lastName + "\n" + nickname + "\n" + email + "\n" + age + "\n" + city + "\n" + country + "\n" +  userTag + "\n" + reviews + "\n" + routes + "\n" + "-========-";
+        return "-== USER ==-" + "\n" + userID + "\n" + name + "\n" + lastName + "\n" + nickname + "\n" + email + "\n" + age + "\n" + city + "\n" + country + "\n" + userTag + "\n" + reviews + "\n" + routes + "\n" + "-========-";
     }
 }
