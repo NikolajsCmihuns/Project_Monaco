@@ -1,0 +1,4 @@
+1;Latvia;Riga;Costa Coffee
+2;Latvia;Riga;Laima
+3;Latvia;Riga;TSI
+4;Latvia;Sigulda;Forest
