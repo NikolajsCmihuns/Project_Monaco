@@ -8,6 +8,7 @@ USE `Java2_test` ;
 -- -----------------------------------------------------
 -- Table `Java2_test`.`users`
 -- -----------------------------------------------------
+
 DROP TABLE IF EXISTS `java2_test`.`users` ;
 
 CREATE TABLE IF NOT EXISTS `java2_test`.`users` (
@@ -34,6 +35,28 @@ CREATE TABLE IF NOT EXISTS `java2_test`.`users` (
 )
 ENGINE = InnoDB
 AUTO_INCREMENT = 1002;
+
+# // TODO : Implement remaining tables
+# CREATE TABLE IF NOT EXISTS `java2_test`.`places` (
+#   `PlaceID` INT(11) NOT NULL AUTO_INCREMENT,
+#   PRIMARY KEY (`PlaceID`)
+# )
+# ENGINE = InnoDB
+# AUTO_INCREMENT = 2002;
+#
+# CREATE TABLE IF NOT EXISTS `java2_test`.`routes` (
+#   `RouteID` INT(11) NOT NULL AUTO_INCREMENT,
+#   PRIMARY KEY (`RouteID`)
+# )
+# ENGINE = InnoDB
+# AUTO_INCREMENT = 3002;
+#
+# CREATE TABLE IF NOT EXISTS `java2_test`.`reviews` (
+#   `ReviewID` INT(11) NOT NULL AUTO_INCREMENT,
+#   PRIMARY KEY (`ReviewID`)
+# )
+# ENGINE = InnoDB
+# AUTO_INCREMENT = 4002;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

@@ -1,6 +1,7 @@
 package MaximPackage;
 
 import MaximPackage.ConsolePackage.ConsoleOutput;
+import lv.javaguru.java2.database.jdbc.UserDAOImpl;
 
 import java.util.ArrayList;
 
@@ -9,10 +10,11 @@ import java.util.ArrayList;
  */
 
 public class Main {
+
     public static void main(String[] args){
 
         // Create user
-        User user = new User(001, "Tourist", "t@email.com", "Riga", "Latvia","pass");
+        User user = new User("Tourist", "t@email.com", "Riga", "Latvia","pass");
         // Print user
         ConsoleOutput.printObject(user);
         // Create Place
@@ -33,4 +35,5 @@ public class Main {
         // Print Review
         ConsoleOutput.printObject(review);
     }
+
 }
