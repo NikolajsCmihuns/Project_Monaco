@@ -9,7 +9,7 @@ package MaximPackage;
 public class RoutePlace extends Place {
 
 
-    public RoutePlace(Integer placeID, double latitude, double longitude, Object city, Object country, String placeName, String placeAddress) {
-        super(placeID, latitude, longitude, city, country, placeName, placeAddress);
+    public RoutePlace(double latitude, double longitude, String city, String country, String placeName, String placeAddress) {
+        super(latitude, longitude, city, country, placeName, placeAddress);
     }
 }

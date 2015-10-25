@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by maksimspuskels on 18/10/15.
  */
 
-public class Route {
+public class Route extends Object {
 
     private Integer routeID;
 

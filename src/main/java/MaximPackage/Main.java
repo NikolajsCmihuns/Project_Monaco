@@ -18,10 +18,10 @@ public class Main {
         // Print user
         ConsoleOutput.printObject(user);
         // Create Place
-        Place firstPlace = new Place(100, 5.4432, 5.123, new Object() , new Object(), "Doma baznica", "Doma laukums");
+        Place firstPlace = new Place(5.4432, 5.123,  "Riga", "Latvia", "Doma baznica", "Doma laukums");
         // Print Place
         ConsoleOutput.printObject(firstPlace);
-        Place secondPlace = new Place(101, 6.123, 6.423, new Object() , new Object(), "Strelnieku laukums", "Kalku iela 1");
+        Place secondPlace = new Place(6.123, 6.423, "Riga", "Latvia", "Strelnieku laukums", "Kalku iela 1");
         // Print Place
         ConsoleOutput.printObject(secondPlace);
         // Create Route

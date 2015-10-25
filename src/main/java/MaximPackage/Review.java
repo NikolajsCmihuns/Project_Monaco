@@ -3,7 +3,7 @@ package MaximPackage;
 /**
  * Created by maksimspuskels on 18/10/15.
  */
-public class Review {
+public class Review extends Object {
     private Integer reviewID;
     private String  title;
     private String  body;

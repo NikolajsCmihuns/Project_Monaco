@@ -1,5 +1,7 @@
 package MaximPackage.Database;
 
+import MaximPackage.Review;
+import MaximPackage.Route;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
 
@@ -15,7 +17,7 @@ import MaximPackage.User;
 public class UserDAOImplementation extends DAOImpl implements UserDAOInterface {
 
     @Override
-    public void create(User user) throws DBException {
+    public void createUser(User user) throws DBException {
         if (user == null) {
             return;
         }
@@ -32,7 +34,7 @@ public class UserDAOImplementation extends DAOImpl implements UserDAOInterface {
             preparedStatement.setString(3,  user.getLastName());     /* LastName char */
             preparedStatement.setString(4,  user.getNickname());     /* NickName char */
             preparedStatement.setString(5,  user.getEmail());        /* Email char */
-            preparedStatement.setInt(6,     user.getAge());          /* Age INT */
+            preparedStatement.setInt(6, user.getAge());              /* Age INT */
             preparedStatement.setString(7,  user.getCity());         /* City char */
             preparedStatement.setString(8,  user.getCountry());      /* Country char */
             preparedStatement.setString(9,  user.getUserTag());      /* UserTag char */
@@ -46,7 +48,7 @@ public class UserDAOImplementation extends DAOImpl implements UserDAOInterface {
                 user.setUserID(rs.getInt(1));
             }
         } catch (Throwable e) {
-            System.out.println("Exception while execute UserDAOImpl.create()");
+            System.out.println("Exception while executing UserDAOImpl.createUser()");
             e.printStackTrace();
             throw new DBException(e);
         } finally {
@@ -54,11 +56,35 @@ public class UserDAOImplementation extends DAOImpl implements UserDAOInterface {
         }
     }
 
-//    public User getById(Long id) throws DBException {
-//
-//    }
-//
-//    public List<User> getAll() throws DBException {
-//
-//    }
+    public User getUserByID(int id) throws DBException {
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection
+                    .prepareStatement("select * from USERS where UserID = ?");
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            User user = null;
+            if (resultSet.next()) {
+                user = new User(resultSet.getString("NickName"), resultSet.getString("Email"), resultSet.getString("City"), resultSet.getString("Country"),resultSet.getString("Password"));
+
+                user.setUserID(resultSet.getInt("UserID"));
+                user.setName(resultSet.getString("Name"));
+                user.setLastName(resultSet.getString("LastName"));
+                user.setAge(resultSet.getInt("Age"));
+                user.setUserTag(resultSet.getString("UserTag"));
+                user.setReviews((Review)resultSet.getObject("Reviews"));
+                user.setRoutes((Route)resultSet.getObject("Routes"));
+
+            }
+            return user;
+        } catch (Throwable e) {
+            System.out.println("Exception while executing UserDAOImpl.getUserByID()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
 }

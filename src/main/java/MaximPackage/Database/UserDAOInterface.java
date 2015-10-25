@@ -11,9 +11,8 @@ import java.util.List;
 
 public interface UserDAOInterface {
 
-    void create(User user) throws DBException;
+    void createUser(User user) throws DBException;
 
-//    User getById(Long id) throws DBException;
-//
-//    List<User> getAll() throws DBException;
+    User getUserByID(int id) throws DBException;
+
 }
