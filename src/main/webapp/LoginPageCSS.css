@@ -1,7 +1,19 @@
-#nickname {
-    border-bottom: 1px dotted #FF0000;
+#loginform {
+    position: fixed;
+    top: 25%;
+    left: 25%;
 }
 
-#password {
-    border-bottom: 1px dotted #FF0000;
+#registrationForm {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+}
+
+#loginDiv {
+    /*border: 1px dashed;*/
+}
+
+#registerDiv {
+    /*border: 1px dashed;*/
 }
