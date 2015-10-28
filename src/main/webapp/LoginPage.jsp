@@ -7,7 +7,7 @@
 </head>
 <link href="<c:url value="/LoginPageCSS.css" />" rel="stylesheet">
 <body>
-    <form id="loginForm">
+    <form id="loginForm" action="LoginActionJSP.jsp" method="POST">
         <div id="loginDiv">
             Nickname:<br>
             <input id="lNickName" type="text" name="lNickName">
@@ -16,11 +16,11 @@
             <input id="lPassword" type="text" name="lPassword">
             <br>
             <br>
-            <button id="loginButton" onclick="">Login</button>
+            <button type="login" value="Login"/>
         </div>
     </form>
 
-    <form id="registrationForm">
+    <form id="registrationForm" action="LoginActionJSP.jsp" method="POST">
         <div id="registerDiv">
             Name:<br>
             <input id="rName" type="text" name="rName">
@@ -50,8 +50,9 @@
             <input id="rTag" type="text" name="rTag">
             <br>
             <br>
-            <button id="registerButton" onclick="">Register</button>
+            <button type="register" value="Register"/>
         </div>
     </form>
+
 </body>
 </html>
