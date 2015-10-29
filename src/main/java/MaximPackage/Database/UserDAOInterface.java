@@ -15,4 +15,5 @@ public interface UserDAOInterface {
 
     User getUserByID(int id) throws DBException;
 
+    User getUserByNickname(String nickname) throws DBException;
 }
