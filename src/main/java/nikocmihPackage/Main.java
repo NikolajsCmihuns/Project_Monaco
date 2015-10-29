@@ -1,4 +1,5 @@
 package nikocmihPackage;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -9,50 +10,66 @@ public class Main {
     public static void main(String[] args){
 
         int consoleInput;
+        ArrayList<User> usersArray = new ArrayList<User>();
         Scanner userInputAction = new Scanner(System.in);
         Scanner userInputParameters = new Scanner(System.in);
 
-        Console.printConsoleUsage();
+        boolean executeApplication = true;
 
-        while(true){
+        while(executeApplication){
 
-            System.out.print("--> ");
-            consoleInput = userInputAction.nextInt();
+            Console.printConsoleUsage();
 
-            switch( consoleInput ){
+            //consoleInput = userInputAction.nextInt();
+
+            switch( userInputAction.nextInt() ){
                 case 1:
                     Console.printUserCreateInfo();
 
-                    System.out.println("  Please enter USER_ID as integer");
+                    System.out.println(" Enter PASSWORD as string");
+                    String inputPassword = userInputParameters.next();
+                    userInputParameters.reset();
+
+                    System.out.println("  Enter NICKNAME as string");
+                    String inputNickname = userInputParameters.next();
+                    userInputParameters.reset();
+
+                    System.out.println("  Enter USER_ID as integer");
                     int inputUserId = userInputParameters.nextInt();
-                    System.out.println("  Please enter NICKNAME as string");
-                    String inputNickname = userInputParameters.nextLine();
-                    System.out.println("  Please enter PASSWORD as string");
-                    String inputPassword = userInputParameters.nextLine();
-                    System.out.println("  Please enter EMAIL as string");
-                    String inputEmail = userInputParameters.nextLine();
-                    System.out.println("  Please enter CITY as string");
-                    String inputCity = userInputParameters.nextLine();
-                    System.out.println("  Please enter COUNTRY as string");
-                    String inputCountry = userInputParameters.nextLine();
-                    User user = new User(inputPassword, inputUserId,inputNickname, inputEmail, inputCity, inputCountry);
+                    userInputParameters.reset();
+
+                    System.out.println(" Enter EMAIL as string");
+                    String inputEmail = userInputParameters.next();
+                    userInputParameters.reset();
+
+
+
+
+
+                    usersArray.add(new User(inputPassword, inputUserId,inputNickname, inputEmail));
 
                     break;
                 case 2:
-                    Console.printUserShowInfo();
-                    user.toString();
+                    if(usersArray.isEmpty()){
+                        Console.printNoUsersExistInfo();
+                        break;
+                    }
+                    Console.printUserShowInfo(usersArray.size());
+                    System.out.println(usersArray.get(userInputParameters.nextInt()-1));
                     break;
                 case 3:
-                    Console.printExitInfo();
-                    return;
+                    Console.printAppTerminationInfo();
+                    executeApplication = false;
+                    userInputParameters.close();
+                    userInputAction.close();
+
                 default:
-                    Console.printConsoleUsage();
+                    // DO Nothing
 
             }
 
 
-        }
-
+        } // end of while
 
 
     } // end of main

@@ -19,13 +19,11 @@ public class User {
 
     //Constructor
 
-    public User(String userPass, Integer userId, String nickName, String email, String city, String country) {
+    public User(String userPass, Integer userId, String nickName, String email) {
         this.userPass = userPass;
         this.userId = userId;
         this.nickName = nickName;
         this.email = email;
-        this.city = city;
-        this.country = country;
     }
 
 
@@ -33,7 +31,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "userId=" + userId + ", nickName='" + nickName + '\'' + ", email='" + email + '\'' + ", country='" + country + '\'' + ", city='" + city + '\'' + '}';
+        return "User{" + "userId=" + userId + ", nickName='" + nickName + '\'' + ", email='" + email + '\'' + '}';
     }
 
 
