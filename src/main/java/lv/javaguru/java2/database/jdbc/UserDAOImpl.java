@@ -13,7 +13,9 @@ import java.util.List;
 /**
  * Created by Viktor on 01/07/2014.
  */
-public class UserDAOImpl extends DAOImpl implements UserDAO {
+public class UserDAOImpl implements UserDAO {
+
+    private final DAO dao = new DAOImpl();
 
     @Override
     public void create(User user) throws DBException {
@@ -140,4 +142,11 @@ public class UserDAOImpl extends DAOImpl implements UserDAO {
         }
     }
 
+    public Connection getConnection() throws DBException {
+        return dao.getConnection();
+    }
+
+    public void closeConnection(Connection connection) throws DBException {
+        dao.closeConnection(connection);
+    }
 }

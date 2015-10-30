@@ -3,6 +3,7 @@ package MaximPackage.Database;
 import MaximPackage.Review;
 import MaximPackage.Route;
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.jdbc.DAO;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
 
 import java.sql.*;
@@ -14,7 +15,9 @@ import MaximPackage.User;
  * Created by maksimspuskels on 23/10/15.
  */
 
-public class UserDAOImplementation extends DAOImpl implements UserDAOInterface {
+public class UserDAOImplementation implements UserDAOInterface {
+
+    private final DAO dao = new DAOImpl();
 
     @Override
     public void createUser(User user) throws DBException {
@@ -118,5 +121,13 @@ public class UserDAOImplementation extends DAOImpl implements UserDAOInterface {
         } finally {
             closeConnection(connection);
         }
+    }
+
+    protected Connection getConnection() throws DBException {
+        return dao.getConnection();
+    }
+
+    protected void closeConnection(Connection connection) throws DBException {
+        dao.closeConnection(connection);
     }
 }

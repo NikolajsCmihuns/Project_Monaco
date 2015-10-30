@@ -3,6 +3,7 @@ package MaximPackage.Database;
 import MaximPackage.Place;
 
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.jdbc.DAO;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
 
 import java.sql.Connection;
@@ -13,7 +14,9 @@ import java.sql.ResultSet;
  * Created by maksimspuskels on 25/10/15.
  */
 
-public class PlaceDAOImplementation extends DAOImpl implements PlaceDAOInterface {
+public class PlaceDAOImplementation implements PlaceDAOInterface {
+
+    private final DAO dao = new DAOImpl();
 
     public void createPlace(Place place) throws DBException {
         if (place == null) {
@@ -73,5 +76,13 @@ public class PlaceDAOImplementation extends DAOImpl implements PlaceDAOInterface
         } finally {
             closeConnection(connection);
         }
+    }
+
+    public Connection getConnection() throws DBException {
+        return dao.getConnection();
+    }
+
+    public void closeConnection(Connection connection) throws DBException {
+        dao.closeConnection(connection);
     }
 }

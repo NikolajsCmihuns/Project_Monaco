@@ -10,7 +10,9 @@ import java.util.List;
 /**
  * Created by Viktor on 01/07/2014.
  */
-public class DatabaseCleaner extends DAOImpl {
+public class DatabaseCleaner {
+
+    private final DAO dao = new DAOImpl();
 
     private List<String> getTableNames() {
         List<String> tableNames = new ArrayList<String>();
@@ -37,4 +39,11 @@ public class DatabaseCleaner extends DAOImpl {
         }
     }
 
+    public Connection getConnection() throws DBException {
+        return dao.getConnection();
+    }
+
+    public void closeConnection(Connection connection) throws DBException {
+        dao.closeConnection(connection);
+    }
 }

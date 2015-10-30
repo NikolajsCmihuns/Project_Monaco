@@ -1,5 +1,6 @@
 <%@ page import="MaximPackage.Services.RegistrationService" %>
-<%@ page import="MaximPackage.Services.SessionService" %>
+<%@ page import="MaximPackage.Database.UserDAOImplementation" %>
+<%@ page import="MaximPackage.User" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
@@ -21,13 +22,20 @@
 
     RegistrationService registrationService = RegistrationService.getInstance();
 
-    boolean success = registrationService.tryRegistration(nickName,password,email,city,country,name,surname,age,tag);
+    boolean success = registrationService.tryRegistration(nickName,password,email,city,country,name,surname,age,tag,request.getSession());
 
     if (success) {
-        SessionService userSession = SessionService.getInstance();
-        String sessionUserName = userSession.getUserNickName();
+        String storedNickname = "";
+
+        Integer userId = (Integer) session.getAttribute("userID");
+        User user = null;
+        if (userId != null) {
+            UserDAOImplementation userDAO = new UserDAOImplementation();
+            User userFromDB = userDAO.getUserByID(userId);
+            storedNickname = userFromDB.getNickname();
+        }
 %>
-<h2>Now you are registered as <%= sessionUserName %>!</h2>
+<h2>Now you are registered as <%= storedNickname %>!</h2>
 <%--Insert your relevant path to your landing page here--%>
 <a href="<%=    "/java2/LoginPage.jsp" %>"><h3>View map</h3></a>
 <a href="<%=    "/java2/LoginPage.jsp" %>"><h3>Create route</h3></a>
