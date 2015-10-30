@@ -1,44 +1,35 @@
 package MaximPackage.Services;
 
-import MaximPackage.ConsolePackage.ConsoleOutput;
-import MaximPackage.Database.UserDAOImplementation;
+import MaximPackage.Database.UserDAOInterface;
 import MaximPackage.User;
 import lv.javaguru.java2.database.DBException;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by maksimspuskels on 29/10/15.
  */
 
 public class LoginService {
-    private static LoginService ourInstance = new LoginService();
+    private final UserDAOInterface userDao;
 
-    public static LoginService getInstance() {
-        return ourInstance;
+    public LoginService(UserDAOInterface userDao) {
+        this.userDao = userDao;
     }
 
-    private LoginService() {
-
-    }
-
-    public boolean tryLogin(String nickName, String password) {
+    public boolean tryLogin(String nickName, String password, HttpSession session) {
         boolean loginSuccessful = false;
-
-        UserDAOImplementation userDAO = new UserDAOImplementation();
 
         if (nickName != null && nickName.length() > 0) {
             User userFromDB = null;
             try {
-                userFromDB = userDAO.getUserByNickname(nickName);
+                userFromDB = userDao.getUserByNickname(nickName);
                 if (userFromDB != null) {
                     String userPassword = userFromDB.getPassword();
 
                     if (userPassword != null && password != null && password.equalsIgnoreCase(userPassword)) {
                         loginSuccessful = true;
-//                        ConsoleOutput.printObject(userPassword);
-//                        ConsoleOutput.printObject(password);
-//                        ConsoleOutput.printObject(userFromDB);
-                        SessionService session = SessionService.getInstance();
-                        session.setUserId(userFromDB.getUserID());
+                        session.setAttribute("userID", userFromDB.getUserID());
                     }
                 }
             } catch (DBException e) {

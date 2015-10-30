@@ -13,7 +13,7 @@ import java.util.Properties;
  */
 
 
-public class DAOImpl {
+public class DAOImpl implements DAO {
 
     private static final String DB_CONFIG_FILE = "database.properties";
 
@@ -50,7 +50,7 @@ public class DAOImpl {
         }
     }
 
-    protected Connection getConnection() throws DBException {
+    public Connection getConnection() throws DBException {
         try{
             return DriverManager.getConnection(dbUrl, userName, password);
         } catch (SQLException e) {
@@ -60,7 +60,7 @@ public class DAOImpl {
         }
     }
 
-    protected void closeConnection(Connection connection) throws DBException {
+    public void closeConnection(Connection connection) throws DBException {
         try {
             if(connection != null) {
                 connection.close();

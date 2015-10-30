@@ -5,6 +5,8 @@ import MaximPackage.Database.UserDAOImplementation;
 import MaximPackage.User;
 import lv.javaguru.java2.database.DBException;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Created by maksimspuskels on 29/10/15.
  */
@@ -19,7 +21,7 @@ public class RegistrationService {
     private RegistrationService() {
     }
 
-    public boolean tryRegistration(String nickName, String password, String email, String city, String country, String name, String surname, Integer age, String tag) {
+    public boolean tryRegistration(String nickName, String password, String email, String city, String country, String name, String surname, Integer age, String tag, HttpSession session) {
         boolean registrationSuccessful = false;
 
         UserDAOImplementation userDAO = new UserDAOImplementation();
@@ -40,11 +42,9 @@ public class RegistrationService {
 
                 userDAO.createUser(user);
 
-                registrationSuccessful = true;
+                session.setAttribute("userID", user.getUserID());
 
-//                ConsoleOutput.printObject(user);
-                SessionService session = SessionService.getInstance();
-                session.setUserId(user.getUserID());
+                registrationSuccessful = true;
 
             } catch (DBException e) {
                 e.printStackTrace();
