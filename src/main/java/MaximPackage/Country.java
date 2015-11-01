@@ -9,7 +9,6 @@ public class Country {
     String countryName;
     int countryNameID;
 
-
     public Country(String countryName, int countryNameID) {
         this.countryName = countryName;
         this.countryNameID = countryNameID;
@@ -21,5 +20,10 @@ public class Country {
 
     public int getCountryNameID() {
         return countryNameID;
+    }
+
+    @Override
+    public String toString() {
+        return "-== Country ==-" + "\n" + countryName + "\n" + countryNameID + "\n" + "-========-";
     }
 }

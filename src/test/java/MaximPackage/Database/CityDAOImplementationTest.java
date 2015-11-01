@@ -11,7 +11,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.easymock.EasyMock.mock;
 import static org.junit.Assert.assertEquals;
 
 /**

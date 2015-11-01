@@ -1,6 +1,8 @@
 <%@ page import="MaximPackage.Database.CityDAOImplementation" %>
 <%@ page import="MaximPackage.City" %>
 <%@ page import="java.util.List" %>
+<%@ page import="MaximPackage.Database.CountryDAOImplementation" %>
+<%@ page import="MaximPackage.Country" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -47,7 +49,8 @@
             <br>
             City:*
             <br>
-                <select name="rCity"><option value="">-- City--</option>
+                <select name="rCity">
+                    <option value="">-- City--</option>
                     <%
                         CityDAOImplementation cityDAO = new CityDAOImplementation();
                         List<City> allCities = cityDAO.getAllCitiesForCountryID(401);
@@ -55,23 +58,28 @@
                         while(i < allCities.size()) {
                             City city = allCities.get(i);
                             String name = city.getCityName();
+                            int cityID = city.getCityNameID();
                             i++;
                     %>
-                    <option value="<%= name %>"><%=name%></option>
+                    <option value="<%= cityID %>"><%=name%></option>
                     <% } %>
 
                 </select>
             <br>
             Country:*<br>
-            <select name="rCountry"><option value="">-- Country--</option>
+            <select name="rCountry">
+                <option value="">-- Country--</option>
                 <%
+                    CountryDAOImplementation countryDAO = new CountryDAOImplementation();
+                    List<Country> allCountries = countryDAO.getAllCountries();
                     int j = 0;
-                    while(j < 6) {
+                    while(j < allCountries.size()) {
+                        Country country = allCountries.get(j);
+                        String countryName = country.getCountryName();
+                        int countryID = country.getCountryNameID();
                         j++;
-                        String name = j + " item";
-
                 %>
-                <option value="<%= name %>"><%=name%></option>
+                <option value="<%= countryID %>"><%=countryName%></option>
                 <% } %>
 
             </select>
