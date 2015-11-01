@@ -42,14 +42,48 @@
             Age:<br>
             <input id="rAge" type="number" name="rAge">
             <br>
-            City:*<br>
-            <input id="rCity" type="text" name="rCity">
+            City:*
+            <br>
+                <select name="rCity"><option value="">-- City--</option>
+                    <%
+                        int i = 0;
+                        while(i < 6) {
+                            i++;
+                            String name = i + " item";
+
+                    %>
+                    <option value="<%= name %>"><%=name%></option>
+                    <% } %>
+
+                </select>
             <br>
             Country:*<br>
-            <input id="rCountry" type="text" name="rCountry">
+            <select name="rCountry"><option value="">-- Country--</option>
+                <%
+                    int j = 0;
+                    while(j < 6) {
+                        j++;
+                        String name = j + " item";
+
+                %>
+                <option value="<%= name %>"><%=name%></option>
+                <% } %>
+
+            </select>
             <br>
-            Tag:<br>
-            <input id="rTag" type="text" name="rTag">
+            Tag:
+            <br>
+            <select name="rTag"><option value="">-- Tag --</option>
+                <%
+                    int k = 0;
+                    while(k < 6) {
+                        k++;
+                        String name = k + " item";
+                %>
+                <option value="<%= name %>"><%=name%></option>
+                <% } %>
+
+            </select>
             <br>
             <br>
             <button type="register" value="Register">Register</button>
