@@ -1,3 +1,6 @@
+<%@ page import="MaximPackage.Database.CityDAOImplementation" %>
+<%@ page import="MaximPackage.City" %>
+<%@ page import="java.util.List" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -46,11 +49,13 @@
             <br>
                 <select name="rCity"><option value="">-- City--</option>
                     <%
+                        CityDAOImplementation cityDAO = new CityDAOImplementation();
+                        List<City> allCities = cityDAO.getAllCitiesForCountryID(401);
                         int i = 0;
-                        while(i < 6) {
+                        while(i < allCities.size()) {
+                            City city = allCities.get(i);
+                            String name = city.getCityName();
                             i++;
-                            String name = i + " item";
-
                     %>
                     <option value="<%= name %>"><%=name%></option>
                     <% } %>
