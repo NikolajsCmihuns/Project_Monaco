@@ -12,15 +12,13 @@ import java.util.Properties;
  * Created by Viktor on 01/07/2014.
  */
 
-
 public class DAOImpl implements DAO {
 
-    private static final String DB_CONFIG_FILE = "database.properties";
+    private static final String DB_CONFIG_FILE = "prod_monaco_db.properties";
 
     private String dbUrl = null;
     private String userName = null;
     private String password = null;
-
 
     public DAOImpl() {
         registerJDBCDriver();
