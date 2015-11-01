@@ -10,10 +10,10 @@ public class User {
     private String  lastName;
     private String  nickname;
     private String  email;
-    private Integer age;
-    private Integer cityID;
-    private Integer countryID;
-    private Integer userTagID;
+    private int age;
+    private int cityID;
+    private int countryID;
+    private int userTagID;
     private String  password;
 
     //  ---===== Constructor ====----
@@ -46,19 +46,19 @@ public class User {
         return email;
     }
 
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
 
-    public Integer getCityID() {
+    public int getCityID() {
         return cityID;
     }
 
-    public Integer getCountryID() {
+    public int getCountryID() {
         return countryID;
     }
 
-    public Integer getUserTagID() {
+    public int getUserTagID() {
         return userTagID;
     }
 
@@ -83,7 +83,7 @@ public class User {
         this.age = age;
     }
 
-    public void setUserTagID(Integer userTagID) {
+    public void setUserTagID(int userTagID) {
         this.userTagID = userTagID;
     }
 
@@ -99,11 +99,11 @@ public class User {
         this.age = age;
     }
 
-    public void setCityID(Integer cityID) {
+    public void setCityID(int cityID) {
         this.cityID = cityID;
     }
 
-    public void setCountryID(Integer countryID) {
+    public void setCountryID(int countryID) {
         this.countryID = countryID;
     }
 
@@ -124,16 +124,16 @@ public class User {
 
         User user = (User) o;
 
+        if (getAge() != user.getAge()) return false;
+        if (getCityID() != user.getCityID()) return false;
+        if (getCountryID() != user.getCountryID()) return false;
+        if (getUserTagID() != user.getUserTagID()) return false;
         if (!getUserID().equals(user.getUserID())) return false;
         if (getName() != null ? !getName().equals(user.getName()) : user.getName() != null) return false;
         if (getLastName() != null ? !getLastName().equals(user.getLastName()) : user.getLastName() != null)
             return false;
         if (!getNickname().equals(user.getNickname())) return false;
         if (!getEmail().equals(user.getEmail())) return false;
-        if (getAge() != null ? !getAge().equals(user.getAge()) : user.getAge() != null) return false;
-        if (!cityID.equals(user.cityID)) return false;
-        if (!countryID.equals(user.countryID)) return false;
-        if (userTagID != null ? !userTagID.equals(user.userTagID) : user.userTagID != null) return false;
         return getPassword().equals(user.getPassword());
 
     }
@@ -145,10 +145,10 @@ public class User {
         result = 31 * result + (getLastName() != null ? getLastName().hashCode() : 0);
         result = 31 * result + getNickname().hashCode();
         result = 31 * result + getEmail().hashCode();
-        result = 31 * result + (getAge() != null ? getAge().hashCode() : 0);
-        result = 31 * result + cityID.hashCode();
-        result = 31 * result + countryID.hashCode();
-        result = 31 * result + (userTagID != null ? userTagID.hashCode() : 0);
+        result = 31 * result + getAge();
+        result = 31 * result + getCityID();
+        result = 31 * result + getCountryID();
+        result = 31 * result + getUserTagID();
         result = 31 * result + getPassword().hashCode();
         return result;
     }

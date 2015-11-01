@@ -27,19 +27,21 @@ public class UserDAOImplementation implements UserDAOInterface {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("insert into USER values (default, ?, ?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    connection.prepareStatement("insert into USER values (default, ?, ?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setString(1, user.getNickname());     /* NickName char */
             preparedStatement.setString(2, user.getName());         /* Name char */
             preparedStatement.setString(3, user.getLastName());     /* LastName char */
             preparedStatement.setString(4, user.getEmail());        /* Email char */
-            preparedStatement.setInt(   5, user.getAge());          /* Age INT */
+            preparedStatement.setInt(5, user.getAge());          /* Age INT */
 
             preparedStatement.setInt(6, user.getCityID());          /* City char */
             preparedStatement.setInt(7, user.getCountryID());       /* Country char */
             preparedStatement.setInt(8, user.getUserTagID());       /* UserTag char */
 
             preparedStatement.setString(9, user.getPassword());     /* Password char */
+
+            preparedStatement.setDate(10, new Date(System.currentTimeMillis()));
 
             preparedStatement.executeUpdate();
 
@@ -62,7 +64,7 @@ public class UserDAOImplementation implements UserDAOInterface {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("select * from USERS where UserID = ?");
+                    .prepareStatement("select * from USER where UserID = ?");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             User user = null;
@@ -85,7 +87,7 @@ public class UserDAOImplementation implements UserDAOInterface {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement = connection
-                    .prepareStatement("select * from USERS where NickName Like ?");
+                    .prepareStatement("select * from USER where NickName Like ?");
             preparedStatement.setString(1, nickname);
             ResultSet resultSet = preparedStatement.executeQuery();
             User user = null;

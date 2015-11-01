@@ -27,7 +27,8 @@ public class UserDAOImplementationTest {
     @Test
     public void testCreate() throws Exception {
         // Create user
-        User user = new User("Tourist", "t@email.com", 1, 2,"pass");
+        User user = new User("Tourist", "t@email.com", 301, 401,"pass");
+        user.setUserTagID(101);
         userDAO.createUser(user);
         User userFromDB = userDAO.getUserByID(user.getUserID());
         // Get user from DB
@@ -38,7 +39,8 @@ public class UserDAOImplementationTest {
     @Test
     public void testCreateFailureTest() throws Exception {
         // Create user
-        User user = new User("Tourist", "t@email.com", 1, 2,"pass");
+        User user = new User("Tourist", "t@email.com", 301, 401,"pass");
+        user.setUserTagID(101);
         userDAO.createUser(user);
         // Get user from DB
         User userFromDB = userDAO.getUserByID(user.getUserID());

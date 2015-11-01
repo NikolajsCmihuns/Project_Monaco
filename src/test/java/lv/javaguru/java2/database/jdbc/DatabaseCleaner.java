@@ -16,8 +16,8 @@ public class DatabaseCleaner {
 
     private List<String> getTableNames() {
         List<String> tableNames = new ArrayList<String>();
-        tableNames.add("USERS");
-        tableNames.add("PLACES");
+        tableNames.add("USER");
+        tableNames.add("PLACE");
         return tableNames;
     }
 
