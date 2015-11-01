@@ -3,6 +3,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="MaximPackage.Database.CountryDAOImplementation" %>
 <%@ page import="MaximPackage.Country" %>
+<%@ page import="MaximPackage.Database.TagDAOImplementation" %>
+<%@ page import="MaximPackage.Tag" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -88,12 +90,16 @@
             <br>
             <select name="rTag"><option value="">-- Tag --</option>
                 <%
+                    TagDAOImplementation tagDAO = new TagDAOImplementation();
+                    List<Tag> allTags = tagDAO.getAllTags();
                     int k = 0;
-                    while(k < 6) {
+                    while(k < allTags.size()) {
+                        Tag tag = allTags.get(k);
+                        String countryName = tag.getTagName();
+                        int countryID = tag.getTagNameID();
                         k++;
-                        String name = k + " item";
                 %>
-                <option value="<%= name %>"><%=name%></option>
+                <option value="<%= countryID %>"><%=countryName%></option>
                 <% } %>
 
             </select>
