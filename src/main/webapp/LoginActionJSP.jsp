@@ -16,20 +16,19 @@
     String password = request.getParameter("lPassword");
 
     LoginService loginService = new LoginService(new UserDAOImplementation());
-    boolean success = loginService.tryLogin(nickName,password,request.getSession());
+    Integer loggedUserID = loginService.tryLogin(nickName,password);
 
-    if (success) {
+    if (loggedUserID >= 0) {
+        session.setAttribute("userID", loggedUserID);
+
+        // Just for test we get user nickname from DB again
         String storedNickname = "";
 
-        Integer userId = (Integer) session.getAttribute("userID");
-        User user = null;
-        if (userId != null) {
-            ConsoleOutput.printObject("" + userId);
+        ConsoleOutput.printObject("" + loggedUserID);
 
-            UserDAOImplementation userDAO = new UserDAOImplementation();
-            User userFromDB = userDAO.getUserByID(userId);
-            storedNickname = userFromDB.getNickname();
-        }
+        UserDAOImplementation userDAO = new UserDAOImplementation();
+        User userFromDB = userDAO.getUserByID(loggedUserID);
+        storedNickname = userFromDB.getNickname();
 %>
 <h2>You are logged in as <%= storedNickname %>!</h2>
 <%--Insert your relevant path to your landing page here--%>

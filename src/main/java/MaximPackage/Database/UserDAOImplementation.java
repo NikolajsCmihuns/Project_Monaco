@@ -1,13 +1,10 @@
 package MaximPackage.Database;
 
-import MaximPackage.Review;
-import MaximPackage.Route;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DAO;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
 
 import java.sql.*;
-import java.util.List;
 
 import MaximPackage.User;
 
@@ -30,19 +27,19 @@ public class UserDAOImplementation implements UserDAOInterface {
         try {
             connection = getConnection();
             PreparedStatement preparedStatement =
-                    connection.prepareStatement("insert into USERS values (default, ?, ?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
+                    connection.prepareStatement("insert into USER values (default, ?, ?,?,?,?,?,?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.setString(1, user.getPassword());     /* Password char */
+            preparedStatement.setString(1, user.getNickname());     /* NickName char */
             preparedStatement.setString(2, user.getName());         /* Name char */
             preparedStatement.setString(3, user.getLastName());     /* LastName char */
-            preparedStatement.setString(4, user.getNickname());     /* NickName char */
-            preparedStatement.setString(5, user.getEmail());        /* Email char */
-            preparedStatement.setInt(6, user.getAge());              /* Age INT */
-            preparedStatement.setString(7, user.getCity());         /* City char */
-            preparedStatement.setString(8, user.getCountry());      /* Country char */
-            preparedStatement.setString(9, user.getUserTag());      /* UserTag char */
-            preparedStatement.setObject(10, user.getReviews());      /* Reviews char */
-            preparedStatement.setObject(11, user.getRoutes());       /* Routes char */
+            preparedStatement.setString(4, user.getEmail());        /* Email char */
+            preparedStatement.setInt(   5, user.getAge());          /* Age INT */
+
+            preparedStatement.setInt(6, user.getCityID());          /* City char */
+            preparedStatement.setInt(7, user.getCountryID());       /* Country char */
+            preparedStatement.setInt(8, user.getUserTagID());       /* UserTag char */
+
+            preparedStatement.setString(9, user.getPassword());     /* Password char */
 
             preparedStatement.executeUpdate();
 
@@ -70,16 +67,7 @@ public class UserDAOImplementation implements UserDAOInterface {
             ResultSet resultSet = preparedStatement.executeQuery();
             User user = null;
             if (resultSet.next()) {
-                user = new User(resultSet.getString("NickName"), resultSet.getString("Email"), resultSet.getString("City"), resultSet.getString("Country"), resultSet.getString("Password"));
-
-                user.setUserID(resultSet.getInt("UserID"));
-                user.setName(resultSet.getString("Name"));
-                user.setLastName(resultSet.getString("LastName"));
-                user.setAge(resultSet.getInt("Age"));
-                user.setUserTag(resultSet.getString("UserTag"));
-                user.setReviews((Review) resultSet.getObject("Reviews"));
-                user.setRoutes((Route) resultSet.getObject("Routes"));
-
+                user = composeUserFromResultsSet(resultSet);
             }
             return user;
         } catch (Throwable e) {
@@ -102,16 +90,7 @@ public class UserDAOImplementation implements UserDAOInterface {
             ResultSet resultSet = preparedStatement.executeQuery();
             User user = null;
             if (resultSet.next()) {
-                user = new User(resultSet.getString("NickName"), resultSet.getString("Email"), resultSet.getString("City"), resultSet.getString("Country"), resultSet.getString("Password"));
-
-                user.setUserID(resultSet.getInt("UserID"));
-                user.setName(resultSet.getString("Name"));
-                user.setLastName(resultSet.getString("LastName"));
-                user.setAge(resultSet.getInt("Age"));
-                user.setUserTag(resultSet.getString("UserTag"));
-                user.setReviews((Review) resultSet.getObject("Reviews"));
-                user.setRoutes((Route) resultSet.getObject("Routes"));
-
+                user = composeUserFromResultsSet(resultSet);
             }
             return user;
         } catch (Throwable e) {
@@ -121,6 +100,25 @@ public class UserDAOImplementation implements UserDAOInterface {
         } finally {
             closeConnection(connection);
         }
+    }
+
+    private User composeUserFromResultsSet(ResultSet resultsSet) throws DBException {
+        User user;
+        try {
+            user = new User(resultsSet.getString("nickname"), resultsSet.getString("email"), resultsSet.getInt("cityID"), resultsSet.getInt("countryID"), resultsSet.getString("userPass"));
+
+            user.setUserID(resultsSet.getInt("userID"));
+            user.setName(resultsSet.getString("firstName"));
+            user.setLastName(resultsSet.getString("lastName"));
+            user.setAge(resultsSet.getInt("age"));
+            user.setUserTagID(resultsSet.getInt("userTagID"));
+        } catch (Throwable e) {
+            System.out.println("Exception while composing user from results set!");
+            e.printStackTrace();
+            throw new DBException(e);
+        }
+
+        return user;
     }
 
     protected Connection getConnection() throws DBException {

@@ -17,8 +17,9 @@ public class LoginService {
         this.userDao = userDao;
     }
 
-    public boolean tryLogin(String nickName, String password, HttpSession session) {
-        boolean loginSuccessful = false;
+    // On success should return logged user ID
+    public Integer tryLogin(String nickName, String password) {
+        Integer loggedUserID = -1;
 
         if (nickName != null && nickName.length() > 0) {
             User userFromDB = null;
@@ -28,8 +29,7 @@ public class LoginService {
                     String userPassword = userFromDB.getPassword();
 
                     if (userPassword != null && password != null && password.equalsIgnoreCase(userPassword)) {
-                        loginSuccessful = true;
-                        session.setAttribute("userID", userFromDB.getUserID());
+                        loggedUserID = userFromDB.getUserID();
                     }
                 }
             } catch (DBException e) {
@@ -37,6 +37,6 @@ public class LoginService {
             }
         }
 
-        return loginSuccessful;
+        return loggedUserID;
     }
 }

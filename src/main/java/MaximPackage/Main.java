@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args){
 
         // Create user
-        User user = new User("Tourist", "t@email.com", "Riga", "Latvia","pass");
+        User user = new User("Tourist", "t@email.com", 1, 2,"pass");
         // Print user
         ConsoleOutput.printObject(user);
         // Create Place

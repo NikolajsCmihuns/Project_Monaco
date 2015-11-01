@@ -21,37 +21,35 @@ public class RegistrationService {
     private RegistrationService() {
     }
 
-    public boolean tryRegistration(String nickName, String password, String email, String city, String country, String name, String surname, Integer age, String tag, HttpSession session) {
-        boolean registrationSuccessful = false;
+    public Integer tryRegistration(String nickName, String password, String email, Integer cityID, Integer countryID, String name, String surname, Integer age, Integer tagID) {
+        Integer registeredUseaID = -1;
 
         UserDAOImplementation userDAO = new UserDAOImplementation();
 
         if (    nickName != null && nickName.length() > 0 &&
                 password != null && password.length() > 0 &&
                 email != null && email.length() > 0 &&
-                city != null && city.length() > 0 &&
-                country != null && country.length() > 0 ) {
+                cityID != null && cityID > 0 &&
+                countryID != null && countryID > 0 ) {
 
             try {
-                User user = new User(nickName, email, city, country, password);
+                User user = new User(nickName, email, cityID, countryID, password);
 
                 if (name != null && name.length() > 0) {user.setName(name);}
                 if (surname != null && surname.length() > 0) {user.setLastName(surname);}
                 if (age != null && age > 0) {user.setAge(age);}
-                if (tag != null && tag.length() > 0) {user.setUserTag(tag);}
+                if (tagID != null && tagID > 0) {user.setUserTagID(tagID);}
 
                 userDAO.createUser(user);
 
-                session.setAttribute("userID", user.getUserID());
-
-                registrationSuccessful = true;
+                registeredUseaID = user.getUserID();
 
             } catch (DBException e) {
                 e.printStackTrace();
             }
         }
 
-        return registrationSuccessful;
+        return registeredUseaID;
     }
 
 }

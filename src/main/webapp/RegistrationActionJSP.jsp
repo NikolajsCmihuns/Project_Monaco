@@ -12,28 +12,27 @@
     String nickName = request.getParameter("rNickName");
     String password = request.getParameter("rPassword");
     String email = request.getParameter("rEmail");
-    String city = request.getParameter("rCity");
-    String country = request.getParameter("rCountry");
+    Integer cityID = Integer.valueOf(request.getParameter("rCity"));
+    Integer countryID = Integer.valueOf(request.getParameter("rCountry"));
     // Additional
     String name = request.getParameter("rName");
     String surname = request.getParameter("rSurname");
     Integer age = Integer.valueOf(request.getParameter("rAge"));
-    String tag = request.getParameter("rTag");
+    Integer tagID = Integer.valueOf(request.getParameter("rTag"));
 
     RegistrationService registrationService = RegistrationService.getInstance();
 
-    boolean success = registrationService.tryRegistration(nickName,password,email,city,country,name,surname,age,tag,request.getSession());
+    Integer registeredUserID = registrationService.tryRegistration(nickName,password,email,cityID,countryID,name,surname,age,tagID);
 
-    if (success) {
+    if (registeredUserID >= 0) {
+        session.setAttribute("userID",registeredUserID);
+
         String storedNickname = "";
 
-        Integer userId = (Integer) session.getAttribute("userID");
-        User user = null;
-        if (userId != null) {
-            UserDAOImplementation userDAO = new UserDAOImplementation();
-            User userFromDB = userDAO.getUserByID(userId);
-            storedNickname = userFromDB.getNickname();
-        }
+        UserDAOImplementation userDAO = new UserDAOImplementation();
+        User userFromDB = userDAO.getUserByID(registeredUserID);
+        storedNickname = userFromDB.getNickname();
+
 %>
 <h2>Now you are registered as <%= storedNickname %>!</h2>
 <%--Insert your relevant path to your landing page here--%>
