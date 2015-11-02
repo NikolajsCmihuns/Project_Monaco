@@ -231,7 +231,7 @@ CREATE TABLE IF NOT EXISTS `monaco`.`REVIEW` (
   `title` VARCHAR(100) NOT NULL,
   `body` VARCHAR(300) NOT NULL,
   `creationDate` DATETIME NULL,
-  `imageUrl` VARCHAR(200) NULL,
+  `imageURL` VARCHAR(200) NULL,
   PRIMARY KEY (`reviewID`),
   UNIQUE INDEX `I_REVIEW_reviewID_UNIQUE` (`reviewID` ASC),
   INDEX `I_REVIEW_placeID_idx` (`placeID` ASC),
