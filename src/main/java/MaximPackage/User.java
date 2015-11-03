@@ -1,11 +1,15 @@
 package MaximPackage;
 
+import java.util.Optional;
+
 /**
  * Created by maksimspuskels on 18/10/15.
  */
 public class User {
 
-    private Integer userID;
+    public final static Integer USER_NOT_FOUND = -9999;
+
+    private Optional<Integer> userID;
     private String  name;
     private String  lastName;
     private String  nickname;
@@ -26,7 +30,7 @@ public class User {
     }
 
     //  ---===== Getters ====----
-    public Integer getUserID() {
+    public Optional<Integer> getUserID() {
         return userID;
     }
 
@@ -67,7 +71,7 @@ public class User {
     }
 
     //  ---===== Setters ====----
-    public void setUserID(Integer userID) {
+    public void setUserID(Optional<Integer> userID) {
         this.userID = userID;
     }
 

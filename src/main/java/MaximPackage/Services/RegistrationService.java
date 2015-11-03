@@ -5,7 +5,9 @@ import MaximPackage.Database.UserDAOImplementation;
 import MaximPackage.User;
 import lv.javaguru.java2.database.DBException;
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 /**
  * Created by maksimspuskels on 29/10/15.
@@ -21,8 +23,8 @@ public class RegistrationService {
     private RegistrationService() {
     }
 
-    public Integer tryRegistration(String nickName, String password, String email, Integer cityID, Integer countryID, String name, String surname, Integer age, Integer tagID) {
-        Integer registeredUseaID = -1;
+    public Optional<Integer> tryRegistration(String nickName, String password, String email, Integer cityID, Integer countryID, String name, String surname, Integer age, Integer tagID) {
+        Optional<Integer> registeredUserID = Optional.of(User.USER_NOT_FOUND);
 
         UserDAOImplementation userDAO = new UserDAOImplementation();
 
@@ -42,14 +44,13 @@ public class RegistrationService {
 
                 userDAO.createUser(user);
 
-                registeredUseaID = user.getUserID();
+                registeredUserID = user.getUserID();
 
             } catch (DBException e) {
                 e.printStackTrace();
             }
         }
 
-        return registeredUseaID;
+        return registeredUserID;
     }
-
 }

@@ -30,7 +30,7 @@ public class Main {
         ConsoleOutput.printObject(route);
 
         // Create Review
-        Review review = new Review(301,"Here was good", "If you feel like visiting, I suggest!", user.getUserID(), "http://www.leningrad.ru");
+        Review review = new Review(301,"Here was good", "If you feel like visiting, I suggest!", user.getUserID().get(), "http://www.leningrad.ru");
 
         // Print Review
         ConsoleOutput.printObject(review);

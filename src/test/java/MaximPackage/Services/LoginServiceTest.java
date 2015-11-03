@@ -3,7 +3,7 @@ package MaximPackage.Services;
 import MaximPackage.Database.UserDAOInterface;
 import MaximPackage.User;
 import lv.javaguru.java2.database.DBException;
-import org.easymock.Mock;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,12 +37,12 @@ public class LoginServiceTest {
     public void testTryLogin() throws Exception {
         LoginService loginService = new LoginService(userDao);
         assertEquals(Integer.valueOf(1),loginService.tryLogin("masha","123"));
-        assertEquals(Integer.valueOf(-1), loginService.tryLogin("masha", "1234"));
+        assertEquals(User.NO_USER_FOUND, loginService.tryLogin("masha", "1234"));
     }
 
     @Test
     public void emptyTryLogin() throws Exception {
         LoginService loginService = new LoginService(userDao);
-        assertEquals(Integer.valueOf(-1), loginService.tryLogin("", ""));
+        assertEquals(User.NO_USER_FOUND, loginService.tryLogin("", ""));
     }
 }
