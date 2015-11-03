@@ -3,17 +3,17 @@
 
     <persistence-unit name="NewPersistenceUnit">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <class>janis.monako.models.CityRefEntity</class>
-        <class>janis.monako.models.CommentReviewOnPlaceEntity</class>
-        <class>janis.monako.models.CommentReviewOnRouteEntity</class>
-        <class>janis.monako.models.PlaceEntity</class>
-        <class>janis.monako.models.PlacesInRouteEntity</class>
-        <class>janis.monako.models.PlaceTypeRefEntity</class>
-        <class>janis.monako.models.ReviewOnPlaceEntity</class>
-        <class>janis.monako.models.ReviewOnRouteEntity</class>
-        <class>janis.monako.models.RouteEntity</class>
-        <class>janis.monako.models.TagsRefEntity</class>
-        <class>janis.monako.models.UserEntity</class>
+        <class>janis.monakoTest.models.CityRefEntity</class>
+        <class>janis.monakoTest.models.CommentReviewOnPlaceEntity</class>
+        <class>janis.monakoTest.models.CommentReviewOnRouteEntity</class>
+        <class>janis.monakoTest.models.PlaceEntity</class>
+        <class>janis.monakoTest.models.PlacesInRouteEntity</class>
+        <class>janis.monakoTest.models.PlaceTypeRefEntity</class>
+        <class>janis.monakoTest.models.ReviewOnPlaceEntity</class>
+        <class>janis.monakoTest.models.ReviewOnRouteEntity</class>
+        <class>janis.monakoTest.models.RouteEntity</class>
+        <class>janis.monakoTest.models.TagsRefEntity</class>
+        <class>janis.monakoTest.models.UserEntity</class>
         <properties>
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306"/>
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>

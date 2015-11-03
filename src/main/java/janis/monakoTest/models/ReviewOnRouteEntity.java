@@ -1,4 +1,4 @@
-package janis.monako.models;
+package janis.monakoTest.models;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -7,36 +7,36 @@ import java.sql.Timestamp;
  * Created by janis on 10/31/15.
  */
 @Entity
-@Table(name = "REVIEW_ON_PLACE", schema = "", catalog = "monaco_test")
-public class ReviewOnPlaceEntity {
-    private int reviewOnPlaceId;
-    private int placeId;
+@Table(name = "REVIEW_ON_ROUTE", schema = "", catalog = "monaco_test")
+public class ReviewOnRouteEntity {
+    private int reviewOnRouteId;
+    private int routeId;
     private int creatorId;
     private String title;
     private String body;
     private Timestamp creationDate;
     private String imageUrl;
     private UserEntity userByCreatorId;
-    private PlaceEntity placeByPlaceId;
+    private RouteEntity routeByRouteId;
 
     @Id
-    @Column(name = "reviewOnPlaceID")
-    public int getReviewOnPlaceId() {
-        return reviewOnPlaceId;
+    @Column(name = "reviewOnRouteID")
+    public int getReviewOnRouteId() {
+        return reviewOnRouteId;
     }
 
-    public void setReviewOnPlaceId(int reviewOnPlaceId) {
-        this.reviewOnPlaceId = reviewOnPlaceId;
+    public void setReviewOnRouteId(int reviewOnRouteId) {
+        this.reviewOnRouteId = reviewOnRouteId;
     }
 
     @Basic
-    @Column(name = "placeID")
-    public int getPlaceId() {
-        return placeId;
+    @Column(name = "routeID")
+    public int getRouteId() {
+        return routeId;
     }
 
-    public void setPlaceId(int placeId) {
-        this.placeId = placeId;
+    public void setRouteId(int routeId) {
+        this.routeId = routeId;
     }
 
     @Basic
@@ -94,10 +94,10 @@ public class ReviewOnPlaceEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ReviewOnPlaceEntity that = (ReviewOnPlaceEntity) o;
+        ReviewOnRouteEntity that = (ReviewOnRouteEntity) o;
 
-        if (reviewOnPlaceId != that.reviewOnPlaceId) return false;
-        if (placeId != that.placeId) return false;
+        if (reviewOnRouteId != that.reviewOnRouteId) return false;
+        if (routeId != that.routeId) return false;
         if (creatorId != that.creatorId) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
         if (body != null ? !body.equals(that.body) : that.body != null) return false;
@@ -109,8 +109,8 @@ public class ReviewOnPlaceEntity {
 
     @Override
     public int hashCode() {
-        int result = reviewOnPlaceId;
-        result = 31 * result + placeId;
+        int result = reviewOnRouteId;
+        result = 31 * result + routeId;
         result = 31 * result + creatorId;
         result = 31 * result + (title != null ? title.hashCode() : 0);
         result = 31 * result + (body != null ? body.hashCode() : 0);
@@ -130,12 +130,12 @@ public class ReviewOnPlaceEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "placeID", referencedColumnName = "placeID", nullable = false)
-    public PlaceEntity getPlaceByPlaceId() {
-        return placeByPlaceId;
+    @JoinColumn(name = "routeID", referencedColumnName = "routeID", nullable = false)
+    public RouteEntity getRouteByRouteId() {
+        return routeByRouteId;
     }
 
-    public void setPlaceByPlaceId(PlaceEntity placeByPlaceId) {
-        this.placeByPlaceId = placeByPlaceId;
+    public void setRouteByRouteId(RouteEntity routeByRouteId) {
+        this.routeByRouteId = routeByRouteId;
     }
 }

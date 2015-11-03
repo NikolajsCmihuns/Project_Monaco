@@ -1,4 +1,4 @@
-package janis.monako.models;
+package janis.monakoTest.models;
 
 import javax.persistence.*;
 
