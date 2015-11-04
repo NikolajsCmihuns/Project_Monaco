@@ -1,4 +1,4 @@
-package AlexPackage;
+package AlexPackage.MonacoConsole;
 
 /**
  * Created by Aborigens on 24-Oct-15.

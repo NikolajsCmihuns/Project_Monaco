@@ -1,4 +1,4 @@
-package AlexPackage;
+package AlexPackage.MonacoConsole;
 
 import java.io.File;
 
