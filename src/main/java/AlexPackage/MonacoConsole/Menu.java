@@ -1,4 +1,4 @@
-package AlexPackage;
+package AlexPackage.MonacoConsole;
 
 import java.util.HashMap;
 import java.util.Map;

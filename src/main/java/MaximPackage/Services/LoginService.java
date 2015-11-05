@@ -4,7 +4,7 @@ import MaximPackage.Database.UserDAOInterface;
 import MaximPackage.User;
 import lv.javaguru.java2.database.DBException;
 
-import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 /**
  * Created by maksimspuskels on 29/10/15.
@@ -18,8 +18,8 @@ public class LoginService {
     }
 
     // On success should return logged user ID
-    public Integer tryLogin(String nickName, String password) {
-        Integer loggedUserID = -1;
+    public Optional<Integer> tryLogin(String nickName, String password) {
+        Optional<Integer> loggedUserID = Optional.of(User.USER_NOT_FOUND);
 
         if (nickName != null && nickName.length() > 0) {
             User userFromDB = null;

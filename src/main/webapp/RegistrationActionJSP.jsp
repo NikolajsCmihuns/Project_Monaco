@@ -1,6 +1,7 @@
 <%@ page import="MaximPackage.Services.RegistrationService" %>
 <%@ page import="MaximPackage.Database.UserDAOImplementation" %>
 <%@ page import="MaximPackage.User" %>
+<%@ page import="java.util.Optional" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
@@ -22,15 +23,15 @@
 
     RegistrationService registrationService = RegistrationService.getInstance();
 
-    Integer registeredUserID = registrationService.tryRegistration(nickName,password,email,cityID,countryID,name,surname,age,tagID);
+    Optional<Integer> registeredUserID = registrationService.tryRegistration(nickName,password,email,cityID,countryID,name,surname,age,tagID);
 
-    if (registeredUserID >= 0) {
+    if (registeredUserID.get() != User.USER_NOT_FOUND) {
         session.setAttribute("userID",registeredUserID);
 
         String storedNickname = "";
 
         UserDAOImplementation userDAO = new UserDAOImplementation();
-        User userFromDB = userDAO.getUserByID(registeredUserID);
+        User userFromDB = userDAO.getUserByID(registeredUserID.get());
         storedNickname = userFromDB.getNickname();
 
 %>

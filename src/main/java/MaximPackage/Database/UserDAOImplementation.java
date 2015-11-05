@@ -5,6 +5,7 @@ import lv.javaguru.java2.database.jdbc.DAO;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
 
 import java.sql.*;
+import java.util.Optional;
 
 import MaximPackage.User;
 
@@ -33,7 +34,7 @@ public class UserDAOImplementation implements UserDAOInterface {
             preparedStatement.setString(2, user.getName());         /* Name char */
             preparedStatement.setString(3, user.getLastName());     /* LastName char */
             preparedStatement.setString(4, user.getEmail());        /* Email char */
-            preparedStatement.setInt(5, user.getAge());          /* Age INT */
+            preparedStatement.setInt(5, user.getAge());             /* Age INT */
 
             preparedStatement.setInt(6, user.getCityID());          /* City char */
             preparedStatement.setInt(7, user.getCountryID());       /* Country char */
@@ -47,7 +48,7 @@ public class UserDAOImplementation implements UserDAOInterface {
 
             ResultSet rs = preparedStatement.getGeneratedKeys();
             if (rs.next()) {
-                user.setUserID(rs.getInt(1));
+                user.setUserID(Optional.of(rs.getInt(1)));
             }
         } catch (Throwable e) {
             System.out.println("Exception while executing UserDAOImpl.createUser()");
@@ -109,7 +110,7 @@ public class UserDAOImplementation implements UserDAOInterface {
         try {
             user = new User(resultsSet.getString("nickname"), resultsSet.getString("email"), resultsSet.getInt("cityID"), resultsSet.getInt("countryID"), resultsSet.getString("userPass"));
 
-            user.setUserID(resultsSet.getInt("userID"));
+            user.setUserID(Optional.of(resultsSet.getInt("userID")));
             user.setName(resultsSet.getString("firstName"));
             user.setLastName(resultsSet.getString("lastName"));
             user.setAge(resultsSet.getInt("age"));

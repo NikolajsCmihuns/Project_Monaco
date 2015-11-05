@@ -1,10 +1,8 @@
 <%@ page import="MaximPackage.Services.LoginService" %>
 <%@ page import="MaximPackage.Database.UserDAOImplementation" %>
-<%@ page import="lv.javaguru.java2.database.UserDAO" %>
 <%@ page import="MaximPackage.User" %>
-<%@ page import="nikocmihPackage.Console" %>
 <%@ page import="MaximPackage.ConsolePackage.ConsoleOutput" %>
-<%@ page import="java.util.Objects" %>
+<%@ page import="java.util.Optional" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
@@ -16,18 +14,18 @@
     String password = request.getParameter("lPassword");
 
     LoginService loginService = new LoginService(new UserDAOImplementation());
-    Integer loggedUserID = loginService.tryLogin(nickName,password);
+    Optional<Integer> loggedUserID = loginService.tryLogin(nickName,password);
 
-    if (loggedUserID >= 0) {
+    if (loggedUserID.get() != User.USER_NOT_FOUND) {
         session.setAttribute("userID", loggedUserID);
 
         // Just for test we get user nickname from DB again
         String storedNickname = "";
 
-        ConsoleOutput.printObject("" + loggedUserID);
+        ConsoleOutput.printObject("" + loggedUserID.get());
 
         UserDAOImplementation userDAO = new UserDAOImplementation();
-        User userFromDB = userDAO.getUserByID(loggedUserID);
+        User userFromDB = userDAO.getUserByID(loggedUserID.get());
         storedNickname = userFromDB.getNickname();
 %>
 <h2>You are logged in as <%= storedNickname %>!</h2>
