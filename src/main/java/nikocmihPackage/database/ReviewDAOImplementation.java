@@ -30,19 +30,27 @@ public class ReviewDAOImplementation implements ReviewDAOInterface {
 
         try {
             connection = getConnection();
-            PreparedStatement preparedStatement =
-                    connection.prepareStatement("insert into REVIEW (creatorID, routeID, title, body, imageURLvalues) values (?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            preparedStatement.setInt(1, review.getCreatorID());
-            preparedStatement.setInt(2, review.getRouteID());
-            preparedStatement.setString(3, review.getTitle());
-            preparedStatement.setString(4, review.getBody());
-            preparedStatement.setString(5, review.getImageURL());
+            PreparedStatement insertIntoReviewSqlStmt =
+                    connection.prepareStatement("insert into REVIEW (creatorID, routeID, title, body, imageURLvalues)" +
+                                                            "values (?        ,?       ,     ?,    ?,              ?)",
+                                                PreparedStatement.RETURN_GENERATED_KEYS);
 
-            preparedStatement.executeUpdate();
+            // Finally CreatorID should be obtained from  Route object
+            insertIntoReviewSqlStmt.setInt(1, review.getCreatorID());
 
-            ResultSet rs = preparedStatement.getGeneratedKeys();
+            // Finally getRouteID should be obtained from  Route object
+            insertIntoReviewSqlStmt.setInt(2, review.getRouteID());
+
+            insertIntoReviewSqlStmt.setString(3, review.getTitle());
+            insertIntoReviewSqlStmt.setString(4, review.getBody());
+            insertIntoReviewSqlStmt.setString(5, review.getImageURL());
+
+            insertIntoReviewSqlStmt.executeUpdate();
+
+            ResultSet rs = insertIntoReviewSqlStmt.getGeneratedKeys();
             if (rs.next()) {
                 review.setReviewID(rs.getInt(1));
+                System.out.println("Get Review ID after executing SQL query: " + review.getReviewID());
             }
 
 

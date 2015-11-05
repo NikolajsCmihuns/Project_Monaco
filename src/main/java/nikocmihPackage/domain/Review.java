@@ -12,16 +12,16 @@ public class Review {
     private String title;
     private String body;
     private String imageURL;
-    private String creationDate;
+    private String creationDate; //is set in DB table
 
 
-    // Constructor for review on place
+    /* // Constructor for review on place
     public Review(Integer creatorID, Integer placeID, String title, String body) {
         this.creatorID = creatorID;
         this.placeID = placeID;
         this.title = title;
         this.body = body;
-    }
+    }*/
 
     // Constructor for review on route
     public Review(Integer routeID, String title, String body, Integer creatorID) {

@@ -10,16 +10,18 @@ public interface ReviewDAOInterface {
 
     void createReviewOnRoute(Review review) throws DBException;
 
-    void createReviewOnPlace(Review review) throws DBException;
+    //Review getReviewOnRoute(Integer reviewID) throws DBException;
 
-    Review[] getReviewsOnPlace(Integer placeID) throws DBException;
-
-    Review[] getReviewsOnRoute(Integer routeID) throws DBException;
-
-    void deleteReviewOnRoute(Integer reviewID) throws DBException;
-
-    void updateReviewOnPlace(Integer reviewID) throws DBException;
-
-    Review[] getUserReviews(Integer creatorID) throws DBException;
+//    void createReviewOnPlace(Review review) throws DBException;
+//
+//    Review[] getReviewsOnPlace(Integer placeID) throws DBException;
+//
+//    Review[] getReviewsOnRoute(Integer routeID) throws DBException;
+//
+//    void deleteReviewOnRoute(Integer reviewID) throws DBException;
+//
+//    void updateReviewOnPlace(Integer reviewID) throws DBException;
+//
+//    Review[] getUserReviews(Integer creatorID) throws DBException;
 
 }
