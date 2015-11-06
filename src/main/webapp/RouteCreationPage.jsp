@@ -413,7 +413,7 @@
         btnRemove.type = "button";
         btnRemove.value = "-";
         btnRemove.addEventListener('click', function () {
-                    removeRouteNode(result, tr);
+                    removeRouteNode(result, tr, i);
                 }, false
         );
 
@@ -427,7 +427,7 @@
         results.appendChild(tr);
     }
 
-    function removeRouteNode(result, tr) {
+    function removeRouteNode(result, tr, i) {
 
         routePath.setMap(null);
 
