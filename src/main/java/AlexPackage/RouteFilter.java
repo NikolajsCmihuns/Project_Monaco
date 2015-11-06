@@ -1,7 +1,5 @@
 package AlexPackage;
 
-import MaximPackage.Servlet.MVC.MVCModel;
-
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
