@@ -8,6 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 public class RouteCreationController implements RouteController {
     @Override
     public RouteModel execute(HttpServletRequest request) {
-        return new RouteModel("Create Route" ,"/RouteCreationPage.jsp");
+        return new RouteModel("" ,"/RouteCreationPage.jsp");
     }
 }

@@ -32,7 +32,7 @@ public class RouteFilter implements Filter {
         RouteController controller = controllers.get(contextURI);
         if (controller != null) {
             RouteModel model = controller.execute(req);
-            req.setAttribute("model", model.getData());
+            req.setAttribute("", model.getData());
 
             // page context, that knows about all elements on the page
             ServletContext context = req.getServletContext();
