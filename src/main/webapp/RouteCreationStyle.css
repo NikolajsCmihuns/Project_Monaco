@@ -61,3 +61,6 @@ input[value] {
 select {
     color: grey;
 }
+.distance{
+    width: 70px;
+}

@@ -13,9 +13,9 @@
 <body>
 <div id="container">
     <div id="menu">
-        <form id="fmenu" action="" method="get">
+        <form id="fmenu" name="fmenu" action="RouteCreationAction.jsp" method="POST">
             <label for="country">Country:</label>
-            <select id="country" class="select_width" onchange="getCoordinates()">
+            <select id="country" name="country" class="select_width" onchange="getCoordinates()">
                 <option value=""></option>
                 <%
                     RouteDAOImplementation allCountries = new RouteDAOImplementation();
@@ -31,11 +31,11 @@
                     }
                 %>
             </select>
-            <input type="text" id="city" value="" class="tag_width"/>
-            <input type="text" id="routeName" value="Enter route name" class="tag_width"
+            <input type="text" id="city" name="city" value="" class="tag_width"/>
+            <input type="text" id="routeName" name="routeName" value="Enter route name" class="tag_width"
                    onfocus="value = ''"
-                   onblur="value = 'Enter route name'"/>
-            <select id="tag" class="select_width">
+                   onblur="isRouteNamePresent(this.value)"/>
+            <select id="tag" name="tag" class="select_width">
                 <option value="tag">Choose tag</option>
                 <%
                     RouteDAOImplementation allTags = new RouteDAOImplementation();
@@ -44,13 +44,15 @@
                     while (iteratorTags.hasNext()) {
                         Tags tag = iteratorTags.next();
                 %>
-                <option value="<%=tag.getTagName()%>"><%=tag.getTagName()%>
+                <option value="<%=tag.getTagId()%>"><%=tag.getTagName()%>
                 </option>
                 <%
                     }
                 %>
             </select>
-            <input type="button" value="Save">
+            <input type="text" value="" readonly class="distance" id="routeDistance" name="routeDistance"/>&nbsp;km
+            <input type="submit" value="Save">
+            <input type="hidden" id="route" name="route" value=""/>
         </form>
     </div>
     <div id="map"></div>
@@ -73,6 +75,14 @@
     var icon;
     var routeNodes = [];
     var routePath;
+
+    function isRouteNamePresent(value) {
+        if (value == '') {
+            document.getElementById("routeName").value = 'Enter route name';
+        } else {
+            document.getElementById("routeName").value = value;
+        }
+    }
 
     function getCoordinates() {
         clearResults();
@@ -206,6 +216,30 @@
         results.appendChild(tr);
     }
 
+    function calculateDistance() {
+
+        var from = "";
+        var to = "";
+        var distance = 0;
+
+        for (i = 0; i < routeNodes.length; i++) {
+            var latLng = routeNodes[i].split("|");
+            if (from == "") {
+                from = new google.maps.LatLng(latLng[0], latLng[1]);
+            } else if (to == "") {
+                to = new google.maps.LatLng(latLng[0], latLng[1]);
+            }
+            if (from != "" && to != "") {
+                // get kilometers
+                distance = distance + parseFloat((google.maps.geometry.spherical.computeDistanceBetween(from, to) / 1000));
+                distance = +distance.toFixed(2);
+                from = to;
+                to = "";
+            }
+        }
+        document.getElementById("routeDistance").value = distance;
+    }
+
     function removeRouteNode(result, tr, i) {
 
         routePath.setMap(null);
@@ -221,6 +255,8 @@
         if (routeNodes.length > 1) {
             drawRoute();
         }
+        document.getElementById("route").value = routeNodes;
+        calculateDistance();
 
     }
 
@@ -245,13 +281,27 @@
         tr.style.backgroundColor = '#00FF00';
 
         var placeCoordinates = result.geometry.location.lat() + "|" + result.geometry.location.lng();
-        routeNodes.push(placeCoordinates);
+        var exists = false;
+        var i = 0;
+        while (i < routeNodes.length && exists == false) {
+            if (placeCoordinates == routeNodes[i]) {
+                exists = true;
+            }
+            i++;
+        }
+
+        if (exists == false) {
+            routeNodes.push(placeCoordinates);
+        }
+
+        document.getElementById("route").value = routeNodes;
         if (routeNodes.length > 1) {
             if (routePath != undefined) {
                 routePath.setMap(null);
             }
             drawRoute();
         }
+        calculateDistance();
     }
 
     function clearMarkers() {
@@ -337,7 +387,7 @@
 </script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBtK0VA1Yy5i-vDXEcXq9XHo6vZ4Ke-jc&signed_in=true&libraries=places,geometry&callback=getCoordinates">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBtK0VA1Yy5i-vDXEcXq9XHo6vZ4Ke-jc&signed_in=true&v=3&libraries=places,geometry&callback=getCoordinates">
 </script>
 </body>
 </html>
