@@ -5,13 +5,19 @@ package AlexPackage.DB;
  */
 public class Tags {
 
+    private Integer tagId;
     private String tagName;
 
-    public Tags(String tagName) {
+    public Tags(Integer tagId, String tagName) {
+        this.tagId = tagId;
         this.tagName = tagName;
     }
 
     public String getTagName() {
         return tagName;
+    }
+
+    public Integer getTagId() {
+        return tagId;
     }
 }

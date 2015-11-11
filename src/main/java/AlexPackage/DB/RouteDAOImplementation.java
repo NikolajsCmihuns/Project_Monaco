@@ -71,10 +71,10 @@ public class RouteDAOImplementation implements RouteDAOInterface {
         try {
             connection = getConnection();
 
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT TAG_NAME FROM TAGS_REF");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT TAG_NAME_ID, TAG_NAME FROM TAGS_REF");
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Tags tag = new Tags(resultSet.getString("TAG_NAME"));
+                Tags tag = new Tags(Integer.parseInt(resultSet.getString("TAG_NAME_ID")), resultSet.getString("TAG_NAME"));
                 tags.add(tag);
             }
         } catch (Throwable e) {
