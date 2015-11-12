@@ -7,10 +7,9 @@ import lv.javaguru.java2.database.jdbc.DAOImpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by Aborigens on 07-Nov-15.
@@ -86,6 +85,40 @@ public class RouteDAOImplementation implements RouteDAOInterface {
         }
 
         return tags;
+    }
+
+    private String getCurrentDate() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
+
+    @Override
+    public boolean saveRoute(Route route) throws DBException {
+
+        boolean saved = false;
+
+        try {
+            connection = getConnection();
+
+            String saveToRouteTable = "INSERT INTO ROUTE VALUES (default, ?, 0, ?, ?, 1)";
+            PreparedStatement preparedStatement = connection.prepareStatement(saveToRouteTable, PreparedStatement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, route.getDistance());
+            preparedStatement.setString(2, route.getRouteTag());
+            preparedStatement.setString(3, getCurrentDate());
+            preparedStatement.executeUpdate();
+
+            saved = true;
+
+        } catch (Throwable e) {
+            System.out.println("Exception while executing RouteDAOImplementation.saveRoute()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+
+        return saved;
     }
 }
 
