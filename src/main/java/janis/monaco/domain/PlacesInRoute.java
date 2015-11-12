@@ -14,7 +14,7 @@ public class PlacesInRoute {
     private Place placeByPlaceId;
     private Route routeByRouteId;
 
-    @Basic
+    @Id
     @Column(name = "routeID")
     public int getRouteId() {
         return routeId;
@@ -67,7 +67,7 @@ public class PlacesInRoute {
     }
 
     @ManyToOne
-    @JoinColumn(name = "placeID", referencedColumnName = "placeID", nullable = false)
+    @JoinColumn(name = "placeID", referencedColumnName = "placeID", nullable = false, insertable=false, updatable=false)
     public Place getPlaceByPlaceId() {
         return placeByPlaceId;
     }
@@ -77,7 +77,7 @@ public class PlacesInRoute {
     }
 
     @ManyToOne
-    @JoinColumn(name = "routeID", referencedColumnName = "routeID", nullable = false)
+    @JoinColumn(name = "routeID", referencedColumnName = "routeID", nullable = false, insertable=false, updatable=false)
     public Route getRouteByRouteId() {
         return routeByRouteId;
     }

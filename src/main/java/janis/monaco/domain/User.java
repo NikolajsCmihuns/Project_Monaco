@@ -203,7 +203,7 @@ public class User {
     }
 
     @ManyToOne
-    @JoinColumn(name = "cityID", referencedColumnName = "CITY_NAME_ID", nullable = false)
+    @JoinColumn(name = "cityID", referencedColumnName = "CITY_NAME_ID", nullable = false, insertable=false, updatable=false)
     public CityRef getCityRefByCityId() {
         return cityRefByCityId;
     }
@@ -213,7 +213,7 @@ public class User {
     }
 
     @ManyToOne
-    @JoinColumn(name = "countryID", referencedColumnName = "COUNTRY_NAME_ID", nullable = false)
+    @JoinColumn(name = "countryID", referencedColumnName = "COUNTRY_NAME_ID", nullable = false, insertable=false, updatable=false)
     public CountryRef getCountryRefByCountryId() {
         return countryRefByCountryId;
     }
@@ -223,7 +223,7 @@ public class User {
     }
 
     @ManyToOne
-    @JoinColumn(name = "userTagID", referencedColumnName = "TAG_NAME_ID")
+    @JoinColumn(name = "userTagID", referencedColumnName = "TAG_NAME_ID", insertable=false, updatable=false)
     public TagsRef getTagsRefByUserTagId() {
         return tagsRefByUserTagId;
     }

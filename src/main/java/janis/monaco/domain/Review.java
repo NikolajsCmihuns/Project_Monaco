@@ -8,22 +8,60 @@ import java.util.Collection;
  * Created by janis on 11/3/15.
  */
 @Entity
+@Table(name = "REVIEW", schema = "", catalog = "monaco")
 public class Review {
-    private int reviewId;
-    private int creatorId;
-    private Integer placeId;
-    private Integer routeId;
-    private String title;
-    private String body;
-    private Timestamp creationDate;
-    private String imageUrl;
-    private Collection<CommentOnReview> commentOnReviewsByReviewId;
-    private User userByCreatorId;
-    private Place placeByPlaceId;
-    private Route routeByRouteId;
 
     @Id
     @Column(name = "reviewID")
+    private int reviewId;
+
+    @Basic
+    @Column(name = "creatorID")
+    private int creatorId;
+
+    @Basic
+    @Column(name = "placeID")
+    private Integer placeId;
+
+    @Basic
+    @Column(name = "routeID")
+    private Integer routeId;
+
+    @Basic
+    @Column(name = "title")
+    private String title;
+
+    @Basic
+    @Column(name = "body")
+    private String body;
+
+    @Basic
+    @Column(name = "creationDate")
+    private Timestamp creationDate;
+
+    @Basic
+    @Column(name = "imageUrl")
+    private String imageUrl;
+
+    @OneToMany(mappedBy = "reviewByReviewId") // mappedBy = "reviewByReviewId"
+    private Collection<CommentOnReview> commentOnReviewsByReviewId;
+
+    @ManyToOne
+    @JoinColumn(name = "creatorID", referencedColumnName = "userID", nullable = false,insertable=false, updatable=false)
+    private User userByCreatorId;
+
+    @ManyToOne
+    @JoinColumn(name = "placeID", referencedColumnName = "placeID", insertable=false, updatable=false)
+    private Place placeByPlaceId;
+
+    @ManyToOne
+    @JoinColumn(name = "routeID", referencedColumnName = "routeID", insertable=false, updatable=false)
+    private Route routeByRouteId;
+
+
+
+
+
     public int getReviewId() {
         return reviewId;
     }
@@ -32,8 +70,7 @@ public class Review {
         this.reviewId = reviewId;
     }
 
-    @Basic
-    @Column(name = "creatorID")
+
     public int getCreatorId() {
         return creatorId;
     }
@@ -42,8 +79,7 @@ public class Review {
         this.creatorId = creatorId;
     }
 
-    @Basic
-    @Column(name = "placeID")
+
     public Integer getPlaceId() {
         return placeId;
     }
@@ -52,8 +88,7 @@ public class Review {
         this.placeId = placeId;
     }
 
-    @Basic
-    @Column(name = "routeID")
+
     public Integer getRouteId() {
         return routeId;
     }
@@ -62,8 +97,7 @@ public class Review {
         this.routeId = routeId;
     }
 
-    @Basic
-    @Column(name = "title")
+
     public String getTitle() {
         return title;
     }
@@ -72,8 +106,7 @@ public class Review {
         this.title = title;
     }
 
-    @Basic
-    @Column(name = "body")
+
     public String getBody() {
         return body;
     }
@@ -82,8 +115,7 @@ public class Review {
         this.body = body;
     }
 
-    @Basic
-    @Column(name = "creationDate")
+
     public Timestamp getCreationDate() {
         return creationDate;
     }
@@ -92,8 +124,7 @@ public class Review {
         this.creationDate = creationDate;
     }
 
-    @Basic
-    @Column(name = "imageUrl")
+
     public String getImageUrl() {
         return imageUrl;
     }
@@ -135,7 +166,7 @@ public class Review {
         return result;
     }
 
-    @OneToMany(mappedBy = "reviewByReviewId")
+
     public Collection<CommentOnReview> getCommentOnReviewsByReviewId() {
         return commentOnReviewsByReviewId;
     }
@@ -144,8 +175,7 @@ public class Review {
         this.commentOnReviewsByReviewId = commentOnReviewsByReviewId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "creatorID", referencedColumnName = "userID", nullable = false)
+
     public User getUserByCreatorId() {
         return userByCreatorId;
     }
@@ -154,8 +184,7 @@ public class Review {
         this.userByCreatorId = userByCreatorId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "placeID", referencedColumnName = "placeID")
+
     public Place getPlaceByPlaceId() {
         return placeByPlaceId;
     }
@@ -164,8 +193,7 @@ public class Review {
         this.placeByPlaceId = placeByPlaceId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "routeID", referencedColumnName = "routeID")
+
     public Route getRouteByRouteId() {
         return routeByRouteId;
     }

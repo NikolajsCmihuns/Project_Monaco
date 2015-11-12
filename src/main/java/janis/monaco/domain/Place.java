@@ -8,19 +8,36 @@ import java.util.Collection;
  */
 @Entity
 public class Place {
-    private int placeId;
-    private double latitude;
-    private double longitude;
-    private String imageUrl;
-    private String placeName;
-    private String placeAddress;
-    private Integer placeTypeId;
-    private PlaceTypeRef placeTypeRefByPlaceTypeId;
-    private Collection<PlacesInRoute> placesInRoutesByPlaceId;
-    private Collection<Review> reviewsByPlaceId;
-
     @Id
     @Column(name = "placeID")
+    private int placeId;
+    @Basic
+    @Column(name = "latitude")
+    private double latitude;
+    @Basic
+    @Column(name = "longitude")
+    private double longitude;
+    @Basic
+    @Column(name = "imageURL")
+    private String imageUrl;
+    @Basic
+    @Column(name = "placeName")
+    private String placeName;
+    @Basic
+    @Column(name = "placeAddress")
+    private String placeAddress;
+    @Basic
+    @Column(name = "placeTypeID")
+    private Integer placeTypeId;
+    @ManyToOne
+    @JoinColumn(name = "placeTypeID", referencedColumnName = "PLACE_TYPE_ID", insertable=false, updatable=false)
+    private PlaceTypeRef placeTypeRefByPlaceTypeId;
+    @OneToMany(mappedBy = "placeByPlaceId")
+    private Collection<PlacesInRoute> placesInRoutesByPlaceId;
+    @OneToMany(mappedBy = "placeByPlaceId")
+    private Collection<Review> reviewsByPlaceId;
+
+
     public int getPlaceId() {
         return placeId;
     }
@@ -29,8 +46,7 @@ public class Place {
         this.placeId = placeId;
     }
 
-    @Basic
-    @Column(name = "latitude")
+
     public double getLatitude() {
         return latitude;
     }
@@ -39,8 +55,7 @@ public class Place {
         this.latitude = latitude;
     }
 
-    @Basic
-    @Column(name = "longitude")
+
     public double getLongitude() {
         return longitude;
     }
@@ -49,8 +64,7 @@ public class Place {
         this.longitude = longitude;
     }
 
-    @Basic
-    @Column(name = "imageURL")
+
     public String getImageUrl() {
         return imageUrl;
     }
@@ -59,8 +73,7 @@ public class Place {
         this.imageUrl = imageUrl;
     }
 
-    @Basic
-    @Column(name = "placeName")
+
     public String getPlaceName() {
         return placeName;
     }
@@ -69,8 +82,7 @@ public class Place {
         this.placeName = placeName;
     }
 
-    @Basic
-    @Column(name = "placeAddress")
+
     public String getPlaceAddress() {
         return placeAddress;
     }
@@ -79,8 +91,7 @@ public class Place {
         this.placeAddress = placeAddress;
     }
 
-    @Basic
-    @Column(name = "placeTypeID")
+
     public Integer getPlaceTypeId() {
         return placeTypeId;
     }
@@ -123,8 +134,7 @@ public class Place {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "placeTypeID", referencedColumnName = "PLACE_TYPE_ID")
+
     public PlaceTypeRef getPlaceTypeRefByPlaceTypeId() {
         return placeTypeRefByPlaceTypeId;
     }
@@ -133,7 +143,7 @@ public class Place {
         this.placeTypeRefByPlaceTypeId = placeTypeRefByPlaceTypeId;
     }
 
-    @OneToMany(mappedBy = "placeByPlaceId")
+
     public Collection<PlacesInRoute> getPlacesInRoutesByPlaceId() {
         return placesInRoutesByPlaceId;
     }
@@ -142,7 +152,7 @@ public class Place {
         this.placesInRoutesByPlaceId = placesInRoutesByPlaceId;
     }
 
-    @OneToMany(mappedBy = "placeByPlaceId")
+
     public Collection<Review> getReviewsByPlaceId() {
         return reviewsByPlaceId;
     }

@@ -9,12 +9,17 @@ import java.util.Collection;
 @Entity
 @Table(name = "PLACE_TYPE_REF", schema = "", catalog = "monaco")
 public class PlaceTypeRef {
-    private int placeTypeId;
-    private String placeType;
-    private Collection<Place> placesByPlaceTypeId;
 
     @Id
     @Column(name = "PLACE_TYPE_ID")
+    private int placeTypeId;
+    @Basic
+    @Column(name = "PLACE_TYPE")
+    private String placeType;
+    @OneToMany(mappedBy = "placeTypeRefByPlaceTypeId")
+    private Collection<Place> placesByPlaceTypeId;
+
+
     public int getPlaceTypeId() {
         return placeTypeId;
     }
@@ -23,8 +28,7 @@ public class PlaceTypeRef {
         this.placeTypeId = placeTypeId;
     }
 
-    @Basic
-    @Column(name = "PLACE_TYPE")
+
     public String getPlaceType() {
         return placeType;
     }
@@ -53,7 +57,7 @@ public class PlaceTypeRef {
         return result;
     }
 
-    @OneToMany(mappedBy = "placeTypeRefByPlaceTypeId")
+
     public Collection<Place> getPlacesByPlaceTypeId() {
         return placesByPlaceTypeId;
     }

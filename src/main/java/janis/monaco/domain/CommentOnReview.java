@@ -9,16 +9,39 @@ import java.sql.Date;
 @Entity
 @Table(name = "COMMENT_ON_REVIEW", schema = "", catalog = "monaco")
 public class CommentOnReview {
-    private int commentId;
-    private int commenterId;
-    private int reviewId;
-    private String body;
-    private Date commentDate;
-    private User userByCommenterId;
-    private Review reviewByReviewId;
 
     @Id
     @Column(name = "commentID")
+    private int commentId;
+
+    @Basic
+    @Column(name = "commenterID")
+    private int commenterId;
+
+    @Basic
+    @Column(name = "reviewID")
+    private int review;
+
+    @Basic
+    @Column(name = "body")
+    private String body;
+
+    @Basic
+    @Column(name = "commentDate")
+    private Date commentDate;
+
+    @ManyToOne
+    @JoinColumn(name = "commenterID", referencedColumnName = "userID", nullable = false, insertable=false, updatable=false)
+    private User userByCommenterId;
+
+    @ManyToOne
+    @JoinColumn(name = "reviewID", referencedColumnName = "reviewID", nullable = false, insertable=false, updatable=false)
+    private Review reviewByReviewId;
+
+    @ManyToOne(optional = false)
+    private Review reviews;
+
+
     public int getCommentId() {
         return commentId;
     }
@@ -27,8 +50,7 @@ public class CommentOnReview {
         this.commentId = commentId;
     }
 
-    @Basic
-    @Column(name = "commenterID")
+
     public int getCommenterId() {
         return commenterId;
     }
@@ -37,18 +59,16 @@ public class CommentOnReview {
         this.commenterId = commenterId;
     }
 
-    @Basic
-    @Column(name = "reviewID")
-    public int getReviewId() {
-        return reviewId;
+
+    public int getReview() {
+        return review;
     }
 
-    public void setReviewId(int reviewId) {
-        this.reviewId = reviewId;
+    public void setReview(int rev) {
+        this.review = rev;
     }
 
-    @Basic
-    @Column(name = "body")
+
     public String getBody() {
         return body;
     }
@@ -57,8 +77,7 @@ public class CommentOnReview {
         this.body = body;
     }
 
-    @Basic
-    @Column(name = "commentDate")
+
     public Date getCommentDate() {
         return commentDate;
     }
@@ -76,7 +95,7 @@ public class CommentOnReview {
 
         if (commentId != that.commentId) return false;
         if (commenterId != that.commenterId) return false;
-        if (reviewId != that.reviewId) return false;
+        if (review != that.review) return false;
         if (body != null ? !body.equals(that.body) : that.body != null) return false;
         if (commentDate != null ? !commentDate.equals(that.commentDate) : that.commentDate != null) return false;
 
@@ -87,14 +106,13 @@ public class CommentOnReview {
     public int hashCode() {
         int result = commentId;
         result = 31 * result + commenterId;
-        result = 31 * result + reviewId;
+        result = 31 * result + review;
         result = 31 * result + (body != null ? body.hashCode() : 0);
         result = 31 * result + (commentDate != null ? commentDate.hashCode() : 0);
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "commenterID", referencedColumnName = "userID", nullable = false)
+
     public User getUserByCommenterId() {
         return userByCommenterId;
     }
@@ -103,13 +121,21 @@ public class CommentOnReview {
         this.userByCommenterId = userByCommenterId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "reviewID", referencedColumnName = "reviewID", nullable = false)
+
     public Review getReviewByReviewId() {
         return reviewByReviewId;
     }
 
     public void setReviewByReviewId(Review reviewByReviewId) {
         this.reviewByReviewId = reviewByReviewId;
+    }
+
+
+    public Review getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(Review reviews) {
+        this.reviews = reviews;
     }
 }

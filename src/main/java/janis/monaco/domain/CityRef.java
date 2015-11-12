@@ -68,7 +68,7 @@ public class CityRef {
     }
 
     @ManyToOne
-    @JoinColumn(name = "CITY_COUNTRY_ID", referencedColumnName = "COUNTRY_NAME_ID", nullable = false)
+    @JoinColumn(name = "CITY_COUNTRY_ID", referencedColumnName = "COUNTRY_NAME_ID", nullable = false,insertable=false, updatable=false)
     public CountryRef getCountryRefByCityCountryId() {
         return countryRefByCityCountryId;
     }

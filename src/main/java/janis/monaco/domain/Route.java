@@ -128,7 +128,7 @@ public class Route {
     }
 
     @ManyToOne
-    @JoinColumn(name = "creatorID", referencedColumnName = "userID", nullable = false)
+    @JoinColumn(name = "creatorID", referencedColumnName = "userID", nullable = false, insertable=false, updatable=false)
     public User getUserByCreatorId() {
         return userByCreatorId;
     }
@@ -138,7 +138,7 @@ public class Route {
     }
 
     @ManyToOne
-    @JoinColumn(name = "routeTagID", referencedColumnName = "TAG_NAME_ID", nullable = false)
+    @JoinColumn(name = "routeTagID", referencedColumnName = "TAG_NAME_ID", nullable = false, insertable=false, updatable=false)
     public TagsRef getTagsRefByRouteTagId() {
         return tagsRefByRouteTagId;
     }
