@@ -87,10 +87,18 @@ public class RouteDAOImplementation implements RouteDAOInterface {
         return tags;
     }
 
-    private String getCurrentDate() {
+    private String getCurrentDateAndTime() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    private ArrayList<Coordinates> processCoordinates(String route) {
+        ArrayList<Coordinates> coordinates = new ArrayList<>();
+
+        String[] routeCoordinateTyples = route.split(",");
+
+        return coordinates;
     }
 
     @Override
@@ -101,12 +109,16 @@ public class RouteDAOImplementation implements RouteDAOInterface {
         try {
             connection = getConnection();
 
+            // save to route table
             String saveToRouteTable = "INSERT INTO ROUTE VALUES (default, ?, 0, ?, ?, 1)";
             PreparedStatement preparedStatement = connection.prepareStatement(saveToRouteTable, PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, route.getDistance());
             preparedStatement.setString(2, route.getRouteTag());
-            preparedStatement.setString(3, getCurrentDate());
+            preparedStatement.setString(3, getCurrentDateAndTime());
             preparedStatement.executeUpdate();
+
+            // save to place & places_in_route
+            ArrayList<Coordinates> coordinates = processCoordinates(route.getRoute());
 
             saved = true;
 
