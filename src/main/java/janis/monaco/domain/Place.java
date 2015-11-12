@@ -7,6 +7,7 @@ import java.util.Collection;
  * Created by janis on 11/3/15.
  */
 @Entity
+@Table(name = "PLACE", schema = "", catalog = "monaco")
 public class Place {
     @Id
     @Column(name = "placeID")

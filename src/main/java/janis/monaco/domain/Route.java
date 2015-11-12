@@ -8,6 +8,7 @@ import java.util.Collection;
  * Created by janis on 11/3/15.
  */
 @Entity
+@Table(name = "ROUTE", schema = "", catalog = "monaco")
 public class Route {
     private int routeId;
     private String distance;
