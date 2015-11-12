@@ -41,7 +41,7 @@
     String routeCity = request.getParameter("city");
     String routeName = request.getParameter("routeName");
     String routeTag = request.getParameter("tag"); // table route
-    String route = request.getParameter("route");
+    String route = request.getParameter("route"); // table place & places_in_route
     String distance = request.getParameter("routeDistance"); // table route
 
     Route itinerary = new Route(routeCountry, routeCity, routeName, routeTag, route, distance);
