@@ -64,3 +64,6 @@ select {
 .distance{
     width: 70px;
 }
+.okButton{
+    float: left;
+}

@@ -11,11 +11,26 @@
 <html>
 <head>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="RouteCreationStyle.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script>
         $(function () {
-            $("#dialog").dialog();
+            $("#dialog").dialog(
+                    {
+                        dialogClass: "no-close",
+                        buttons: [
+                            {
+                                text: "OK",
+                                class: "okButton",
+                                click: function () {
+                                    $(this).dialog("close");
+                                    window.location = "./";
+                                }
+                            }
+                        ]
+                    }
+            );
         });
     </script>
     <title>Route Saved</title>
@@ -31,12 +46,15 @@
 
     Route itinerary = new Route(routeCountry, routeCity, routeName, routeTag, route, distance);
     RouteDAOImplementation routeDAOImplementation = new RouteDAOImplementation();
-    routeDAOImplementation.saveRoute(itinerary);
-
+    if (routeDAOImplementation.saveRoute(itinerary)) {
 %>
 <div id="dialog" title="Route Saved">
     You route <%=routeName%> is saved
 </div>
-<%--return to a user's main page--%>
+<%
+    }
+
+%>
+
 </body>
 </html>
