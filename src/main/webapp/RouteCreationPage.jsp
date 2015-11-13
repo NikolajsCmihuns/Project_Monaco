@@ -13,7 +13,7 @@
 <body>
 <div id="container">
     <div id="menu">
-        <form id="fmenu" name="fmenu" action="RouteCreationAction.jsp" method="POST">
+        <form id="fmenu" name="fmenu" action="${pageContext.request.contextPath}/route_save" method="POST">
             <label for="country">Country:</label>
             <select id="country" name="country" class="select_width" onchange="getCoordinates()">
                 <option value=""></option>

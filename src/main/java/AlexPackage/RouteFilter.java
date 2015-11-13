@@ -18,6 +18,7 @@ public class RouteFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
         controllers = new HashMap<>();
         controllers.put("/route", new RouteCreationController());
+        controllers.put("/route_save", new RouteSaveController());
     }
 
     @Override

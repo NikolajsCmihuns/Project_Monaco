@@ -28,6 +28,10 @@
         <filter-name>RouteFilter</filter-name>
         <url-pattern>/route</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>RouteFilter</filter-name>
+        <url-pattern>/route_save</url-pattern>
+    </filter-mapping>
 
     <!--<servlet>-->
     <!--<servlet-name>HelloWorldServlet</servlet-name>-->
