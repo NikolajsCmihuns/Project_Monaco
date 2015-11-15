@@ -31,12 +31,11 @@
                     }
                 %>
             </select>
-            <input type="text" id="city" name="city" value="" class="tag_width"/>
-            <input type="text" id="routeName" name="routeName" value="Enter route name" class="tag_width"
-                   onfocus="value = ''"
-                   onblur="isRouteNamePresent(this.value)"/>
-            <select id="tag" name="tag" class="select_width">
-                <option value="tag">Choose tag</option>
+            <input type="text" id="city" name="city" value="" class="tag_width" required/>
+            <input type="text" id="routeName" name="routeName" class="tag_width"
+                   placeholder="Enter route name" required/>
+            <select required id="tag" name="tag" class="select_width">
+                <option value="">Choose Tag</option>
                 <%
                     RouteDAOImplementation allTags = new RouteDAOImplementation();
                     List<Tags> tagsList = allTags.getTagsList();
@@ -75,14 +74,6 @@
     var icon;
     var routeNodes = [];
     var routePath;
-
-    function isRouteNamePresent(value) {
-        if (value == '') {
-            document.getElementById("routeName").value = 'Enter route name';
-        } else {
-            document.getElementById("routeName").value = value;
-        }
-    }
 
     function getCoordinates() {
         clearResults();
@@ -242,8 +233,9 @@
 
     function removeRouteNode(result, tr, i) {
 
-        routePath.setMap(null);
-
+        if (routePath != undefined) {
+            routePath.setMap(null);
+        }
         tr.style.backgroundColor = (i % 2 === 0 ? '#F0F0F0' : '#FFFFFF');
 
         var placeCoordinates = result.geometry.location.lat() + "|" + result.geometry.location.lng();
@@ -366,6 +358,11 @@
             streetViewControl: false
         });
 
+//        cheat to populate hidden route - if none of the options selected
+//        put the current location - too lazy to validate :D
+        var iAmHere = lat + "|" + lng;
+        document.getElementById("route").value = iAmHere;
+
         if (currentCountry == "") {
             currentCountry = "LV";
         }
@@ -379,6 +376,7 @@
                 }
         );
 
+        document.getElementById("country").value = currentCountry;
         places = new google.maps.places.PlacesService(map);
         cities.addListener('place_changed', onPlaceChanged);
 
