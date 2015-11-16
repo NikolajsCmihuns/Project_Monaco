@@ -25,6 +25,8 @@
         <form id="fmenu" name="fmenu">
             <select required id="tag" name="tag" class="select_width">
                 <option value=""></option>
+                <option value=""></option>
+                <option value=""></option>
             </select>
         </form>
     </div>
