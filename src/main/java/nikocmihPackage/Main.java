@@ -1,5 +1,4 @@
 package nikocmihPackage;
-import MaximPackage.User;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -48,7 +47,7 @@ public class Main {
 
 
 
-                    // usersArray.add(new User(inputPassword, inputUserId,inputNickname, inputEmail));
+                    usersArray.add(new User(inputPassword, inputUserId,inputNickname, inputEmail));
 
                     break;
                 case 2:
