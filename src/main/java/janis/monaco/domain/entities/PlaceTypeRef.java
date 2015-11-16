@@ -1,20 +1,25 @@
-package janis.monakoTest.models;
+package janis.monaco.domain.entities;
 
 import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by janis on 10/31/15.
+ * Created by janis on 11/3/15.
  */
 @Entity
-@Table(name = "PLACE_TYPE_REF", schema = "", catalog = "monaco_test")
-public class PlaceTypeRefEntity {
-    private int placeTypeId;
-    private String placeType;
-    private Collection<PlaceEntity> placesByPlaceTypeId;
+@Table(name = "PLACE_TYPE_REF", schema = "", catalog = "monaco")
+public class PlaceTypeRef {
 
     @Id
     @Column(name = "PLACE_TYPE_ID")
+    private int placeTypeId;
+    @Basic
+    @Column(name = "PLACE_TYPE")
+    private String placeType;
+    @OneToMany(mappedBy = "placeTypeRefByPlaceTypeId")
+    private Collection<Place> placesByPlaceTypeId;
+
+
     public int getPlaceTypeId() {
         return placeTypeId;
     }
@@ -23,8 +28,7 @@ public class PlaceTypeRefEntity {
         this.placeTypeId = placeTypeId;
     }
 
-    @Basic
-    @Column(name = "PLACE_TYPE")
+
     public String getPlaceType() {
         return placeType;
     }
@@ -38,7 +42,7 @@ public class PlaceTypeRefEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PlaceTypeRefEntity that = (PlaceTypeRefEntity) o;
+        PlaceTypeRef that = (PlaceTypeRef) o;
 
         if (placeTypeId != that.placeTypeId) return false;
         if (placeType != null ? !placeType.equals(that.placeType) : that.placeType != null) return false;
@@ -53,12 +57,12 @@ public class PlaceTypeRefEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "placeTypeRefByPlaceTypeId")
-    public Collection<PlaceEntity> getPlacesByPlaceTypeId() {
+
+    public Collection<Place> getPlacesByPlaceTypeId() {
         return placesByPlaceTypeId;
     }
 
-    public void setPlacesByPlaceTypeId(Collection<PlaceEntity> placesByPlaceTypeId) {
+    public void setPlacesByPlaceTypeId(Collection<Place> placesByPlaceTypeId) {
         this.placesByPlaceTypeId = placesByPlaceTypeId;
     }
 }

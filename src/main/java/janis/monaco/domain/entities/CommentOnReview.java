@@ -1,4 +1,4 @@
-package janis.monaco.domain;
+package janis.monaco.domain.entities;
 
 import javax.persistence.*;
 import java.sql.Date;
