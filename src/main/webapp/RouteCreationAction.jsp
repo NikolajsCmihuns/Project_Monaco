@@ -1,5 +1,6 @@
 <%@ page import="AlexPackage.DB.Route" %>
 <%@ page import="AlexPackage.DB.RouteDAOImplementation" %>
+<%@ page import="java.util.Optional" %>
 <%--
   Created by IntelliJ IDEA.
   User: Aborigens
@@ -8,6 +9,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    Optional<Integer> userId = (Optional<Integer>) session.getAttribute("userID");
+    if (userId == null) {
+        String redirectURL = request.getContextPath() + "/route_auth";
+        response.sendRedirect(redirectURL);
+    }
+%>
 <html>
 <head>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">

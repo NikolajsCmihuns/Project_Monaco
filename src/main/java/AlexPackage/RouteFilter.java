@@ -19,6 +19,8 @@ public class RouteFilter implements Filter {
         controllers = new HashMap<>();
         controllers.put("/route", new RouteCreationController());
         controllers.put("/route_save", new RouteSaveController());
+        controllers.put("/route_view", new RouteViewController());
+        controllers.put("/route_auth", new RouteAuthorizationController());
     }
 
     @Override
@@ -33,7 +35,7 @@ public class RouteFilter implements Filter {
         RouteController controller = controllers.get(contextURI);
         if (controller != null) {
             RouteModel model = controller.execute(req);
-            req.setAttribute("", model.getData());
+            req.setAttribute("model", model.getData());
 
             // page context, that knows about all elements on the page
             ServletContext context = req.getServletContext();
