@@ -1,7 +1,7 @@
 package janis.monaco.app;
 
 
-import janis.monaco.domain.Place;
+import janis.monaco.domain.entities.Place;
 import janis.monaco.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -20,11 +20,14 @@ public class App {
         Session session = sessionFactory.openSession();
         //getting transaction object from session object
         session.beginTransaction();
-        Query query = session.createQuery("from Place ");
+        Query query = session.createQuery("from Place");
+        query.toString();
         List<Place> places = query.list();
+
         for(Place place : places)
         {
-            System.out.println("id: " + place.getPlaceId() + ", Name: " + place.getPlaceName() + ", Address: " + place.getPlaceAddress());
+           System.out.println("id: " + place.getPlaceId() + ", Name: " + place.getPlaceName() + ", Address: " + place.getPlaceAddress());
+
         }
         session.getTransaction().commit();
         sessionFactory.close();
