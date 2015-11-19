@@ -8,7 +8,7 @@ import nikocmihPackage.domain.Review;
  */
 public interface ReviewDAOInterface {
 
-    void createReviewOnRoute(Review review) throws DBException;
+    void createReviewOnRouteDAO (Review review) throws DBException;
 
     //Review getReviewOnRoute(Integer reviewID) throws DBException;
 

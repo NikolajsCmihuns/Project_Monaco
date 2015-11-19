@@ -16,12 +16,10 @@ import java.util.List;
  */
 public class ReviewDAOImplementation implements ReviewDAOInterface {
 
-
     private final DAO dao = new DAOImpl();
 
-
     @Override
-    public void createReviewOnRoute(Review review) throws DBException {
+    public void createReviewOnRouteDAO(Review review) throws DBException {
         if (review == null) {
             return;
         }
@@ -31,7 +29,7 @@ public class ReviewDAOImplementation implements ReviewDAOInterface {
         try {
             connection = getConnection();
             PreparedStatement insertIntoReviewSqlStmt =
-                    connection.prepareStatement("insert into REVIEW (creatorID, routeID, title, body, imageURLvalues)" +
+                    connection.prepareStatement("insert into REVIEW (creatorID, routeID, title, body, imageURL)" +
                                                             "values (?        ,?       ,     ?,    ?,              ?)",
                                                 PreparedStatement.RETURN_GENERATED_KEYS);
 
