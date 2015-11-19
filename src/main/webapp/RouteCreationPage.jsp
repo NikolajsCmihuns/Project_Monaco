@@ -393,7 +393,7 @@
 </script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBtK0VA1Yy5i-vDXEcXq9XHo6vZ4Ke-jc&signed_in=true&v=3&libraries=places,geometry&callback=getCoordinates">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBtK0VA1Yy5i-vDXEcXq9XHo6vZ4Ke-jc&signed_in=true&libraries=places,geometry&callback=getCoordinates">
 </script>
 </body>
 </html>

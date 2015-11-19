@@ -21,7 +21,7 @@ import java.util.*;
  */
 public class RouteDAOImplementation implements RouteDAOInterface {
 
-    private final String SELECT_COUNTRY_NAME = "SELECT COUNTRY_NAME FROM COUNTRY_REF";
+    private final String SELECT_COUNTRY_NAME = "SELECT COUNTRY_NAME, COUNTRY_SHORT_NAME FROM COUNTRY_REF";
     private final String SELECT_TAG_NAME_ID = "SELECT TAG_NAME_ID, TAG_NAME FROM TAGS_REF";
 
     private final String SAVE_TO_ROUTE_TABLE = "INSERT INTO ROUTE VALUES (default, ?, 0, ?, ?, 1)";
@@ -46,13 +46,6 @@ public class RouteDAOImplementation implements RouteDAOInterface {
     @Override
     public List<Country> getCountryList() throws DBException {
 
-        Map<String, String> countryShortName = new HashMap<>();
-
-        countryShortName.put("Estonia", "EE");
-        countryShortName.put("Latvia", "LV");
-        countryShortName.put("Lithuania", "LT");
-        countryShortName.put("Monaco", "MC");
-
         List<Country> countryList = new ArrayList<>();
         try {
             connection = getConnection();
@@ -60,7 +53,7 @@ public class RouteDAOImplementation implements RouteDAOInterface {
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_COUNTRY_NAME);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Country country = new Country(countryShortName.get(resultSet.getString("COUNTRY_NAME")), resultSet.getString("COUNTRY_NAME"));
+                Country country = new Country(resultSet.getString("COUNTRY_SHORT_NAME"), resultSet.getString("COUNTRY_NAME"));
                 countryList.add(country);
             }
         } catch (Throwable e) {
