@@ -20,7 +20,7 @@ import java.util.*;
  * Created by Aborigens on 07-Nov-15.
  */
 public class RouteDAOImplementation implements RouteDAOInterface {
-// constants
+
     private final String SELECT_COUNTRY_NAME = "SELECT COUNTRY_NAME, COUNTRY_SHORT_NAME FROM COUNTRY_REF";
     private final String SELECT_TAG_NAME_ID = "SELECT TAG_NAME_ID, TAG_NAME FROM TAGS_REF";
 
