@@ -1,9 +1,13 @@
 package janis.monaco.mvc;
 
-import MaximPackage.Servlet.MVC.HelloWorldController;
-import MaximPackage.Servlet.MVC.LoginPageController;
-import MaximPackage.Servlet.MVC.MVCController;
-import MaximPackage.Servlet.MVC.MVCModel;
+
+
+import janis.monaco.config.SpringConfig;
+import janis.monaco.controllers.ControllerPlace;
+import org.jboss.logging.Logger;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -19,13 +23,31 @@ import java.util.Map;
 public class MVCFilter implements Filter {
 
     private Map<String, MVCController> controllers;
+    private ApplicationContext springContext;
+    private static final Logger logger = Logger.getLogger(MVCFilter.class.getName());
+
+
+
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
+
+        try {
+            springContext = new AnnotationConfigApplicationContext(SpringConfig.class);
+        } catch (BeansException e) {
+            logger.log(Logger.Level.INFO, "Spring context failed to start", e);
+        }
         controllers = new HashMap<>();
-        controllers.put("/hello", new HelloWorldController());
-        controllers.put("/login", new LoginPageController());
-        controllers.put("", new LoginPageController());
+
+        controllers.put("/spring", getBean(ControllerPlace.class));
+
+
+
+    }
+
+    private MVCController getBean(Class clazz){
+
+        return (MVCController) springContext.getBean(clazz);
     }
 
     @Override
