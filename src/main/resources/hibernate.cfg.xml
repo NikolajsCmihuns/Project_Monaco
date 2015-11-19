@@ -26,16 +26,16 @@
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">update</property>
         <!-- DAO class maping area -->
-        <mapping class="janis.monaco.domain.CityRef"/>
-        <mapping class="janis.monaco.domain.CommentOnReview"/>
-        <mapping class="janis.monaco.domain.CountryRef"/>
-        <mapping class="janis.monaco.domain.Place"/>
-        <mapping class="janis.monaco.domain.PlacesInRoute"/>
-        <mapping class="janis.monaco.domain.PlaceTypeRef"/>
-        <mapping class="janis.monaco.domain.Review"/>
-        <mapping class="janis.monaco.domain.Route"/>
-        <mapping class="janis.monaco.domain.TagsRef"/>
-        <mapping class="janis.monaco.domain.User"/>
+        <mapping class="janis.monaco.domain.entities.CityRef"/>
+        <mapping class="janis.monaco.domain.entities.CommentOnReview"/>
+        <mapping class="janis.monaco.domain.entities.CountryRef"/>
+        <mapping class="janis.monaco.domain.entities.Place"/>
+        <mapping class="janis.monaco.domain.entities.PlacesInRoute"/>
+        <mapping class="janis.monaco.domain.entities.PlaceTypeRef"/>
+        <mapping class="janis.monaco.domain.entities.Review"/>
+        <mapping class="janis.monaco.domain.entities.Route"/>
+        <mapping class="janis.monaco.domain.entities.TagsRef"/>
+        <mapping class="janis.monaco.domain.entities.User"/>
 
     </session-factory>
 </hibernate-configuration>
