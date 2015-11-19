@@ -8,7 +8,7 @@ public interface CRUDOperationDAO<E, K> {
 
     E getById(K key);
 
-    E getRequired(K key);
+    E getRequired(int id);
 
     void update(E entity);
 

@@ -31,8 +31,7 @@ abstract class CRUDOperationDAOImpl<E, K extends Serializable> implements CRUDOp
     @Override
     public void create(E entity) {
         session.saveOrUpdate(entity);
-        session.getTransaction().commit();
-        sessionFactory.close();
+
     }
 
     @Override
@@ -44,13 +43,19 @@ abstract class CRUDOperationDAOImpl<E, K extends Serializable> implements CRUDOp
     }
 
     @Override
-    public E getRequired(K key) {
-        E entity = (E) session.get(daoType, key);
-        session.getTransaction().commit();
-        sessionFactory.close();
-        if(entity == null) {
-            throw new IllegalArgumentException("Entity with id = " + key + " not exist!");
+    public E getRequired(int id) {
+        List list = this.getAll();
+
+
+        if(list.size() < id ||0 > id ) {
+            throw new IllegalArgumentException("Entity with id = " + id + " not exist!");
         }
+
+        E entity =(E)list.get(id-1);
+
+
+
+
         return entity;
     }
 
@@ -67,8 +72,7 @@ abstract class CRUDOperationDAOImpl<E, K extends Serializable> implements CRUDOp
     @Override
     public List<E> getAll() {
         List list = session.createCriteria(daoType).list();
-        session.getTransaction().commit();
-        sessionFactory.close();
+
         return list;
     }
 

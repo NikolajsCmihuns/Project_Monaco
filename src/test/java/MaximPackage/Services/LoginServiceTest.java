@@ -20,7 +20,7 @@ public class LoginServiceTest {
     private UserDAOInterface userDao;
     private HttpSession sessionService;
 
-    @Before
+   /* @Before
     public void setUp() throws DBException {
         userDao = mock(UserDAOInterface.class);
         sessionService = mock(HttpSession.class);
@@ -31,9 +31,9 @@ public class LoginServiceTest {
         expectLastCall();
         replay(userDao);
         replay(sessionService);
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void testTryLogin() throws Exception {
         LoginService loginService = new LoginService(userDao);
         assertEquals(Integer.valueOf(1),loginService.tryLogin("masha","123"));
@@ -44,5 +44,5 @@ public class LoginServiceTest {
     public void emptyTryLogin() throws Exception {
         LoginService loginService = new LoginService(userDao);
         assertEquals(User.NO_USER_FOUND, loginService.tryLogin("", ""));
-    }
+    }*/
 }
