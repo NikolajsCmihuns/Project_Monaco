@@ -33,7 +33,7 @@
                                 class: "okButton",
                                 click: function () {
                                     $(this).dialog("close");
-                                    window.location = "./route_view";
+                                    window.location = "./route_auth";
                                 }
                             }
                         ]

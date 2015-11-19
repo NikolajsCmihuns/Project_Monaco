@@ -367,7 +367,7 @@
         });
 
 //        cheat to populate hidden route - if none of the options selected
-//        put the current location - too lazy to validate :D
+//        put the current location - too lazy to validate :D but that must not be the case
         var iAmHere = lat + "|" + lng;
         document.getElementById("route").value = iAmHere;
 
