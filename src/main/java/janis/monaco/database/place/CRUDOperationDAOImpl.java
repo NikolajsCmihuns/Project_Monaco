@@ -7,11 +7,10 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 
-import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-abstract class CRUDOperationDAOImpl<E, K extends Serializable> implements CRUDOperationDAO<E, K> {
+abstract class CRUDOperationDAOImpl<E> implements CRUDOperationDAO<E> {
 
 
     private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
@@ -30,15 +29,14 @@ abstract class CRUDOperationDAOImpl<E, K extends Serializable> implements CRUDOp
 
     @Override
     public void create(E entity) {
-        session.saveOrUpdate(entity);
+        session.save(entity);
 
     }
 
     @Override
-    public E getById(K key) {
-        E entity = (E) session.get(daoType, key);
-        session.getTransaction().commit();
-        sessionFactory.close();
+    public E getById(int id) {
+        E entity = (E) session.get(daoType, id);
+
         return entity;
     }
 
