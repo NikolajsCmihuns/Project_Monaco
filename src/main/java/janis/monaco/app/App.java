@@ -24,13 +24,17 @@ public class App {
         query.toString();
         List<Place> places = query.list();
 
-        for(Place place : places)
-        {
-           System.out.println("id: " + place.getPlaceId() + ", Name: " + place.getPlaceName() + ", Address: " + place.getPlaceAddress());
 
-        }
         session.getTransaction().commit();
         sessionFactory.close();
+
+        for(Place place : places)
+        {
+            System.out.println("id: " + place.getPlaceId() + ", Name: " + place.getPlaceName() + ", Address: " + place.getPlaceAddress());
+
+        }
+
+
     }
 }
 
