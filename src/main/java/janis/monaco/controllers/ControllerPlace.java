@@ -1,5 +1,7 @@
 package janis.monaco.controllers;
 
+
+import janis.monaco.mvc.MVCController;
 import org.springframework.stereotype.Component;
 
 /**
@@ -7,7 +9,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class ControllerPlace {
+public class ControllerPlace implements MVCController {
 
 
 }
