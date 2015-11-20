@@ -47,7 +47,7 @@ public class MVCFilter implements Filter {
 
     private MVCController getBean(Class clazz){
 
-        return (MVCController) springContext.getBean(clazz);
+        return (MVCController)springContext.getBean(clazz);
     }
 
     @Override
