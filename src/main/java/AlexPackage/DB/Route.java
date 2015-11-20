@@ -44,4 +44,5 @@ public class Route {
     public String getDistance() {
         return distance;
     }
+
 }

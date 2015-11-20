@@ -4,6 +4,7 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="AlexPackage.DB.Tags" %>
 <%@ page import="java.util.Optional" %>
+<%@ page import="java.util.Map" %>
 <%
     Optional<Integer> userId = (Optional<Integer>) session.getAttribute("userID");
     if (userId == null) {
@@ -26,12 +27,11 @@
             <select id="country" name="country" class="select_width" onchange="getCoordinates()">
                 <option value=""></option>
                 <%
-                    RouteDAOImplementation allCountries = new RouteDAOImplementation();
-                    List<Country> countryList = allCountries.getCountryList();
-                    Iterator<Country> iteratorCountries = countryList.iterator();
+                    Map<String, List> routeMetaInfo = (Map<String, List>) request.getAttribute("model");
+                    List<Country> allCountries = routeMetaInfo.get("countries");
+                    Iterator<Country> iteratorCountries = allCountries.iterator();
                     while (iteratorCountries.hasNext()) {
                         Country country = iteratorCountries.next();
-
                 %>
                 <option value="<%=country.getShortName()%>"><%=country.getLongName()%>
                 </option>
@@ -45,8 +45,7 @@
             <select required id="tag" name="tag" class="select_width">
                 <option value="">Choose Tag</option>
                 <%
-                    RouteDAOImplementation allTags = new RouteDAOImplementation();
-                    List<Tags> tagsList = allTags.getTagsList();
+                    List<Tags> tagsList = routeMetaInfo.get("tags");
                     Iterator<Tags> iteratorTags = tagsList.iterator();
                     while (iteratorTags.hasNext()) {
                         Tags tag = iteratorTags.next();

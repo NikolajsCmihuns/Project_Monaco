@@ -1,5 +1,7 @@
 package AlexPackage;
 
+import lv.javaguru.java2.database.DBException;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
