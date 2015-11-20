@@ -45,7 +45,7 @@ abstract class CRUDOperationDAOImpl<E> implements CRUDOperationDAO<E> {
 
 
         if(list.size() < id ||0 > id ) {
-            throw new IllegalArgumentException("Entity with id = " + id + " not exist!");
+            throw new IllegalArgumentException("Data with id = " + id + " not exist!");
         }
 
         E entity =(E)list.get(id-1);
