@@ -3,9 +3,7 @@ package janis.monaco.app;
 
 import janis.monaco.database.PlaceDAO;
 import janis.monaco.database.place.PlaceDAOImpl;
-import janis.monaco.domain.entities.Place;
-
-import java.util.List;
+import janis.monaco.domain.Place;
 
 
 /**
