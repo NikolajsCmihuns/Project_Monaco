@@ -3,6 +3,7 @@
 <%@ page import="AlexPackage.DB.RouteDAOImplementation" %>
 <%@ page import="java.util.Iterator" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 <%--
   Created by IntelliJ IDEA.
   User: Aborigens
@@ -30,8 +31,8 @@
             <select required id="tag" name="tag" class="select_width">
                 <option value="">Choose Tag</option>
                 <%
-                    RouteDAOImplementation allTags = new RouteDAOImplementation();
-                    List<Tags> tagsList = allTags.getTagsList();
+                    Map<String, List> routeMetaInfo = (Map<String, List>) request.getAttribute("model");
+                    List<Tags> tagsList = routeMetaInfo.get("tags");
                     Iterator<Tags> iteratorTags = tagsList.iterator();
                     while (iteratorTags.hasNext()) {
                         Tags tag = iteratorTags.next();
