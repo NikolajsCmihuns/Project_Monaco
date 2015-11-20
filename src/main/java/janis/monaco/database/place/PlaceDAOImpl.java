@@ -2,8 +2,8 @@ package janis.monaco.database.place;
 
 
 import janis.monaco.database.PlaceDAO;
-import janis.monaco.domain.entities.Place;
+import janis.monaco.domain.Place;
 
-class PlaceDAOImpl extends CRUDOperationDAOImpl<Place, Long> implements PlaceDAO {
+public class PlaceDAOImpl extends CRUDOperationDAOImpl<Place> implements PlaceDAO {
 
 }

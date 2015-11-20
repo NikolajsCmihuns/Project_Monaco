@@ -24,7 +24,7 @@ public class UserDAOImplementationTest {
         databaseCleaner.cleanDatabase();
     }
 
-    @Test
+    /*@Test
     public void testCreate() throws Exception {
         // Create user
         User user = new User("Tourist", "t@email.com", 301, 401,"pass");
@@ -34,9 +34,9 @@ public class UserDAOImplementationTest {
         // Get user from DB
         assertEquals(user,userFromDB);
         ConsoleOutput.printObject(userFromDB);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void testCreateFailureTest() throws Exception {
         // Create user
         User user = new User("Tourist", "t@email.com", 301, 401,"pass");
@@ -49,7 +49,7 @@ public class UserDAOImplementationTest {
         // Two instances should not be equal
         assertNotEquals(user, userFromDB);
         ConsoleOutput.printObject(userFromDB);
-    }
+    }*/
 }
 
 
