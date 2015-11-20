@@ -1,6 +1,5 @@
 package AlexPackage;
 
-import AlexPackage.DB.Country;
 import AlexPackage.DB.RouteDAOImplementation;
 import AlexPackage.DB.Tags;
 
@@ -24,7 +23,7 @@ public class RouteViewController implements RouteController {
             List<Tags> tagsList = routeMetaInfo.getTagsList();
             model.put("tags", tagsList);
         } catch (Throwable e) {
-            System.out.println("Exception while executing RouteCreationController.execute()");
+            System.out.println("Exception while executing RouteViewController.execute()");
             e.printStackTrace();
         }
 
