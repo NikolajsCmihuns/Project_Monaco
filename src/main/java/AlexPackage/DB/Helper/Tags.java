@@ -1,4 +1,4 @@
-package AlexPackage.DB;
+package AlexPackage.DB.Helper;
 
 /**
  * Created by Aborigens on 07-Nov-15.

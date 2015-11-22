@@ -1,4 +1,4 @@
-package AlexPackage.DB;
+package AlexPackage.DB.Helper;
 
 import java.util.HashMap;
 

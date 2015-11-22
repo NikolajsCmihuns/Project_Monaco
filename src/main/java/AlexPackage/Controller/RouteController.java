@@ -1,6 +1,6 @@
-package AlexPackage;
+package AlexPackage.Controller;
 
-import lv.javaguru.java2.database.DBException;
+import AlexPackage.Model.RouteModel;
 
 import javax.servlet.http.HttpServletRequest;
 

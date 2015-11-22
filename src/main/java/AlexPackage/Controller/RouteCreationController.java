@@ -1,8 +1,10 @@
-package AlexPackage;
+package AlexPackage.Controller;
 
-import AlexPackage.DB.Country;
+import AlexPackage.DB.Helper.Country;
 import AlexPackage.DB.RouteDAOImplementation;
-import AlexPackage.DB.Tags;
+import AlexPackage.DB.Helper.Tags;
+import AlexPackage.Model.RouteModel;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -13,6 +15,7 @@ import java.util.Map;
  * Created by Aborigens on 06-Nov-15.
  */
 public class RouteCreationController implements RouteController {
+
     @Override
     public RouteModel execute(HttpServletRequest request) {
 

@@ -1,4 +1,6 @@
-package AlexPackage;
+package AlexPackage.Controller;
+
+import AlexPackage.Model.RouteModel;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -1,7 +1,12 @@
 package AlexPackage.DB;
 
+import AlexPackage.DB.Domain.Route;
+import AlexPackage.DB.Helper.Coordinates;
+import AlexPackage.DB.Helper.Country;
+import AlexPackage.DB.Helper.Tags;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,6 +18,7 @@ import java.util.*;
 /**
  * Created by Aborigens on 07-Nov-15.
  */
+@Component
 public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface {
 
     private final String SELECT_COUNTRY_NAME = "SELECT COUNTRY_NAME, COUNTRY_SHORT_NAME FROM COUNTRY_REF";

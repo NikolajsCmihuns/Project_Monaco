@@ -1,4 +1,4 @@
-package AlexPackage;
+package AlexPackage.Model;
 
 /**
  * Created by Aborigens on 06-Nov-15.

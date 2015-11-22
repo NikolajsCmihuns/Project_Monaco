@@ -1,7 +1,7 @@
-<%@ page import="AlexPackage.DB.Country" %>
+<%@ page import="AlexPackage.DB.Helper.Country" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="AlexPackage.DB.Tags" %>
+<%@ page import="AlexPackage.DB.Helper.Tags" %>
 <%@ page import="java.util.Optional" %>
 <%@ page import="java.util.Map" %>
 <%

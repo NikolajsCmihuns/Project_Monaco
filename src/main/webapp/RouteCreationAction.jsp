@@ -1,4 +1,4 @@
-<%@ page import="AlexPackage.DB.Route" %>
+<%@ page import="AlexPackage.DB.Domain.Route" %>
 <%@ page import="AlexPackage.DB.RouteDAOImplementation" %>
 <%@ page import="java.util.Optional" %>
 <%--

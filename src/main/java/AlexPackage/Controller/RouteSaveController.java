@@ -1,7 +1,8 @@
-package AlexPackage;
+package AlexPackage.Controller;
 
-import AlexPackage.DB.Route;
+import AlexPackage.DB.Domain.Route;
 import AlexPackage.DB.RouteDAOImplementation;
+import AlexPackage.Model.RouteModel;
 
 import javax.servlet.http.HttpServletRequest;
 

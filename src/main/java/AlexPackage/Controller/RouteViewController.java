@@ -1,7 +1,8 @@
-package AlexPackage;
+package AlexPackage.Controller;
 
 import AlexPackage.DB.RouteDAOImplementation;
-import AlexPackage.DB.Tags;
+import AlexPackage.DB.Helper.Tags;
+import AlexPackage.Model.RouteModel;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
