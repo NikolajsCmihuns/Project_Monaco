@@ -23,30 +23,29 @@ public class RouteFilter implements Filter {
 
     private Map<String, RouteController> controllers;
 
-//    private ApplicationContext springContext;
-//
-//    private static final Logger logger = Logger.getLogger(RouteFilter.class.getName());
-//
-//    private RouteController getBean(Class clazz) {
-//        return (RouteController) springContext.getBean(clazz);
-//    }
+    private ApplicationContext springContext;
+
+    private static final Logger logger = Logger.getLogger(RouteFilter.class.getName());
+
+    private RouteController getBean(Class clazz) {
+        return (RouteController) springContext.getBean(clazz);
+    }
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
         // raise up Spring configuration
-//        try {
-//            springContext = new AnnotationConfigApplicationContext(SpringConfig.class); // get application context
-//        } catch (BeansException e) {
-//            logger.log(Level.INFO, "Spring context failed to start", e); // enable logging
-//        }
+        try {
+            springContext = new AnnotationConfigApplicationContext(SpringConfig.class); // get application context
+        } catch (BeansException e) {
+            logger.log(Level.INFO, "Spring context failed to start", e); // enable logging
+        }
 
         controllers = new HashMap<>();
-        controllers.put("/route", new RouteCreationController());
-//        controllers.put("/route", getBean(RouteCreationController.class));
-        controllers.put("/route_save", new RouteSaveController());
-        controllers.put("/route_view", new RouteViewController());
-        controllers.put("/route_auth", new RouteAuthorizationController());
+        controllers.put("/route", getBean(RouteCreationController.class));
+        controllers.put("/route_save", getBean(RouteSaveController.class));
+        controllers.put("/route_view", getBean(RouteViewController.class));
+        controllers.put("/route_auth", getBean(RouteAuthorizationController.class));
     }
 
     @Override

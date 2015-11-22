@@ -33,7 +33,7 @@
 
     <filter>
         <filter-name>RouteFilter</filter-name>
-        <filter-class>AlexPackage.RouteFilter</filter-class>
+        <filter-class>AlexPackage.Filter.RouteFilter</filter-class>
     </filter>
 
     <filter-mapping>

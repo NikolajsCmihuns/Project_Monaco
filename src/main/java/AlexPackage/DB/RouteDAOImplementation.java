@@ -109,8 +109,6 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
 
         try {
 
-            connection = getConnection();
-
             PreparedStatement preparedStatement = connection.prepareStatement(SAVE_TO_ROUTE_TABLE, PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, route.getDistance());
             preparedStatement.setString(2, route.getRouteTag());
