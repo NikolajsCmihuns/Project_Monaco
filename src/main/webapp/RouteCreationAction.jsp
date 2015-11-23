@@ -1,4 +1,4 @@
-<%@ page import="AlexPackage.DB.Route" %>
+<%@ page import="AlexPackage.DB.Domain.Route" %>
 <%@ page import="AlexPackage.DB.RouteDAOImplementation" %>
 <%@ page import="java.util.Optional" %>
 <%--
@@ -45,24 +45,13 @@
 </head>
 <body>
 <%
-    String routeCountry = request.getParameter("country");
-    String routeCity = request.getParameter("city");
-    String routeName = request.getParameter("routeName");
-    String routeTag = request.getParameter("tag"); // table route
-    String route = request.getParameter("route"); // table place & places_in_route
-    String distance = request.getParameter("routeDistance"); // table route
-
-    Route itinerary = new Route(routeCountry, routeCity, routeName, routeTag, route, distance);
-    RouteDAOImplementation routeDAOImplementation = new RouteDAOImplementation();
-    if (routeDAOImplementation.saveRoute(itinerary)) {
+    String message = "Ooops, something went wrong!";
+    if ((Boolean) request.getAttribute("model")) {
+        message = "Your route is saved!";
+    }
 %>
 <div id="dialog" title="Route Saved">
-    You route <%=routeName%> is saved
+    <%=message%>
 </div>
-<%
-    }
-
-%>
-
 </body>
 </html>

@@ -31,7 +31,7 @@
 <h2>You are logged in as <%= storedNickname %>!</h2>
 <%--Insert your relevant path to your landing page here--%>
 <a href="<%=    "/java2/LoginPage.jsp" %>"><h3>View map</h3></a>
-<a href="<%=    "/java/route" %>"><h3>Create route</h3></a>
+<a href="<%=    "/java2/route" %>"><h3>Create route</h3></a>
 <a href="<%=    "/java2/LoginPage.jsp" %>"><h3>Create place</h3></a>
 <a href="<%=    "/java2/LoginPage.jsp" %>"><h3>Create event</h3></a>
 <a href="<%=    "/java2/LoginPage.jsp" %>"><h3>Create review</h3></a>

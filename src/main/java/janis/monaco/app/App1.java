@@ -1,11 +1,9 @@
 package janis.monaco.app;
 
 
-import janis.monaco.database.CRUDOperationDAO;
 import janis.monaco.database.place.PlaceDAOImpl;
 import janis.monaco.database.PlaceDAO;
-import janis.monaco.domain.entities.Place;
-import org.hibernate.Query;
+import janis.monaco.domain.Place;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package janis.monaco.app;
 
 
-import janis.monaco.domain.entities.Place;
+import janis.monaco.domain.Place;
 import janis.monaco.util.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;

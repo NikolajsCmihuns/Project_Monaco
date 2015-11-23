@@ -1,4 +1,4 @@
-package AlexPackage.DB;
+package AlexPackage.DB.Domain;
 
 /**
  * Created by Aborigens on 12-Nov-15.
@@ -44,4 +44,5 @@ public class Route {
     public String getDistance() {
         return distance;
     }
+
 }

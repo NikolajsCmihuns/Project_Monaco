@@ -1,4 +1,9 @@
 <%@ page import="java.util.Optional" %>
+<%@ page import="AlexPackage.DB.Helper.Tags" %>
+<%@ page import="AlexPackage.DB.RouteDAOImplementation" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 <%--
   Created by IntelliJ IDEA.
   User: Aborigens
@@ -24,7 +29,19 @@
     <div id="menu">
         <form id="fmenu" name="fmenu">
             <select required id="tag" name="tag" class="select_width">
-                <option value=""></option>
+                <option value="">Choose Tag</option>
+                <%
+                    Map<String, List> routeMetaInfo = (Map<String, List>) request.getAttribute("model");
+                    List<Tags> tagsList = routeMetaInfo.get("tags");
+                    Iterator<Tags> iteratorTags = tagsList.iterator();
+                    while (iteratorTags.hasNext()) {
+                        Tags tag = iteratorTags.next();
+                %>
+                <option value="<%=tag.getTagId()%>"><%=tag.getTagName()%>
+                </option>
+                <%
+                    }
+                %>
             </select>
         </form>
     </div>
