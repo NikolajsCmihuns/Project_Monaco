@@ -4,6 +4,7 @@ import MaximPackage.Tag;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DAO;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +15,9 @@ import java.util.List;
 /**
  * Created by maksimspuskels on 01/11/15.
  */
-public class TagDAOImplementation implements TagDAOInterface{
+
+@Component
+public class TagDAOImplementation extends DAOImpl implements TagDAOInterface{
 
     private final DAO dao = new DAOImpl();
 
@@ -102,13 +105,5 @@ public class TagDAOImplementation implements TagDAOInterface{
         }
 
         return tag;
-    }
-
-    protected Connection getConnection() throws DBException {
-        return dao.getConnection();
-    }
-
-    protected void closeConnection(Connection connection) throws DBException {
-        dao.closeConnection(connection);
     }
 }

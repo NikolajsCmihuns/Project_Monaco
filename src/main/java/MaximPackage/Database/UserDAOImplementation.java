@@ -8,14 +8,14 @@ import java.sql.*;
 import java.util.Optional;
 
 import MaximPackage.User;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by maksimspuskels on 23/10/15.
  */
 
-public class UserDAOImplementation implements UserDAOInterface {
-
-    private final DAO dao = new DAOImpl();
+@Component
+public class UserDAOImplementation extends DAOImpl implements UserDAOInterface {
 
     @Override
     public void createUser(User user) throws DBException {
@@ -122,13 +122,5 @@ public class UserDAOImplementation implements UserDAOInterface {
         }
 
         return user;
-    }
-
-    protected Connection getConnection() throws DBException {
-        return dao.getConnection();
-    }
-
-    protected void closeConnection(Connection connection) throws DBException {
-        dao.closeConnection(connection);
     }
 }

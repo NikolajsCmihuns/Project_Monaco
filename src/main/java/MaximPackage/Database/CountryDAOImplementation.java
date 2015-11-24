@@ -5,6 +5,7 @@ import MaximPackage.Country;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DAO;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,9 +16,9 @@ import java.util.List;
 /**
  * Created by maksimspuskels on 01/11/15.
  */
-public class CountryDAOImplementation implements CountryDAOInterface{
 
-    private final DAO dao = new DAOImpl();
+@Component
+public class CountryDAOImplementation extends DAOImpl implements CountryDAOInterface {
 
     @Override
     public Country getCountryByID(int id) throws DBException {
@@ -103,13 +104,5 @@ public class CountryDAOImplementation implements CountryDAOInterface{
         }
 
         return country;
-    }
-
-    protected Connection getConnection() throws DBException {
-        return dao.getConnection();
-    }
-
-    protected void closeConnection(Connection connection) throws DBException {
-        dao.closeConnection(connection);
     }
 }

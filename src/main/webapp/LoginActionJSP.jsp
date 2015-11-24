@@ -3,6 +3,7 @@
 <%@ page import="MaximPackage.User" %>
 <%@ page import="MaximPackage.ConsolePackage.ConsoleOutput" %>
 <%@ page import="java.util.Optional" %>
+<%@ page import="MaximPackage.Servlet.MVC.DataSources.LoginActionDataSource" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 
@@ -10,31 +11,17 @@
 <head><title>Result</title></head>
 <body>
 <%
-    String nickName = request.getParameter("lNickName");
-    String password = request.getParameter("lPassword");
-
-    LoginService loginService = new LoginService(new UserDAOImplementation());
-    Optional<Integer> loggedUserID = loginService.tryLogin(nickName, password);
-
-    if (loggedUserID.get() != User.USER_NOT_FOUND) {
-        session.setAttribute("userID", loggedUserID);
-
-        // Just for test we get user nickname from DB again
-        String storedNickname = "";
-
-        ConsoleOutput.printObject("" + loggedUserID.get());
-
-        UserDAOImplementation userDAO = new UserDAOImplementation();
-        User userFromDB = userDAO.getUserByID(loggedUserID.get());
-        storedNickname = userFromDB.getNickname();
+    LoginActionDataSource dataSource = (LoginActionDataSource) request.getAttribute("model");
+    String storedNickname = dataSource.getUserNickname();
+    if (storedNickname != null) {
 %>
 <h2>You are logged in as <%= storedNickname %>!</h2>
 <%--Insert your relevant path to your landing page here--%>
-<a href="<%=    "/java2/LoginPage.jsp" %>"><h3>View map</h3></a>
+<a href="<%=    "/java2/login" %>"><h3>View map</h3></a>
 <a href="<%=    "/java2/route" %>"><h3>Create route</h3></a>
-<a href="<%=    "/java2/LoginPage.jsp" %>"><h3>Create place</h3></a>
-<a href="<%=    "/java2/LoginPage.jsp" %>"><h3>Create event</h3></a>
-<a href="<%=    "/java2/LoginPage.jsp" %>"><h3>Create review</h3></a>
+<a href="<%=    "/java2/login" %>"><h3>Create place</h3></a>
+<a href="<%=    "/java2/login" %>"><h3>Create event</h3></a>
+<a href="<%=    "/java2/login" %>"><h3>Create review</h3></a>
 <%
 } else {
 %>

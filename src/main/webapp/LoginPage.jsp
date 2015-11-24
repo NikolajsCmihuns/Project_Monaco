@@ -1,10 +1,8 @@
-<%@ page import="MaximPackage.Database.CityDAOImplementation" %>
 <%@ page import="MaximPackage.City" %>
 <%@ page import="java.util.List" %>
-<%@ page import="MaximPackage.Database.CountryDAOImplementation" %>
 <%@ page import="MaximPackage.Country" %>
-<%@ page import="MaximPackage.Database.TagDAOImplementation" %>
 <%@ page import="MaximPackage.Tag" %>
+<%@ page import="MaximPackage.Servlet.MVC.DataSources.LoginDataSource" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
@@ -14,7 +12,13 @@
 </head>
 <link href="<c:url value="/LoginPageCSS.css" />" rel="stylesheet">
 <body>
-    <form id="loginForm" action="LoginActionJSP.jsp" method="POST">
+<%
+    LoginDataSource dataSource = (LoginDataSource)request.getAttribute("model");
+    List<City> allCities = dataSource.getAllCities();
+    List<Country> allCountries = dataSource.getAllCountries();
+    List<Tag> allTags = dataSource.getAllTags();
+%>
+    <form id="loginForm" action="LoginPageServlet" method="POST">
         <div id="loginDiv">
             <input name="backUrl" value="<%= request.getRequestURI() %>" hidden>
             Nickname:<br>
@@ -54,8 +58,6 @@
                 <select name="rCity">
                     <option value="">-- City--</option>
                     <%
-                        CityDAOImplementation cityDAO = new CityDAOImplementation();
-                        List<City> allCities = cityDAO.getAllCitiesForCountryID(401);
                         int i = 0;
                         while(i < allCities.size()) {
                             City city = allCities.get(i);
@@ -63,7 +65,7 @@
                             int cityID = city.getCityNameID();
                             i++;
                     %>
-                    <option value="<%= cityID %>"><%=name%></option>
+                        <option value="<%= cityID %>"><%=name%></option>
                     <% } %>
 
                 </select>
@@ -72,8 +74,6 @@
             <select name="rCountry">
                 <option value="">-- Country--</option>
                 <%
-                    CountryDAOImplementation countryDAO = new CountryDAOImplementation();
-                    List<Country> allCountries = countryDAO.getAllCountries();
                     int j = 0;
                     while(j < allCountries.size()) {
                         Country country = allCountries.get(j);
@@ -81,7 +81,7 @@
                         int countryID = country.getCountryNameID();
                         j++;
                 %>
-                <option value="<%= countryID %>"><%=countryName%></option>
+                    <option value="<%= countryID %>"><%= countryName %></option>
                 <% } %>
 
             </select>
@@ -90,8 +90,6 @@
             <br>
             <select name="rTag"><option value="">-- Tag --</option>
                 <%
-                    TagDAOImplementation tagDAO = new TagDAOImplementation();
-                    List<Tag> allTags = tagDAO.getAllTags();
                     int k = 0;
                     while(k < allTags.size()) {
                         Tag tag = allTags.get(k);
@@ -99,7 +97,7 @@
                         int countryID = tag.getTagNameID();
                         k++;
                 %>
-                <option value="<%= countryID %>"><%=countryName%></option>
+                    <option value="<%= countryID %>"><%=countryName%></option>
                 <% } %>
 
             </select>

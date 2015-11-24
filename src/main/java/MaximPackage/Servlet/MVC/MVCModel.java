@@ -3,6 +3,7 @@ package MaximPackage.Servlet.MVC;
 /**
  * Created by maksimspuskels on 03/11/15.
  */
+
 public class MVCModel {
     private Object data;
     private String viewName;

@@ -4,11 +4,6 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
                       http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
-
-    <welcome-file-list>
-        <welcome-file>LoginPage.jsp</welcome-file>
-    </welcome-file-list>
-
     <filter>
         <filter-name>MVCFilter</filter-name>
         <filter-class>MaximPackage.Servlet.MVC.MVCFilter</filter-class>

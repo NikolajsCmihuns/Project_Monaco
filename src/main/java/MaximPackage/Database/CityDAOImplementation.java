@@ -6,6 +6,7 @@ import MaximPackage.User;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DAO;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,9 +17,9 @@ import java.util.List;
 /**
  * Created by maksimspuskels on 01/11/15.
  */
-public class CityDAOImplementation implements CityDAOInterface {
 
-    private final DAO dao = new DAOImpl();
+@Component
+public class CityDAOImplementation extends DAOImpl implements CityDAOInterface {
 
     @Override
     public City getCityByID(int id) throws DBException {
@@ -107,13 +108,5 @@ public class CityDAOImplementation implements CityDAOInterface {
         }
 
         return city;
-    }
-
-    protected Connection getConnection() throws DBException {
-        return dao.getConnection();
-    }
-
-    protected void closeConnection(Connection connection) throws DBException {
-        dao.closeConnection(connection);
     }
 }
