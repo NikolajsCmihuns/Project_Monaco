@@ -1,6 +1,6 @@
 <%@ page import="MaximPackage.Services.RegistrationService" %>
 <%@ page import="MaximPackage.Database.UserDAOImplementation" %>
-<%@ page import="MaximPackage.User" %>
+<%@ page import="MaximPackage.Entities.User" %>
 <%@ page import="java.util.Optional" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>

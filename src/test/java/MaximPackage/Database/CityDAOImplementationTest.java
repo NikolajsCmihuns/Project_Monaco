@@ -1,6 +1,6 @@
 package MaximPackage.Database;
 
-import MaximPackage.City;
+import MaximPackage.Entities.City;
 import MaximPackage.ConsolePackage.ConsoleOutput;
 
 import MaximPackage.ConsolePackage.EConsoleMessages;

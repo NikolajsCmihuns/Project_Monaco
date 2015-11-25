@@ -2,8 +2,7 @@ package MaximPackage.Database;
 
 import lv.javaguru.java2.database.DBException;
 
-import MaximPackage.User;
-import java.util.List;
+import MaximPackage.Entities.User;
 
 /**
  * Created by maksimspuskels on 23/10/15.

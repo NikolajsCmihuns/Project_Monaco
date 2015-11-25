@@ -1,15 +1,10 @@
 package MaximPackage.Database;
 
-import MaximPackage.ConsolePackage.ConsoleOutput;
-import MaximPackage.Place;
-
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by maksimspuskels on 25/10/15.

@@ -1,9 +1,7 @@
 package MaximPackage.Database;
 
-import MaximPackage.City;
-import MaximPackage.Country;
+import MaximPackage.Entities.Country;
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.DAO;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
 import org.springframework.stereotype.Component;
 

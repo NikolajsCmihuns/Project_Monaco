@@ -1,6 +1,6 @@
 package MaximPackage.Database;
 
-import MaximPackage.Country;
+import MaximPackage.Entities.Country;
 import lv.javaguru.java2.database.DBException;
 
 import java.util.List;

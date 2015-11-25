@@ -2,7 +2,7 @@ package MaximPackage.Database;
 
 import MaximPackage.ConsolePackage.ConsoleOutput;
 import MaximPackage.ConsolePackage.EConsoleMessages;
-import MaximPackage.Country;
+import MaximPackage.Entities.Country;
 import org.junit.Test;
 
 import java.util.List;

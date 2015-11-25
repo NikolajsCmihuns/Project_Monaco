@@ -1,9 +1,8 @@
 package MaximPackage.Database;
 
-import MaximPackage.Place;
+import MaximPackage.Entities.Place;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.DAO;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
 import org.springframework.stereotype.Component;
 

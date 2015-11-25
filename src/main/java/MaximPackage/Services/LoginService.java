@@ -1,7 +1,7 @@
 package MaximPackage.Services;
 
 import MaximPackage.Database.UserDAOInterface;
-import MaximPackage.User;
+import MaximPackage.Entities.User;
 import lv.javaguru.java2.database.DBException;
 
 import java.util.Optional;

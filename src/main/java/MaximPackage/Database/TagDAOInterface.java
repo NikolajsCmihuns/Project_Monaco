@@ -1,6 +1,6 @@
 package MaximPackage.Database;
 
-import MaximPackage.Tag;
+import MaximPackage.Entities.Tag;
 import lv.javaguru.java2.database.DBException;
 
 import java.util.List;

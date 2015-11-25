@@ -1,4 +1,4 @@
-package MaximPackage;
+package MaximPackage.Entities;
 
 import java.util.Optional;
 

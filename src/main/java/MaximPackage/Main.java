@@ -1,7 +1,10 @@
 package MaximPackage;
 
 import MaximPackage.ConsolePackage.ConsoleOutput;
-import lv.javaguru.java2.database.jdbc.UserDAOImpl;
+import MaximPackage.Entities.Place;
+import MaximPackage.Entities.Review;
+import MaximPackage.Entities.Route;
+import MaximPackage.Entities.User;
 
 import java.util.ArrayList;
 

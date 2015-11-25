@@ -1,7 +1,7 @@
-<%@ page import="MaximPackage.City" %>
+<%@ page import="MaximPackage.Entities.City" %>
 <%@ page import="java.util.List" %>
-<%@ page import="MaximPackage.Country" %>
-<%@ page import="MaximPackage.Tag" %>
+<%@ page import="MaximPackage.Entities.Country" %>
+<%@ page import="MaximPackage.Entities.Tag" %>
 <%@ page import="MaximPackage.Servlet.MVC.DataSources.LoginDataSource" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -18,7 +18,7 @@
     List<Country> allCountries = dataSource.getAllCountries();
     List<Tag> allTags = dataSource.getAllTags();
 %>
-    <form id="loginForm" action="LoginPageServlet" method="POST">
+    <form id="loginForm" action="login" method="POST">
         <div id="loginDiv">
             <input name="backUrl" value="<%= request.getRequestURI() %>" hidden>
             Nickname:<br>
@@ -56,7 +56,7 @@
             City:*
             <br>
                 <select name="rCity">
-                    <option value="">-- City--</option>
+                    <option value="">-- City --</option>
                     <%
                         int i = 0;
                         while(i < allCities.size()) {
@@ -72,7 +72,7 @@
             <br>
             Country:*<br>
             <select name="rCountry">
-                <option value="">-- Country--</option>
+                <option value="">-- Country --</option>
                 <%
                     int j = 0;
                     while(j < allCountries.size()) {
@@ -99,7 +99,6 @@
                 %>
                     <option value="<%= countryID %>"><%=countryName%></option>
                 <% } %>
-
             </select>
             <br>
             <br>

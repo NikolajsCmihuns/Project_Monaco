@@ -1,12 +1,9 @@
 package MaximPackage.Database;
 
-import MaximPackage.ConsolePackage.ConsoleOutput;
-import MaximPackage.User;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 
 import org.junit.Before;
-import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;

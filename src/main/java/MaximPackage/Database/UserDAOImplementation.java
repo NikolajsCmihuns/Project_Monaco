@@ -1,13 +1,12 @@
 package MaximPackage.Database;
 
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.DAO;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
 
 import java.sql.*;
 import java.util.Optional;
 
-import MaximPackage.User;
+import MaximPackage.Entities.User;
 import org.springframework.stereotype.Component;
 
 /**

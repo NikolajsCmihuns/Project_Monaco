@@ -1,12 +1,9 @@
 package MaximPackage.Services;
 
-import MaximPackage.ConsolePackage.ConsoleOutput;
 import MaximPackage.Database.UserDAOImplementation;
-import MaximPackage.User;
+import MaximPackage.Entities.User;
 import lv.javaguru.java2.database.DBException;
 
-import javax.jws.soap.SOAPBinding;
-import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 /**

@@ -1,11 +1,11 @@
 package MaximPackage.Servlet.MVC.DataSources;
 
-import MaximPackage.City;
-import MaximPackage.Country;
+import MaximPackage.Entities.City;
+import MaximPackage.Entities.Country;
 import MaximPackage.Database.CityDAOImplementation;
 import MaximPackage.Database.CountryDAOImplementation;
 import MaximPackage.Database.TagDAOImplementation;
-import MaximPackage.Tag;
+import MaximPackage.Entities.Tag;
 import lv.javaguru.java2.database.DBException;
 
 import java.util.List;

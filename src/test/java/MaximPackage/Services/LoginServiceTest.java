@@ -1,16 +1,8 @@
 package MaximPackage.Services;
 
 import MaximPackage.Database.UserDAOInterface;
-import MaximPackage.User;
-import lv.javaguru.java2.database.DBException;
-
-import org.junit.Before;
-import org.junit.Test;
 
 import javax.servlet.http.HttpSession;
-
-import static org.easymock.EasyMock.*;
-import static org.junit.Assert.*;
 
 /**
  * Created by maksimspuskels on 30/10/15.

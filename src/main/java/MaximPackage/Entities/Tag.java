@@ -1,4 +1,4 @@
-package MaximPackage;
+package MaximPackage.Entities;
 
 /**
  * Created by maksimspuskels on 01/11/15.

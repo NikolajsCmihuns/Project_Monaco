@@ -1,9 +1,8 @@
 package MaximPackage.Database;
 
-import MaximPackage.City;
 import MaximPackage.ConsolePackage.ConsoleOutput;
 import MaximPackage.ConsolePackage.EConsoleMessages;
-import MaximPackage.Tag;
+import MaximPackage.Entities.Tag;
 import org.junit.Test;
 
 import java.util.List;
