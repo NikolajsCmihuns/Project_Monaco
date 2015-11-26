@@ -1,6 +1,7 @@
 package MaximPackage.Servlet.MVC;
 
 import MaximPackage.Servlet.MVC.Controllers.LoginController;
+import MaximPackage.Servlet.MVC.Controllers.RegistrationController;
 import MaximPackage.Servlet.MVC.Controllers.SessionCheckController;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -41,9 +42,11 @@ public class MVCFilter implements Filter {
 
         controllers = new HashMap<>();
         // Root path
-        controllers.put("/",        getBean(SessionCheckController.class));
+        controllers.put("/", getBean(SessionCheckController.class));
         // Login page
-        controllers.put("/login",   getBean(LoginController.class));
+        controllers.put("/login", getBean(LoginController.class));
+        // Registration page
+        controllers.put("/registration",getBean(RegistrationController.class));
     }
 
     @Override

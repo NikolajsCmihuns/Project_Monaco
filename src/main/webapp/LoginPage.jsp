@@ -32,7 +32,7 @@
         </div>
     </form>
 
-    <form id="registrationForm" action="RegistrationActionJSP.jsp" method="POST">
+    <form id="registrationForm" action="registration" method="POST">
         <div id="registerDiv">
             <input name="backUrl" value="<%= request.getRequestURI() %>" hidden>
             Name:<br>

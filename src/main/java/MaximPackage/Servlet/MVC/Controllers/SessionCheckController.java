@@ -25,7 +25,7 @@ public class SessionCheckController implements MVCController {
         MVCModel model;
         if (userID != null) {
             LandingPageDS dataSource = new LandingPageDS(userID);
-            model = new MVCModel(dataSource, "/LandingPage.jsp"); // Rename to main page / landing page
+            model = new MVCModel(dataSource, "/LandingPage.jsp");
         }
         else {
             model = new MVCModel(new LoginDataSource(), "/LoginPage.jsp");
