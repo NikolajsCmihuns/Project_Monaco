@@ -26,11 +26,6 @@ public class LoginController implements MVCController {
     LoginService loginService;
 
     @Override
-    public MVCModel executeGet(HttpServletRequest request) {
-        return new MVCModel("", "/JSPs/Login/LoginPage.jsp");
-    }
-
-    @Override
     public MVCModel executePost(HttpServletRequest request) {
 
         String nickName = request.getParameter("lNickName");

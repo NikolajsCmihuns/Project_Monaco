@@ -6,8 +6,6 @@
     <title> Monaco login </title>
 </head>
 
-<%--<link href="<c:url value="/CSS/LoginPageCSS.css" />" rel="stylesheet">--%>
-
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/JSPs/Login/LoginPageCSS.css" />
 
 <body>
@@ -27,7 +25,6 @@
     </form>
 
     <form id="registerForm" action="register" method="GET">
-        <%--registerDiv--%>
         <button type="register" value="Register">Register</button>
     </form>
 
