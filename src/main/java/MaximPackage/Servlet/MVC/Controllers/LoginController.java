@@ -1,13 +1,14 @@
 package MaximPackage.Servlet.MVC.Controllers;
 
-import MaximPackage.Database.UserDAOImplementation;
 import MaximPackage.Services.LoginService;
 import MaximPackage.Servlet.MVC.DataSources.LandingPageDS;
-import MaximPackage.Servlet.MVC.DataSources.LoginDataSource;
+
 import MaximPackage.Servlet.MVC.MVCController;
 
 import MaximPackage.Servlet.MVC.MVCModel;
 import MaximPackage.Entities.User;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,13 +22,20 @@ import java.util.Optional;
 @Component
 public class LoginController implements MVCController {
 
+    @Autowired
+    LoginService loginService;
+
     @Override
-    public MVCModel execute(HttpServletRequest request) {
+    public MVCModel executeGet(HttpServletRequest request) {
+        return new MVCModel("", "/JSPs/Login/LoginPage.jsp");
+    }
+
+    @Override
+    public MVCModel executePost(HttpServletRequest request) {
 
         String nickName = request.getParameter("lNickName");
         String password = request.getParameter("lPassword");
 
-        LoginService loginService = new LoginService(new UserDAOImplementation());
         Optional<Integer> loggedUserID = loginService.tryLogin(nickName, password);
 
         MVCModel returnModel;
@@ -37,11 +45,11 @@ public class LoginController implements MVCController {
             session.setAttribute("userID", loggedUserID);
 
             LandingPageDS dataSource = new LandingPageDS(loggedUserID);
-            returnModel = new MVCModel(dataSource, "/LandingPage.jsp");
+            returnModel = new MVCModel(dataSource, "/JSPs/LandingPage.jsp");
         }
         else {
             // TODO: Implement failure page
-            returnModel = new MVCModel(new LoginDataSource(), "/LoginPage.jsp");
+            returnModel = new MVCModel("", "/JSPs/Login/LoginPage.jsp");
         }
 
         return returnModel;

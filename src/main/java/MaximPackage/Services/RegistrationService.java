@@ -3,6 +3,10 @@ package MaximPackage.Services;
 import MaximPackage.Database.UserDAOImplementation;
 import MaximPackage.Entities.User;
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.jdbc.DAOImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
@@ -10,21 +14,15 @@ import java.util.Optional;
  * Created by maksimspuskels on 29/10/15.
  */
 
-public class RegistrationService {
-    private static RegistrationService ourInstance = new RegistrationService();
+@Component
+public class RegistrationService extends DAOImpl {
 
-    public static RegistrationService getInstance() {
-        return ourInstance;
-    }
-
-    private RegistrationService() {
-    }
+    @Autowired
+    UserDAOImplementation userDAO;
 
     public Optional<Integer> tryRegistration(String nickName, String password, String email, Integer cityID, Integer countryID, String name, String surname, Integer age, Integer tagID) {
         Optional<Integer> registeredUserID = Optional.of(User.USER_NOT_FOUND);
-
-        UserDAOImplementation userDAO = new UserDAOImplementation();
-
+        // Check mandatory field existence
         if (    nickName != null && nickName.length() > 0 &&
                 password != null && password.length() > 0 &&
                 email != null && email.length() > 0 &&

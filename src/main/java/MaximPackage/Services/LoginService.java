@@ -3,6 +3,10 @@ package MaximPackage.Services;
 import MaximPackage.Database.UserDAOInterface;
 import MaximPackage.Entities.User;
 import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.jdbc.DAOImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
@@ -10,12 +14,11 @@ import java.util.Optional;
  * Created by maksimspuskels on 29/10/15.
  */
 
-public class LoginService {
-    private final UserDAOInterface userDao;
+@Component
+public class LoginService extends DAOImpl {
 
-    public LoginService(UserDAOInterface userDao) {
-        this.userDao = userDao;
-    }
+    @Autowired
+    UserDAOInterface userDao;
 
     // On success should return logged user ID
     public Optional<Integer> tryLogin(String nickName, String password) {

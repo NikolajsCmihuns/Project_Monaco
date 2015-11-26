@@ -1,26 +1,24 @@
 package MaximPackage.Servlet.MVC.DataSources;
 
-import MaximPackage.Entities.City;
-import MaximPackage.Entities.Country;
 import MaximPackage.Database.CityDAOImplementation;
 import MaximPackage.Database.CountryDAOImplementation;
 import MaximPackage.Database.TagDAOImplementation;
+import MaximPackage.Entities.City;
+import MaximPackage.Entities.Country;
 import MaximPackage.Entities.Tag;
 import lv.javaguru.java2.database.DBException;
 
 import java.util.List;
 
 /**
- * Created by maksimspuskels on 24/11/15.
+ * Created by maksimspuskels on 26/11/15.
  */
-
-public class LoginDataSource {
-
+public class RegistrationDataSource {
     private List<City> allCities;
     private List<Country> allCountries;
     private List<Tag> allTags;
 
-    public LoginDataSource() {
+    public RegistrationDataSource() {
         initialize();
     }
 

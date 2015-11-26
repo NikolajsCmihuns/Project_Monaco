@@ -7,5 +7,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 
 public interface MVCController {
-    MVCModel execute(HttpServletRequest request);
+    MVCModel executePost(HttpServletRequest request);
+    MVCModel executeGet(HttpServletRequest request);
 }

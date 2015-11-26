@@ -1,7 +1,7 @@
 package MaximPackage.Servlet.MVC.Controllers;
 
 import MaximPackage.Servlet.MVC.DataSources.LandingPageDS;
-import MaximPackage.Servlet.MVC.DataSources.LoginDataSource;
+
 import MaximPackage.Servlet.MVC.MVCController;
 import MaximPackage.Servlet.MVC.MVCModel;
 import org.springframework.stereotype.Component;
@@ -16,8 +16,14 @@ import java.util.Optional;
 
 @Component
 public class SessionCheckController implements MVCController {
+
     @Override
-    public MVCModel execute(HttpServletRequest request) {
+    public MVCModel executePost(HttpServletRequest request) {
+        return new MVCModel("","");
+    }
+
+    @Override
+    public MVCModel executeGet(HttpServletRequest request) {
         // Get session and check logged user id existence
         HttpSession session = request.getSession();
         Optional<Integer> userID = (Optional<Integer>)session.getAttribute("userID");
@@ -25,10 +31,10 @@ public class SessionCheckController implements MVCController {
         MVCModel model;
         if (userID != null) {
             LandingPageDS dataSource = new LandingPageDS(userID);
-            model = new MVCModel(dataSource, "/LandingPage.jsp");
+            model = new MVCModel(dataSource, "/JSPs/LandingPage.jsp");
         }
         else {
-            model = new MVCModel(new LoginDataSource(), "/LoginPage.jsp");
+            model = new MVCModel("", "/JSPs/Login/LoginPage.jsp");
         }
 
         return model;

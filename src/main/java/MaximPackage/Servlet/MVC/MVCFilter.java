@@ -45,8 +45,8 @@ public class MVCFilter implements Filter {
         controllers.put("/", getBean(SessionCheckController.class));
         // Login page
         controllers.put("/login", getBean(LoginController.class));
-        // Registration page
-        controllers.put("/registration",getBean(RegistrationController.class));
+        // Registration action
+        controllers.put("/register",getBean(RegistrationController.class));
     }
 
     @Override
@@ -58,13 +58,21 @@ public class MVCFilter implements Filter {
         MVCController controller = controllers.get(contextURI);
 
         if (controller != null) {
-            MVCModel model = controller.execute(request);
-            request.setAttribute("model", model.getData());
+
+            MVCModel model;
+            if (request.getMethod().equals("POST")) {
+                model = controller.executePost(request);
+                request.setAttribute("model", model.getData());
+            }
+            else {
+                model = controller.executeGet(request);
+                request.setAttribute("model", model.getData());
+            }
 
             ServletContext context = request.getServletContext();
             RequestDispatcher requestDispatcher = context.getRequestDispatcher(model.getViewName());
 
-            requestDispatcher.forward(request,response);
+            requestDispatcher.forward(request, response);
         }
         else filterChain.doFilter(request,response);
     }
