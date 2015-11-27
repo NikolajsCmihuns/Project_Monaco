@@ -1,0 +1,19 @@
+/*#loginform {*/
+    /*position: fixed;*/
+    /*top: 25%;*/
+    /*left: 25%;*/
+/*}*/
+
+/*.registrationForm {*/
+    /*position: fixed;*/
+    /*top: 25%;*/
+    /*left: 50%;*/
+/*}*/
+
+#loginDiv {
+    border: 2px solid #0000ff;
+}
+
+#registerDiv {
+    border: 2px solid #0000ff;
+}
