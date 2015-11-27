@@ -21,20 +21,6 @@
 
     <dependencies>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>4.2.0.RELEASE</version>
-        </dependency>
-
-
-
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.2.2.Final</version>
-        </dependency>
-
 
         <dependency>
             <groupId>mysql</groupId>
@@ -62,11 +48,20 @@
             <version>3.4</version>
         </dependency>
 
+        <!--<spring-version></spring-version>-->
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>4.2.0.RELEASE</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>4.2.0.RELEASE</version>
+        </dependency>
+
 
         <dependency>
         <groupId>org.springframework</groupId>
@@ -75,7 +70,31 @@
         <scope>test</scope>
         </dependency>
 
-        <!--<spring-version></spring-version>-->
+        <!-- Hibernate dependencies -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.3.6.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.3.6.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>4.2.0.RELEASE</version>
+        </dependency>
+
+
+
+
+
+
+
 
         <dependency>
             <groupId>jstl</groupId>
@@ -84,17 +103,17 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>4.2.0.RELEASE</version>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>4.2.0.RELEASE</version>
-            <scope>test</scope>
-        </dependency>
+
+
+
+
+
+
 
     </dependencies>
 
