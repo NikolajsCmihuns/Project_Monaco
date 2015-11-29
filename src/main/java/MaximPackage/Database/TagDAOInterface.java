@@ -12,7 +12,7 @@ import java.util.List;
 public interface TagDAOInterface {
     Tag getTagByID(int id) throws DBException;
 
-    int getIDByTagName(String TagName) throws DBException;
+    Integer getIDByTagName(String TagName) throws DBException;
 
     List<Tag> getAllTags() throws DBException;
 }

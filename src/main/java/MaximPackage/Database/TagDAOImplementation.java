@@ -1,16 +1,19 @@
 package MaximPackage.Database;
 
 import MaximPackage.Entities.Tag;
+
+import java.util.List;
+
+import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
+
 import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.DAO;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by maksimspuskels on 01/11/15.
@@ -19,91 +22,30 @@ import java.util.List;
 @Component
 public class TagDAOImplementation extends DAOImpl implements TagDAOInterface{
 
-    private final DAO dao = new DAOImpl();
+    @Autowired
+    private SessionFactory sessionFactory;
 
     @Override
     public Tag getTagByID(int id) throws DBException {
-        Connection connection = null;
-
-        try {
-            connection = getConnection();
-            PreparedStatement preparedStatement = connection
-                    .prepareStatement("select * from TAGS_REF where TAG_NAME_ID = ?");
-            preparedStatement.setLong(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            Tag tag = null;
-            if (resultSet.next()) {
-                tag = composeTagFromResultsSet(resultSet);
-            }
-            return tag;
-        } catch (Throwable e) {
-            System.out.println("Exception while executing getTagByID().");
-            e.printStackTrace();
-            throw new DBException(e);
-        } finally {
-            closeConnection(connection);
-        }
+        Integer tagId = Integer.valueOf(id);
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Tag.class);
+        criteria.add(Restrictions.eq("TAG_NAME_ID", tagId));
+        Tag tag = (Tag) criteria.uniqueResult();
+        return tag;
     }
 
     @Override
-    public int getIDByTagName(String tagName) throws DBException {
-        Connection connection = null;
-
-        try {
-            connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from TAGS_REF where TAG_NAME LIKE ?");
-            preparedStatement.setString(1, tagName);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            Tag tag = null;
-            if (resultSet.next()) {
-                tag = composeTagFromResultsSet(resultSet);
-            }
-            return tag.getTagNameID();
-        } catch (Throwable e) {
-            System.out.println("Exception while executing getIDByTagName().");
-            e.printStackTrace();
-            throw new DBException(e);
-        } finally {
-            closeConnection(connection);
-        }
+    public Integer getIDByTagName(String tagName) throws DBException {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Tag.class);
+        criteria.add(Restrictions.eq("TAG_NAME", tagName));
+        Tag tag = (Tag) criteria.uniqueResult();
+        return tag.getTagNameID();
     }
 
     @Override
     public List<Tag> getAllTags() throws DBException {
-        Connection connection = null;
-
-        ArrayList<Tag> listOfTags = new ArrayList<>();
-
-        try {
-            connection = getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from TAGS_REF");
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            while (resultSet.next()) {
-                Tag tag = composeTagFromResultsSet(resultSet);
-                listOfTags.add(tag);
-            }
-
-            return listOfTags;
-        } catch (Throwable e) {
-            System.out.println("Exception while executing getAllTags().");
-            e.printStackTrace();
-            throw new DBException(e);
-        } finally {
-            closeConnection(connection);
-        }
-    }
-
-    private Tag composeTagFromResultsSet(ResultSet resultsSet) throws DBException {
-        Tag tag;
-        try {
-            tag = new Tag(resultsSet.getString("TAG_NAME"), resultsSet.getInt("TAG_NAME_ID"));
-        } catch (Throwable e) {
-            System.out.println("Exception while composing tag from results set!");
-            e.printStackTrace();
-            throw new DBException(e);
-        }
-
-        return tag;
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Tag.class);
+        List<Tag> allTags = (List<Tag>) criteria.list();
+        return allTags;
     }
 }

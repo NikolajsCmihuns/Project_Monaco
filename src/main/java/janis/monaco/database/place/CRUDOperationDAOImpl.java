@@ -5,11 +5,13 @@ import janis.monaco.database.CRUDOperationDAO;
 import janis.monaco.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Component;
 
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+@Component
 abstract class CRUDOperationDAOImpl<E> implements CRUDOperationDAO<E> {
 
 

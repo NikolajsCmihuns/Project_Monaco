@@ -5,10 +5,10 @@ package MaximPackage.Entities;
  */
 
 public class Tag {
-    String tagName;
-    int tagNameID;
+    String  tagName;
+    Integer tagNameID;
 
-    public Tag(String tagName, int tagNameID) {
+    public Tag(String tagName, Integer tagNameID) {
         this.tagName = tagName;
         this.tagNameID = tagNameID;
     }
