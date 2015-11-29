@@ -20,7 +20,7 @@ public class RouteSaveController implements RouteController {
     @Override
     public RouteModel execute(HttpServletRequest request) {
 
-        Boolean isSaved = false;
+        String message = "Ooops, something went wrong!";
 
         try {
             String routeCountry = request.getParameter("country");
@@ -31,15 +31,15 @@ public class RouteSaveController implements RouteController {
             String distance = request.getParameter("routeDistance"); // table route
 
             Route itinerary = new Route(routeCountry, routeCity, routeName, routeTag, route, distance);
-            isSaved = routeDAOImplementation.saveRoute(itinerary);
+            if (routeDAOImplementation.saveRoute(itinerary)) {
+                message = "Your route is saved!";
+            }
         } catch (Throwable e) {
             System.out.println("Exception while executing RouteSaveController.execute()");
             e.printStackTrace();
         }
 
-        return new RouteModel(isSaved, "/RouteCreationAction.jsp");
+        return new RouteModel(message, "/RouteCreationAction.jsp");
     }
 }
-
-
 

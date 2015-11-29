@@ -44,14 +44,9 @@
     <title>Route Saved</title>
 </head>
 <body>
-<%
-    String message = "Ooops, something went wrong!";
-    if ((Boolean) request.getAttribute("model")) {
-        message = "Your route is saved!";
-    }
-%>
+
 <div id="dialog" title="Route Saved">
-    <%=message%>
+    <%=request.getAttribute("model")%>
 </div>
 </body>
 </html>
