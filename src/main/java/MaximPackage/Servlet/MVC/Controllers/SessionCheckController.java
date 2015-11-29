@@ -18,11 +18,6 @@ import java.util.Optional;
 public class SessionCheckController implements MVCController {
 
     @Override
-    public MVCModel executePost(HttpServletRequest request) {
-        return new MVCModel("","");
-    }
-
-    @Override
     public MVCModel executeGet(HttpServletRequest request) {
         // Get session and check logged user id existence
         HttpSession session = request.getSession();

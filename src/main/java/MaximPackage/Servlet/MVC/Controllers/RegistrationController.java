@@ -29,11 +29,6 @@ public class RegistrationController implements MVCController {
     UserDAOImplementation userDAO;
 
     @Override
-    public MVCModel executeGet(HttpServletRequest request) {
-        return new MVCModel(new RegistrationDataSource(), "/JSPs/Login/RegistrationPage.jsp");
-    }
-
-    @Override
     public MVCModel executePost(HttpServletRequest request) {
 
         MVCModel model;
@@ -63,5 +58,10 @@ public class RegistrationController implements MVCController {
         }
 
         return model;
+    }
+
+    @Override
+    public MVCModel executeGet(HttpServletRequest request) {
+        return new MVCModel(new RegistrationDataSource(), "/JSPs/Login/RegistrationPage.jsp");
     }
 }

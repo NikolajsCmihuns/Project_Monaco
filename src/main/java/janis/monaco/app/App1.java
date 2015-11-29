@@ -19,7 +19,10 @@ public class App1 {
 
         PlaceDAO pl = new PlaceDAOImpl();
 
+
         List<Place> places = pl.getAll();
+
+
 
         for(Place place : places)
         {
