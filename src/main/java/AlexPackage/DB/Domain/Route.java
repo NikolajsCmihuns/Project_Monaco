@@ -11,6 +11,7 @@ public class Route {
     private String routeTag;
     private String route;
     private String distance;
+    private String routeId;
 
     public Route(String routeCountry, String routeCity, String routeName, String routeTag, String route, String distance) {
         this.routeCountry = routeCountry;
@@ -45,4 +46,11 @@ public class Route {
         return distance;
     }
 
+    public String getRouteId() {
+        return routeId;
+    }
+
+    public void setRouteId(String routeId) {
+        this.routeId = routeId;
+    }
 }

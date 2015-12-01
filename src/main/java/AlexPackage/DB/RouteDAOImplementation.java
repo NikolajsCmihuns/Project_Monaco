@@ -23,6 +23,7 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
 
     private final String SELECT_COUNTRY_NAME = "SELECT COUNTRY_NAME, COUNTRY_SHORT_NAME FROM COUNTRY_REF";
     private final String SELECT_TAG_NAME_ID = "SELECT TAG_NAME_ID, TAG_NAME FROM TAGS_REF";
+    private final String SELECT_ROUTES_BY_TAG = "SELECT routeID distance WHERE routeTagID = ?";
 
     private final String SAVE_TO_ROUTE_TABLE = "INSERT INTO ROUTE VALUES (default, ?, 0, ?, ?, 1)";
     private final String SAVE_TO_PLACES_IN_ROUTE_TABLE = "INSERT INTO PLACES_IN_ROUTE VALUES (?, ?, ?)";
@@ -30,6 +31,34 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
 
     public RouteDAOImplementation() {
 
+    }
+
+    @Override
+    public List<Route> getRoutes(String routeTag) throws DBException {
+        Connection connection = null;
+        List<Route> routeIDs = new ArrayList<>();
+
+        try {
+
+            connection = getConnection();
+
+//            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ROUTES_BY_TAG);
+//            preparedStatement.setInt(4, Integer.parseInt(routeTag));
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            while (resultSet.next()) {
+//                Route route = new Route(null, null, null, routeTag, null, resultSet.getString(2));
+//                route.setRouteId(String.valueOf(resultSet.getInt(1)));
+//                routeIDs.add(route);
+//            }
+        } catch (Throwable e) {
+            System.out.println("Exception while executing RouteDAOImplementation.getRoutes()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+
+        return routeIDs;
     }
 
     @Override

@@ -26,7 +26,7 @@
 <body>
 <div id="container">
     <div id="menu">
-        <form id="fmenu" name="fmenu">
+        <form id="fmenu" name="fmenu" action="${pageContext.request.contextPath}/route_pick" method="POST">
             <select required id="tag" name="tag" class="select_width">
                 <option value="">Choose Tag</option>
                 <%

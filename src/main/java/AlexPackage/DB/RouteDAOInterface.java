@@ -13,7 +13,10 @@ import java.util.List;
 public interface RouteDAOInterface {
 
     List<Country> getCountryList() throws DBException;
+
     List<Tags> getTagsList() throws DBException;
+
+    List<Route> getRoutes(String routeTag) throws DBException;
 
     boolean saveRoute(Route route) throws DBException;
 
