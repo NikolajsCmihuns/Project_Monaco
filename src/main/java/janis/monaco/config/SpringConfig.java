@@ -24,7 +24,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class SpringConfig {
 
-    private static final String DATABASE_PROPERTIES_FILE = "database.properties";
+    private static final String DATABASE_PROPERTIES_FILE = "prod_monaco_db.properties";
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer prodPropertiesPlaceholderConfigurer() {
