@@ -1,14 +1,11 @@
-package MaximPackage.Servlet.MVC.Controllers;
+package com.monaco.Controllers;
 
-import MaximPackage.Database.UserDAOImplementation;
-import MaximPackage.Entities.User;
-import MaximPackage.Services.RegistrationService;
-import MaximPackage.Servlet.MVC.DataSources.LandingPageDS;
-
-import MaximPackage.Servlet.MVC.DataSources.RegistrationDataSource;
-import MaximPackage.Servlet.MVC.MVCController;
-import MaximPackage.Servlet.MVC.MVCModel;
-
+import com.monaco.DataSources.LandingPageDS;
+import com.monaco.DataSources.RegistrationPageDS;
+import com.monaco.Entities.User;
+import com.monaco.MVC.MVCController;
+import com.monaco.MVC.MVCModel;
+import com.monaco.Services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,10 +20,13 @@ import java.util.Optional;
 public class RegistrationController implements MVCController {
 
     @Autowired
-    RegistrationService registrationService;
+    private RegistrationService registrationService;
 
     @Autowired
-    UserDAOImplementation userDAO;
+    private RegistrationPageDS datasource;
+
+    @Autowired
+    private LandingPageDS landingPageDS;
 
     @Override
     public MVCModel executePost(HttpServletRequest request) {
@@ -46,12 +46,12 @@ public class RegistrationController implements MVCController {
         Integer age = Integer.valueOf(request.getParameter("rAge"));
         Integer tagID = Integer.valueOf(request.getParameter("rTag"));
 
-        Optional<Integer> registeredUserID = registrationService.tryRegistration(nickName, password, email, cityID, countryID, name, surname, age, tagID);
+        Optional<User> registeredUser = registrationService.tryRegistration(nickName, password, email, cityID, countryID, name, surname, age, tagID);
 
-
-        if (registeredUserID.get() != User.USER_NOT_FOUND) {
-            request.getSession().setAttribute("userID", registeredUserID);
-            model = new MVCModel(new LandingPageDS(registeredUserID), "/JSPs/LandingPage.jsp");
+        if (registeredUser.isPresent()) {
+            request.getSession().setAttribute("userID", registeredUser.get().getUserID());
+            landingPageDS.setUserNickname(registeredUser.get().getNickname());
+            model = new MVCModel(landingPageDS, "/JSPs/LandingPage.jsp");
         } else {
             // TODO: Implement failure page
             model = new MVCModel("", "/JSPs/Login/LoginPage.jsp");
@@ -62,6 +62,7 @@ public class RegistrationController implements MVCController {
 
     @Override
     public MVCModel executeGet(HttpServletRequest request) {
-        return new MVCModel(new RegistrationDataSource(), "/JSPs/Login/RegistrationPage.jsp");
+        datasource.generateDatasource();
+        return new MVCModel(datasource, "/JSPs/Login/RegistrationPage.jsp");
     }
 }

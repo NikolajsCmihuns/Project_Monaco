@@ -1,4 +1,4 @@
-package MaximPackage.Entities;
+package com.monaco.Entities;
 
 import java.util.Optional;
 

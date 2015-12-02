@@ -71,10 +71,6 @@
             <version>4.2.2.Final</version>
         </dependency>
 
-
-
-
-
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>

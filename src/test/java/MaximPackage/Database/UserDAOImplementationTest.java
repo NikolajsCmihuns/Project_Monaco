@@ -1,5 +1,6 @@
 package MaximPackage.Database;
 
+import com.monaco.Database.UserDAOImplementation;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DatabaseCleaner;
 

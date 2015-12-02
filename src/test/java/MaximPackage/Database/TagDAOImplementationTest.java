@@ -2,8 +2,16 @@ package MaximPackage.Database;
 
 import MaximPackage.ConsolePackage.ConsoleOutput;
 import MaximPackage.ConsolePackage.EConsoleMessages;
-import MaximPackage.Entities.Tag;
+
+import com.monaco.Database.TagDAOImplementation;
+import com.monaco.Entities.Tag;
+import com.monaco.MVC.SpringConfig;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
@@ -12,13 +20,17 @@ import static org.junit.Assert.*;
 /**
  * Created by maksimspuskels on 01/11/15.
  */
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = SpringConfig.class)
 public class TagDAOImplementationTest {
 
-    TagDAOImplementation tagDAO = new TagDAOImplementation();
+    @Autowired
+    private TagDAOImplementation tagDAO;
 
     @Test
     public void testGetTagByID() throws Exception {
-        Tag tag = tagDAO.getTagByID(101);
+        Tag tag = tagDAO.getTagByID(Integer.valueOf(101));
         ConsoleOutput.printObject(tag);
         assertEquals("Hipster", tag.getTagName());
     }

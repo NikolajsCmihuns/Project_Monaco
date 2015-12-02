@@ -4,6 +4,7 @@ import MaximPackage.Entities.City;
 import MaximPackage.ConsolePackage.ConsoleOutput;
 
 import MaximPackage.ConsolePackage.EConsoleMessages;
+import com.monaco.Database.CityDAOImplementation;
 import lv.javaguru.java2.database.DBException;
 
 import org.junit.Before;

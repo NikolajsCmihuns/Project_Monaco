@@ -1,7 +1,6 @@
-package MaximPackage.Database;
+package com.monaco.Database;
 
 import MaximPackage.Entities.City;
-
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
 import org.springframework.stereotype.Component;

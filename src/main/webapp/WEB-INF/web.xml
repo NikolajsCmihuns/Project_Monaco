@@ -6,7 +6,7 @@
          version="3.0">
     <filter>
         <filter-name>MVCFilter</filter-name>
-        <filter-class>MaximPackage.Servlet.MVC.MVCFilter</filter-class>
+        <filter-class>com.monaco.MVC.MVCFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -14,15 +14,15 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <filter>
-        <filter-name>Janis</filter-name>
-        <filter-class>janis.monaco.mvc.MVCFilter</filter-class>
-    </filter>
+    <!--<filter>-->
+        <!--<filter-name>Janis</filter-name>-->
+        <!--<filter-class>janis.monaco.mvc.MVCFilter</filter-class>-->
+    <!--</filter>-->
 
-    <filter-mapping>
-        <filter-name>Janis</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    <!--<filter-mapping>-->
+        <!--<filter-name>Janis</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
 
 
     <filter>
@@ -62,15 +62,15 @@
         <!--<url-pattern>/review</url-pattern>-->
     <!--</filter-mapping>-->
 
-    <filter>
-        <filter-name>MVCFilterR</filter-name>
-        <filter-class>nikocmihPackage.servlet.MVC.MVCFilterR</filter-class>
-    </filter>
+    <!--<filter>-->
+        <!--<filter-name>MVCFilterR</filter-name>-->
+        <!--<filter-class>nikocmihPackage.servlet.MVC.MVCFilterR</filter-class>-->
+    <!--</filter>-->
 
-    <filter-mapping>
-        <filter-name>MVCFilterR</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    <!--<filter-mapping>-->
+        <!--<filter-name>MVCFilterR</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
 
 
 

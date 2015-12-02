@@ -1,9 +1,9 @@
-package MaximPackage.Servlet.MVC.Controllers;
+package com.monaco.Controllers;
 
-import MaximPackage.Servlet.MVC.DataSources.LandingPageDS;
-
-import MaximPackage.Servlet.MVC.MVCController;
-import MaximPackage.Servlet.MVC.MVCModel;
+import com.monaco.DataSources.LandingPageDS;
+import com.monaco.MVC.MVCController;
+import com.monaco.MVC.MVCModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +17,9 @@ import java.util.Optional;
 @Component
 public class SessionCheckController implements MVCController {
 
+    @Autowired
+    private LandingPageDS dataSource;
+
     @Override
     public MVCModel executeGet(HttpServletRequest request) {
         // Get session and check logged user id existence
@@ -24,8 +27,8 @@ public class SessionCheckController implements MVCController {
         Optional<Integer> userID = (Optional<Integer>)session.getAttribute("userID");
         // If id exists proceed to main page else login page
         MVCModel model;
-        if (userID != null) {
-            LandingPageDS dataSource = new LandingPageDS(userID);
+        if (userID != null && userID.isPresent()) {
+            dataSource.updateUserNicknameFromUserID(userID.get());
             model = new MVCModel(dataSource, "/JSPs/LandingPage.jsp");
         }
         else {

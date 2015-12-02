@@ -1,8 +1,8 @@
-package MaximPackage.Servlet.MVC;
+package com.monaco.MVC;
 
-import MaximPackage.Servlet.MVC.Controllers.LoginController;
-import MaximPackage.Servlet.MVC.Controllers.RegistrationController;
-import MaximPackage.Servlet.MVC.Controllers.SessionCheckController;
+import com.monaco.Controllers.LoginController;
+import com.monaco.Controllers.RegistrationController;
+import com.monaco.Controllers.SessionCheckController;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

@@ -1,4 +1,4 @@
-package MaximPackage.Servlet.MVC;
+package com.monaco.MVC;
 
 /**
  * Created by maksimspuskels on 03/11/15.

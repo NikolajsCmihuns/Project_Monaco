@@ -4,7 +4,7 @@ import MaximPackage.ConsolePackage.ConsoleOutput;
 import MaximPackage.Entities.Place;
 import MaximPackage.Entities.Review;
 import MaximPackage.Entities.Route;
-import MaximPackage.Entities.User;
+import com.monaco.Entities.User;
 
 import java.util.ArrayList;
 

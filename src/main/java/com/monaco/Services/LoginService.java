@@ -1,10 +1,9 @@
-package MaximPackage.Services;
+package com.monaco.Services;
 
-import MaximPackage.Database.UserDAOInterface;
-import MaximPackage.Entities.User;
+import com.monaco.Database.UserDAOInterface;
+import com.monaco.Entities.User;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,26 +19,27 @@ public class LoginService extends DAOImpl {
     @Autowired
     UserDAOInterface userDao;
 
-    // On success should return logged user ID
-    public Optional<Integer> tryLogin(String nickName, String password) {
-        Optional<Integer> loggedUserID = Optional.of(User.USER_NOT_FOUND);
+    // On success should return logged user entity
+    public Optional<User> tryLogin(String nickName, String password) throws DBException {
+        Optional<User> loggedUser = Optional.empty();
 
         if (nickName != null && nickName.length() > 0) {
-            User userFromDB = null;
             try {
-                userFromDB = userDao.getUserByNickname(nickName);
-                if (userFromDB != null) {
-                    String userPassword = userFromDB.getPassword();
+                Optional<User> userFromDB = userDao.getUserByNickname(nickName);
+
+                if (userFromDB.isPresent()) {
+                    String userPassword = userFromDB.get().getPassword();
 
                     if (userPassword != null && password != null && password.equalsIgnoreCase(userPassword)) {
-                        loggedUserID = userFromDB.getUserID();
+                        loggedUser = userFromDB;
                     }
                 }
             } catch (DBException e) {
                 e.printStackTrace();
+                throw new DBException("Something went wrong on getting data from DB!");
             }
         }
 
-        return loggedUserID;
+        return loggedUser;
     }
 }

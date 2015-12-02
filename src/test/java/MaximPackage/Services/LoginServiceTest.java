@@ -1,7 +1,5 @@
 package MaximPackage.Services;
 
-import MaximPackage.Database.UserDAOInterface;
-
 import javax.servlet.http.HttpSession;
 
 /**

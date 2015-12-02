@@ -1,13 +1,15 @@
-package MaximPackage.Database;
+package com.monaco.Database;
 
+import com.monaco.Entities.User;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
-
-import java.sql.*;
-import java.util.Optional;
-
-import MaximPackage.Entities.User;
 import org.springframework.stereotype.Component;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Optional;
 
 /**
  * Created by maksimspuskels on 23/10/15.
@@ -81,7 +83,7 @@ public class UserDAOImplementation extends DAOImpl implements UserDAOInterface {
         }
     }
 
-    public User getUserByNickname(String nickname) throws DBException {
+    public Optional<User> getUserByNickname(String nickname) throws DBException {
         Connection connection = null;
 
         try {
@@ -90,9 +92,10 @@ public class UserDAOImplementation extends DAOImpl implements UserDAOInterface {
                     .prepareStatement("select * from USER where NickName Like ?");
             preparedStatement.setString(1, nickname);
             ResultSet resultSet = preparedStatement.executeQuery();
-            User user = null;
+            Optional<User> user = Optional.empty();
             if (resultSet.next()) {
-                user = composeUserFromResultsSet(resultSet);
+                User mappedUser = composeUserFromResultsSet(resultSet);
+                user = Optional.of(mappedUser);
             }
             return user;
         } catch (Throwable e) {

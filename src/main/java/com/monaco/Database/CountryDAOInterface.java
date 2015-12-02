@@ -1,4 +1,4 @@
-package MaximPackage.Database;
+package com.monaco.Database;
 
 import MaximPackage.Entities.Country;
 import lv.javaguru.java2.database.DBException;

@@ -3,7 +3,9 @@ package MaximPackage.Database;
 import MaximPackage.ConsolePackage.ConsoleOutput;
 import MaximPackage.ConsolePackage.EConsoleMessages;
 import MaximPackage.Entities.Country;
+import com.monaco.Database.CountryDAOImplementation;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
@@ -12,8 +14,13 @@ import static org.junit.Assert.*;
 /**
  * Created by maksimspuskels on 01/11/15.
  */
+
+
 public class CountryDAOImplementationTest {
-    CountryDAOImplementation countryDAO = new CountryDAOImplementation();
+
+    @Autowired
+    CountryDAOImplementation countryDAO;
+//    CountryDAOImplementation countryDAO = new CountryDAOImplementation();
 
     @Test
     public void testGetCountryByID() throws Exception {

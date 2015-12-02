@@ -1,18 +1,16 @@
-package MaximPackage.Database;
+package com.monaco.Database;
 
-import MaximPackage.Entities.Tag;
-
-import java.util.List;
-
+import com.monaco.Entities.Tag;
+import lv.javaguru.java2.database.DBException;
+import lv.javaguru.java2.database.jdbc.DAOImpl;
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-
-import lv.javaguru.java2.database.DBException;
-import lv.javaguru.java2.database.jdbc.DAOImpl;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 
 /**
@@ -20,16 +18,16 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class TagDAOImplementation extends DAOImpl implements TagDAOInterface{
+@Transactional
+public class TagDAOImplementation extends DAOImpl implements TagDAOInterface {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     @Override
-    public Tag getTagByID(int id) throws DBException {
-        Integer tagId = Integer.valueOf(id);
+    public Tag getTagByID(Integer id) throws DBException {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Tag.class);
-        criteria.add(Restrictions.eq("TAG_NAME_ID", tagId));
+        criteria.add(Restrictions.eq("TAG_NAME_ID", id));
         Tag tag = (Tag) criteria.uniqueResult();
         return tag;
     }

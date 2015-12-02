@@ -1,7 +1,5 @@
 package janis.monaco.mvc;
 
-
-
 import janis.monaco.config.SpringConfig;
 import janis.monaco.controllers.ControllerPlace;
 import org.jboss.logging.Logger;

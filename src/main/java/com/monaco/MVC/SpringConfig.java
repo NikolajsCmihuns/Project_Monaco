@@ -1,4 +1,4 @@
-package MaximPackage.Servlet.MVC;
+package com.monaco.MVC;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
@@ -24,7 +24,7 @@ import java.util.Properties;
  */
 
 @Configuration
-@ComponentScan(basePackages = {"MaximPackage"})
+@ComponentScan(basePackages = {"com.monaco"})
 @EnableTransactionManagement
 public class SpringConfig {
     private static final String DATABASE_PROPERTIES_FILE = "prod_monaco_db.properties";
@@ -89,5 +89,4 @@ public class SpringConfig {
     public PlatformTransactionManager transactionManager(SessionFactory sessionFactory) {
         return new HibernateTransactionManager(sessionFactory);
     }
-
 }

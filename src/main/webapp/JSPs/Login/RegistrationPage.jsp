@@ -2,8 +2,8 @@
 <%@ page import="MaximPackage.Entities.City" %>
 <%@ page import="MaximPackage.Entities.Country" %>
 <%@ page import="java.util.List" %>
-<%@ page import="MaximPackage.Entities.Tag" %>
-<%@ page import="MaximPackage.Servlet.MVC.DataSources.RegistrationDataSource" %>
+<%@ page import="com.monaco.DataSources.RegistrationPageDS" %>
+<%@ page import="com.monaco.Entities.Tag" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -12,10 +12,10 @@
   <title> Monaco registration </title>
 
   <%
-    RegistrationDataSource dataSource = (RegistrationDataSource)request.getAttribute("model");
-    List<City> allCities = dataSource.getAllCities();
-    List<Country> allCountries = dataSource.getAllCountries();
-    List<Tag> allTags = dataSource.getAllTags();
+    RegistrationPageDS dataSource = (RegistrationPageDS)request.getAttribute("model");
+    List<City> allCities = dataSource.getCities();
+    List<Country> allCountries = dataSource.getCountries();
+    List<Tag> allTags = dataSource.getTags();
   %>
 
   <form id="registrationForm" action="register" method="POST">

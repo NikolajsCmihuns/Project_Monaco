@@ -1,6 +1,6 @@
-package MaximPackage.Database;
+package com.monaco.Database;
 
-import MaximPackage.Entities.Tag;
+import com.monaco.Entities.Tag;
 import lv.javaguru.java2.database.DBException;
 
 import java.util.List;
@@ -10,9 +10,7 @@ import java.util.List;
  */
 
 public interface TagDAOInterface {
-    Tag getTagByID(int id) throws DBException;
-
+    Tag getTagByID(Integer id) throws DBException;
     Integer getIDByTagName(String TagName) throws DBException;
-
     List<Tag> getAllTags() throws DBException;
 }

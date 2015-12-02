@@ -1,8 +1,9 @@
-package MaximPackage.Database;
+package com.monaco.Database;
 
+import com.monaco.Entities.User;
 import lv.javaguru.java2.database.DBException;
 
-import MaximPackage.Entities.User;
+import java.util.Optional;
 
 /**
  * Created by maksimspuskels on 23/10/15.
@@ -14,5 +15,5 @@ public interface UserDAOInterface {
 
     User getUserByID(int id) throws DBException;
 
-    User getUserByNickname(String nickname) throws DBException;
+    Optional<User> getUserByNickname(String nickname) throws DBException;
 }

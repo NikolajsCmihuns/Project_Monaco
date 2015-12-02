@@ -1,4 +1,4 @@
-package MaximPackage.Servlet.MVC;
+package com.monaco.MVC;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,7 +10,6 @@ public interface MVCController {
     default MVCModel executePost(HttpServletRequest request) {
         return new MVCModel("","");
     }
-
     default MVCModel executeGet(HttpServletRequest request) {
         return new MVCModel("","");
     }
