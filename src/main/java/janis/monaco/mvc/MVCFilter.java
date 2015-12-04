@@ -1,6 +1,6 @@
 package janis.monaco.mvc;
 
-//import janis.monaco.config.SpringConfig;
+import janis.monaco.config.SpringHibernateConfig;
 import janis.monaco.controllers.ControllerPlace;
 import org.jboss.logging.Logger;
 import org.springframework.beans.BeansException;
@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by maksimspuskels on 03/11/15.
+ * Created by janis on 04/12/15.
  */
 
 public class MVCFilter implements Filter {
@@ -31,7 +31,7 @@ public class MVCFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
 
         try {
-//            springContext = new AnnotationConfigApplicationContext(SpringConfig.class);
+            springContext = new AnnotationConfigApplicationContext(SpringHibernateConfig.class);
         } catch (BeansException e) {
             logger.log(Logger.Level.INFO, "Spring context failed to start", e);
         }
