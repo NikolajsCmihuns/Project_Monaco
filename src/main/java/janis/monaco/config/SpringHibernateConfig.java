@@ -22,7 +22,7 @@ import java.util.Properties;
 @Configuration
 @ComponentScan(basePackages = {"janis.monaco"})
 @EnableTransactionManagement
-public class SpringConfig {
+public class SpringHibernateConfig {
 
     private static final String DATABASE_PROPERTIES_FILE = "prod_monaco_db.properties";
 
