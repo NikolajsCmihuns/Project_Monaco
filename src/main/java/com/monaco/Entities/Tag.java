@@ -12,10 +12,10 @@ public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="TAG_NAME_ID")
-    Integer tagNameID;
+    private Integer tagNameID;
 
     @Column(name="TAG_NAME")
-    String  tagName;
+    private String tagName;
 
     public Tag() {
 
@@ -30,12 +30,31 @@ public class Tag {
         return tagName;
     }
 
-    public int getTagNameID() {
+    public Integer getTagNameID() {
         return tagNameID;
     }
 
     @Override
     public String toString() {
         return "-== Tag ==-" + "\n" + tagName + "\n" + tagNameID + "\n" + "-========-";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Tag tag = (Tag) o;
+
+        if (!getTagNameID().equals(tag.getTagNameID())) return false;
+        return getTagName().equals(tag.getTagName());
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getTagNameID().hashCode();
+        result = 31 * result + getTagName().hashCode();
+        return result;
     }
 }
