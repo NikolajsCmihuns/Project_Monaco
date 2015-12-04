@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -27,7 +28,7 @@ public class TagDAOImplementation extends DAOImpl implements TagDAOInterface {
     @Override
     public Tag getTagByID(Integer id) throws DBException {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Tag.class);
-        criteria.add(Restrictions.eq("TAG_NAME_ID", id));
+        criteria.add(Restrictions.eq("tagNameID", id));
         Tag tag = (Tag) criteria.uniqueResult();
         return tag;
     }
@@ -35,7 +36,7 @@ public class TagDAOImplementation extends DAOImpl implements TagDAOInterface {
     @Override
     public Integer getIDByTagName(String tagName) throws DBException {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Tag.class);
-        criteria.add(Restrictions.eq("TAG_NAME", tagName));
+        criteria.add(Restrictions.eq("tagName", tagName));
         Tag tag = (Tag) criteria.uniqueResult();
         return tag.getTagNameID();
     }
