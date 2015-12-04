@@ -1,6 +1,6 @@
 package janis.monaco.mvc;
 
-import janis.monaco.config.SpringConfig;
+//import janis.monaco.config.SpringConfig;
 import janis.monaco.controllers.ControllerPlace;
 import org.jboss.logging.Logger;
 import org.springframework.beans.BeansException;
@@ -31,7 +31,7 @@ public class MVCFilter implements Filter {
     public void init(FilterConfig filterConfig) throws ServletException {
 
         try {
-            springContext = new AnnotationConfigApplicationContext(SpringConfig.class);
+//            springContext = new AnnotationConfigApplicationContext(SpringConfig.class);
         } catch (BeansException e) {
             logger.log(Logger.Level.INFO, "Spring context failed to start", e);
         }
