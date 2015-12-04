@@ -285,7 +285,7 @@ CREATE TABLE IF NOT EXISTS `monaco`.`COMMENT_ON_REVIEW` (
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `monaco`.`events`
+-- Table `monaco`.`event`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `monaco`.`events` ;
 
