@@ -285,12 +285,12 @@ CREATE TABLE IF NOT EXISTS `monaco`.`COMMENT_ON_REVIEW` (
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `monaco`.`event`
+-- Table `monaco`.`table1`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monaco`.`events` ;
+DROP TABLE IF EXISTS `monaco`.`table1` ;
 
 SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `monaco`.`events` (
+CREATE TABLE IF NOT EXISTS `monaco`.`table1` (
   `eventID` INT NOT NULL AUTO_INCREMENT,
   `eventTitle` VARCHAR(100) NULL,
   `eventDescription` VARCHAR(500) NULL,
