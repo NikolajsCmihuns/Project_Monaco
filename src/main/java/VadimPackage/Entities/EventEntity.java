@@ -12,36 +12,54 @@ import java.util.Date;
 public class EventEntity {
 
     @Id
-    @Column(name = "event_id")
+    @Column(name = "eventID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int event_id;
+    private int eventId;
 
-    @Column(name = "event")
-    private String event;
+    @Column(name = "eventTitle")
+    private String eventTitle;
 
-    @Column(name = "user_id")
-    private int user_id;
+    @Column(name = "eventDescription")
+    private String eventDescription;
 
-    @Column(name = "place_id")
-    private int place_id;
+    @Column(name = "eventLink")
+    private String eventLink;
 
-    @Column(name = "event_date")
-    private Date event_date;
+    @Column(name = "userID")
+    private int userID;
 
-    public void setEvent_id(int event_id) { this.event_id = event_id; }
+    @Column(name = "placeID")
+    private int placeID;
 
-    public void setEvent(String event) { this.event = event; }
+    @Column(name = "date")
+    private Date eventDate;
 
-    public void setUser_id(int user_id) { this.user_id = user_id; }
+    public void setEventId(int eventId) { this.eventId = eventId; }
 
-    public int getEvent_id() { return event_id; }
+    public void setEventTitle(String eventTitle) { this.eventTitle = eventTitle; }
 
-    public String getEvent() { return event; }
+    public void setEventDescription(String eventDescription) { this.eventDescription = eventDescription; }
 
-    public int getUser_id() { return user_id; }
+    public void setEventLink(String eventLink) { this.eventLink = eventLink; }
 
-    public int getPlace_id() { return place_id; }
+    public void setUserID(int userID) { this.userID = userID; }
 
-    public Date getEvent_date() { return event_date; }
+    public void setPlaceID(int placeID) { this.placeID = placeID; }
+
+    public void setEventDate(Date eventDate) { this.eventDate = eventDate; }
+
+    public int getEventId() { return eventId; }
+
+    public String getEventTitle() { return eventTitle; }
+
+    public String getEventDescription() { return eventDescription; }
+
+    public String getEventLink() { return eventLink; }
+
+    public int getUserID() { return userID; }
+
+    public int getPlaceID() { return placeID; }
+
+    public Date getEventDate() { return eventDate; }
 
 }
