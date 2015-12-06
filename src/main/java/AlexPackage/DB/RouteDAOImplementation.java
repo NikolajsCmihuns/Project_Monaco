@@ -1,9 +1,10 @@
 package AlexPackage.DB;
 
 import AlexPackage.DB.Domain.Route;
-import AlexPackage.DB.Helper.Coordinates;
-import AlexPackage.DB.Helper.Country;
-import AlexPackage.DB.Helper.Tags;
+import AlexPackage.DB.Helper.HelperCoordinates;
+import AlexPackage.DB.Helper.HelperCountry;
+import AlexPackage.DB.Helper.HelperPlace;
+import AlexPackage.DB.Helper.HelperTags;
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
 import org.springframework.stereotype.Component;
@@ -23,7 +24,10 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
 
     private final String SELECT_COUNTRY_NAME = "SELECT COUNTRY_NAME, COUNTRY_SHORT_NAME FROM COUNTRY_REF";
     private final String SELECT_TAG_NAME_ID = "SELECT TAG_NAME_ID, TAG_NAME FROM TAGS_REF";
-    private final String SELECT_ROUTES_BY_TAG = "SELECT routeID distance WHERE routeTagID = ?";
+    private final String SELECT_ROUTES_BY_TAG = "SELECT ROUTEID, DISTANCE FROM ROUTE WHERE routeTagID = ?";
+    private final String SELECT_TAG_TEXT_BY_ID = "SELECT TAG_NAME FROM TAGS_REF WHERE TAG_NAME_ID = ?";
+    private final String SELECT_PLACEID_SEQUENCE = "SELECT PLACEID, SEQNR FROM PLACES_IN_ROUTE WHERE ROUTEID = ?";
+    private final String SELECT_COORDINATES_BY_PLACEID = "SELECT LATITUDE, LONGITUDE FROM PLACE WHERE PLACEID = ?";
 
     private final String SAVE_TO_ROUTE_TABLE = "INSERT INTO ROUTE VALUES (default, ?, 0, ?, ?, 1)";
     private final String SAVE_TO_PLACES_IN_ROUTE_TABLE = "INSERT INTO PLACES_IN_ROUTE VALUES (?, ?, ?)";
@@ -34,7 +38,7 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
     }
 
     @Override
-    public List<Route> getRoutes(String routeTag) throws DBException {
+    public List<Route> getRoutesIds(String routeTag) throws DBException {
         Connection connection = null;
         List<Route> routeIDs = new ArrayList<>();
 
@@ -42,14 +46,14 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
 
             connection = getConnection();
 
-//            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ROUTES_BY_TAG);
-//            preparedStatement.setInt(4, Integer.parseInt(routeTag));
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//            while (resultSet.next()) {
-//                Route route = new Route(null, null, null, routeTag, null, resultSet.getString(2));
-//                route.setRouteId(String.valueOf(resultSet.getInt(1)));
-//                routeIDs.add(route);
-//            }
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ROUTES_BY_TAG);
+            preparedStatement.setInt(1, Integer.parseInt(routeTag));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Route route = new Route(null, null, null, routeTag, null, resultSet.getString("DISTANCE"));
+                route.setRouteId(String.valueOf(resultSet.getInt(1)));
+                routeIDs.add(route);
+            }
         } catch (Throwable e) {
             System.out.println("Exception while executing RouteDAOImplementation.getRoutes()");
             e.printStackTrace();
@@ -62,18 +66,18 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
     }
 
     @Override
-    public List<Country> getCountryList() throws DBException {
+    public List<HelperCountry> getCountryList() throws DBException {
 
         Connection connection = null;
-        List<Country> countryList = new ArrayList<>();
+        List<HelperCountry> helperCountryList = new ArrayList<>();
         try {
             connection = getConnection();
 
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_COUNTRY_NAME);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Country country = new Country(resultSet.getString("COUNTRY_SHORT_NAME"), resultSet.getString("COUNTRY_NAME"));
-                countryList.add(country);
+                HelperCountry helperCountry = new HelperCountry(resultSet.getString("COUNTRY_SHORT_NAME"), resultSet.getString("COUNTRY_NAME"));
+                helperCountryList.add(helperCountry);
             }
         } catch (Throwable e) {
             System.out.println("Exception while executing RouteDAOImplementation.getCountryList()");
@@ -83,13 +87,13 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
             closeConnection(connection);
         }
 
-        return countryList;
+        return helperCountryList;
     }
 
     @Override
-    public List<Tags> getTagsList() throws DBException {
+    public List<HelperTags> getTagsList() throws DBException {
 
-        List<Tags> tags = new ArrayList<>();
+        List<HelperTags> tags = new ArrayList<>();
         Connection connection = null;
 
         try {
@@ -98,7 +102,7 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_TAG_NAME_ID);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Tags tag = new Tags(Integer.parseInt(resultSet.getString("TAG_NAME_ID")), resultSet.getString("TAG_NAME"));
+                HelperTags tag = new HelperTags(Integer.parseInt(resultSet.getString("TAG_NAME_ID")), resultSet.getString("TAG_NAME"));
                 tags.add(tag);
             }
         } catch (Throwable e) {
@@ -118,15 +122,15 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
         return dateFormat.format(date);
     }
 
-    private ArrayList<Coordinates> processCoordinates(String route) {
+    private ArrayList<HelperCoordinates> processCoordinates(String route) {
 
-        ArrayList<Coordinates> routeCoordinates = new ArrayList<>();
+        ArrayList<HelperCoordinates> routeCoordinates = new ArrayList<>();
 
         String[] routeCoordinateCortege = route.split(",");
         for (int i = 0; i < routeCoordinateCortege.length; i++) {
             String[] coordinateCortege = routeCoordinateCortege[i].split("\\|");
-            Coordinates coordinates = new Coordinates(coordinateCortege[0], coordinateCortege[1], String.valueOf(i));
-            routeCoordinates.add(coordinates);
+            HelperCoordinates helperCoordinates = new HelperCoordinates(coordinateCortege[0], coordinateCortege[1], String.valueOf(i));
+            routeCoordinates.add(helperCoordinates);
         }
 
         return routeCoordinates;
@@ -155,7 +159,7 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
         return resultSet;
     }
 
-    private ResultSet saveRouteDetails(Coordinates cortege, Connection connection) {
+    private ResultSet saveRouteDetails(HelperCoordinates cortege, Connection connection) {
 
         ResultSet resultSet = null;
 
@@ -214,10 +218,10 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
                 String routeId = String.valueOf(resultSet.getLong(1));
 
                 // save to place & places_in_route
-                ArrayList<Coordinates> routeCoordinates = processCoordinates(route.getRoute());
-                Iterator<Coordinates> iterator = routeCoordinates.iterator();
+                ArrayList<HelperCoordinates> routeCoordinates = processCoordinates(route.getRoute());
+                Iterator<HelperCoordinates> iterator = routeCoordinates.iterator();
                 while (iterator.hasNext()) {
-                    Coordinates cortege = iterator.next();
+                    HelperCoordinates cortege = iterator.next();
                     resultSet = saveRouteDetails(cortege, connection);
                     if (resultSet.next()) {
                         saveRouteDetails(routeId, cortege.getSequence(), String.valueOf(resultSet.getLong(1)), connection);
@@ -236,6 +240,125 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
         }
 
         return saved;
+    }
+
+    @Override
+    public String getTagById(String chosenTag) throws DBException {
+
+        String chosenTagText = "";
+
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_TAG_TEXT_BY_ID);
+            preparedStatement.setInt(1, Integer.parseInt(chosenTag));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                chosenTagText = resultSet.getString("TAG_NAME");
+            }
+        } catch (Throwable e) {
+            System.out.println("Exception while executing RouteDAOImplementation.getTagById(String chosenTag)");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+
+        return chosenTagText;
+    }
+
+    @Override
+    public Map<String, List> getPlaceIdsSequence(List<Route> routesIdsDistance) throws DBException {
+
+        List<HelperPlace> helperPlaces = new ArrayList<>();
+        Map<String, List> routePlaces = new HashMap<>();
+
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PLACEID_SEQUENCE);
+            Iterator<Route> routeId = routesIdsDistance.iterator();
+            while (routeId.hasNext()) {
+                Route route = routeId.next();
+                preparedStatement.setInt(1, Integer.parseInt(route.getRouteId()));
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    helperPlaces.add(new HelperPlace(Integer.parseInt(resultSet.getString("PLACEID")),
+                            Integer.parseInt(resultSet.getString("SEQNR"))));
+                }
+                routePlaces.put(route.getRouteId(), helperPlaces);
+            }
+
+
+        } catch (Throwable e) {
+            System.out.println("Exception while executing RouteDAOImplementation.getPlaceIdsSequence(List<Route> routesIdsDistance)");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+
+        return routePlaces;
+    }
+
+    @Override
+    public List<Route> gerRouteIdCoordinates(Map<String, List> helperPlaces, List<Route> routesIdsDistance) throws DBException {
+
+        Connection connection = null;
+
+        try {
+
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_COORDINATES_BY_PLACEID);
+            String coordinates = "";
+
+            Iterator<Map.Entry<String, List>> iterator = helperPlaces.entrySet().iterator();
+            while (iterator.hasNext()) {
+
+                Map.Entry currentEntry = (Map.Entry) iterator.next();
+
+                List<HelperPlace> helperPlace = (List<HelperPlace>) currentEntry.getValue();
+                Iterator<HelperPlace> helperPlaceIterator = helperPlace.iterator();
+                while (helperPlaceIterator.hasNext()) {
+                    HelperPlace sequentialPlace = helperPlaceIterator.next();
+                    preparedStatement.setInt(1, sequentialPlace.getPlaceId());
+                    ResultSet resultSet = preparedStatement.executeQuery();
+                    String latitude = "";
+                    String longitude = "";
+                    while (resultSet.next()) {
+                        latitude = resultSet.getString("LATITUDE");
+                        longitude = resultSet.getString("LONGITUDE");
+                    }
+                    if ("".equals(coordinates)) {
+                        coordinates = latitude + "," + longitude;
+                    } else {
+                        coordinates = "|" + latitude + "," + longitude;
+                    }
+                }
+
+                // assign coordinates to a route
+                Iterator<Route> routesIterator = routesIdsDistance.iterator();
+                while (routesIterator.hasNext()) {
+                    Route route = routesIterator.next();
+                    if (route.getRouteId().equals(currentEntry.getKey())) {
+                        route.setRoute(coordinates);
+                    }
+                }
+            }
+
+        } catch (Throwable e) {
+            System.out.println("Exception while executing RouteDAOImplementation.gerRouteIdCoordinates(Map<String, List> helperPlaces)");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+
+        return routesIdsDistance;
+
     }
 }
 

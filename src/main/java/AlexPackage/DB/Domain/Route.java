@@ -53,4 +53,8 @@ public class Route {
     public void setRouteId(String routeId) {
         this.routeId = routeId;
     }
+
+    public void setRoute(String route) {
+        this.route = route;
+    }
 }

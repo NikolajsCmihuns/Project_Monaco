@@ -1,7 +1,7 @@
-<%@ page import="AlexPackage.DB.Helper.Country" %>
+<%@ page import="AlexPackage.DB.Helper.HelperCountry" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Iterator" %>
-<%@ page import="AlexPackage.DB.Helper.Tags" %>
+<%@ page import="AlexPackage.DB.Helper.HelperTags" %>
 <%@ page import="java.util.Optional" %>
 <%@ page import="java.util.Map" %>
 <%
@@ -22,17 +22,17 @@
 <div id="container">
     <div id="menu">
         <form id="fmenu" name="fmenu" action="${pageContext.request.contextPath}/route_save" method="POST">
-            <label for="country">Country:</label>
-            <select id="country" name="country" class="select_width" onchange="getCoordinates()">
+            <label for="helperCountry">Country:</label>
+            <select id="helperCountry" name="helperCountry" class="select_width" onchange="getCoordinates()">
                 <option value=""></option>
                 <%
                     Map<String, List> routeMetaInfo = (Map<String, List>) request.getAttribute("model");
-                    List<Country> allCountries = routeMetaInfo.get("countries");
-                    Iterator<Country> iteratorCountries = allCountries.iterator();
+                    List<HelperCountry> allCountries = routeMetaInfo.get("countries");
+                    Iterator<HelperCountry> iteratorCountries = allCountries.iterator();
                     while (iteratorCountries.hasNext()) {
-                        Country country = iteratorCountries.next();
+                        HelperCountry helperCountry = iteratorCountries.next();
                 %>
-                <option value="<%=country.getShortName()%>"><%=country.getLongName()%>
+                <option value="<%=helperCountry.getShortName()%>"><%=helperCountry.getLongName()%>
                 </option>
                 <%
                     }
@@ -44,10 +44,10 @@
             <select required id="tag" name="tag" class="select_width">
                 <option value="">Choose Tag</option>
                 <%
-                    List<Tags> tagsList = routeMetaInfo.get("tags");
-                    Iterator<Tags> iteratorTags = tagsList.iterator();
+                    List<HelperTags> helperTagsList = routeMetaInfo.get("tags");
+                    Iterator<HelperTags> iteratorTags = helperTagsList.iterator();
                     while (iteratorTags.hasNext()) {
-                        Tags tag = iteratorTags.next();
+                        HelperTags tag = iteratorTags.next();
                 %>
                 <option value="<%=tag.getTagId()%>"><%=tag.getTagName()%>
                 </option>
@@ -85,7 +85,7 @@
         clearResults();
         clearMarkers();
         document.getElementById("city").value = "";
-        currentCountry = document.getElementById("country").value;
+        currentCountry = document.getElementById("helperCountry").value;
         if (currentCountry != "") {
             var geocoder = new google.maps.Geocoder();
             geocoder.geocode({'address': currentCountry}, function (results, status) {
@@ -378,11 +378,11 @@
                         document.getElementById("city")),
                 {
                     types: ['(cities)'],
-                    componentRestrictions: {'country': currentCountry}
+                    componentRestrictions: {'helperCountry': currentCountry}
                 }
         );
 
-        document.getElementById("country").value = currentCountry;
+        document.getElementById("helperCountry").value = currentCountry;
         places = new google.maps.places.PlacesService(map);
         cities.addListener('place_changed', onPlaceChanged);
 

@@ -5,12 +5,12 @@ import java.util.HashMap;
 /**
  * Created by Aborigens on 07-Nov-15.
  */
-public class Country extends HashMap<String, String> {
+public class HelperCountry extends HashMap<String, String> {
 
     private String shortName;
     private String longName;
 
-    public Country(String shortName, String longName) {
+    public HelperCountry(String shortName, String longName) {
         super();
         super.put(shortName, longName);
         this.shortName = shortName;

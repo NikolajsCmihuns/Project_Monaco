@@ -1,8 +1,8 @@
 package AlexPackage.Controller;
 
-import AlexPackage.DB.Helper.Country;
+import AlexPackage.DB.Helper.HelperCountry;
+import AlexPackage.DB.Helper.HelperTags;
 import AlexPackage.DB.RouteDAOImplementation;
-import AlexPackage.DB.Helper.Tags;
 import AlexPackage.Model.RouteModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,11 +28,11 @@ public class RouteCreationController implements RouteController {
 
         try {
 
-            List<Country> countryList = routeMetaInfo.getCountryList();
-            model.put("countries", countryList);
+            List<HelperCountry> helperCountryList = routeMetaInfo.getCountryList();
+            model.put("countries", helperCountryList);
 
-            List<Tags> tagsList = routeMetaInfo.getTagsList();
-            model.put("tags", tagsList);
+            List<HelperTags> helperTagsList = routeMetaInfo.getTagsList();
+            model.put("tags", helperTagsList);
 
         } catch (Throwable e) {
             System.out.println("Exception while executing RouteCreationController.execute()");

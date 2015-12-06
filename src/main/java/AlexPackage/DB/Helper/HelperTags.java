@@ -3,12 +3,12 @@ package AlexPackage.DB.Helper;
 /**
  * Created by Aborigens on 07-Nov-15.
  */
-public class Tags {
+public class HelperTags {
 
     private Integer tagId;
     private String tagName;
 
-    public Tags(Integer tagId, String tagName) {
+    public HelperTags(Integer tagId, String tagName) {
         this.tagId = tagId;
         this.tagName = tagName;
     }
