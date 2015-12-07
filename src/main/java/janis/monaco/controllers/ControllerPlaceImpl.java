@@ -37,6 +37,6 @@ public class ControllerPlaceImpl implements ControllerPlace {
             System.out.println("The places list lenght is: "+places.size());
 
 
-        return new MVCModel("Login page here", "/place.jsp");
+        return new MVCModel("Login page here", "views/place/place.jsp");
     }
 }
