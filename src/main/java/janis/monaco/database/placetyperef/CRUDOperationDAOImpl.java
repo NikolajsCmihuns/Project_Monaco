@@ -2,18 +2,21 @@ package janis.monaco.database.placetyperef;
 
 
 import janis.monaco.database.CRUDOperationDAO;
-import janis.monaco.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+@Component
 abstract class CRUDOperationDAOImpl<E> implements CRUDOperationDAO<E> {
 
 
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-    private Session session = sessionFactory.openSession();
+    @Autowired
+    private SessionFactory sessionFactory;
 
     protected Class daoType;
 
@@ -24,17 +27,22 @@ abstract class CRUDOperationDAOImpl<E> implements CRUDOperationDAO<E> {
     }
 
 
+    protected Session getSession() {
+        return sessionFactory.getCurrentSession();
+    }
+
+
 
 
     @Override
     public void create(E entity) {
-        session.save(entity);
+        getSession().save(entity);
 
     }
 
     @Override
     public E getById(int id) {
-        E entity = (E) session.get(daoType, id);
+        E entity = (E) getSession().get(daoType, id);
 
         return entity;
     }
@@ -45,7 +53,7 @@ abstract class CRUDOperationDAOImpl<E> implements CRUDOperationDAO<E> {
 
 
         if(list.size() < id ||0 > id ) {
-            throw new IllegalArgumentException("Data with id = " + id + " not exist!");
+            throw new IllegalArgumentException("Entity with id = " + id + " not exist!");
         }
 
         E entity =(E)list.get(id-1);
@@ -58,17 +66,17 @@ abstract class CRUDOperationDAOImpl<E> implements CRUDOperationDAO<E> {
 
     @Override
     public void update(E entity) {
-        session.saveOrUpdate(entity);
+        getSession().saveOrUpdate(entity);
     }
 
     @Override
     public void delete(E entity) {
-        session.delete(entity);
+        getSession().delete(entity);
     }
 
     @Override
     public List<E> getAll() {
-        List list = session.createCriteria(daoType).list();
+        List list = getSession().createCriteria(daoType).list();
 
         return list;
     }

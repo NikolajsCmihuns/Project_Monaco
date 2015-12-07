@@ -2,7 +2,6 @@ package janis.monaco.database.place;
 
 
 import janis.monaco.database.CRUDOperationDAO;
-import janis.monaco.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
