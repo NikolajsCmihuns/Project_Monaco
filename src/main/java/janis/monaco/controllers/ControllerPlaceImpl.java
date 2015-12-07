@@ -4,7 +4,6 @@ import janis.monaco.database.PlaceDAO;
 import janis.monaco.domain.Place;
 import janis.monaco.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,10 +23,10 @@ public class ControllerPlaceImpl implements ControllerPlace {
     @Transactional
     public MVCModel execute(HttpServletRequest request) {
 
-        List<Place> places = null;
+
         System.out.println("ControllerPlace is called!!!");
 
-            places = placeDAO.getAll();
+        List<Place>  places = placeDAO.getAll();
 
             for(Place place : places)
             {
