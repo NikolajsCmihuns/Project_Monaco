@@ -17,6 +17,6 @@ public class ControllerPlace implements MVCController {
 
     @Override
     public MVCModel execute(HttpServletRequest request) {
-        return new MVCModel("Login page here", "/spring.jsp");
+        return new MVCModel("Login page here", "/place.jsp");
     }
 }
