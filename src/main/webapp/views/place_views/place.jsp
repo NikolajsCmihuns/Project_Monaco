@@ -24,12 +24,15 @@
 <body>
 
 <table>
+
   <c:forEach var= "place" items='${model}' >
-    <c:forEach var= "properties" items='${place}' >
-      <tr>
+    <tr>
+    <c:forEach var= "properties" items='${place}' varStatus="count">
+
         <td>${properties}</td>
-      </tr>
+
     </c:forEach>
+    </tr>
   </c:forEach>
 </table>
 </body>
