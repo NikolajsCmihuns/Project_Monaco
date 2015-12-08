@@ -378,10 +378,9 @@
                         document.getElementById("city")),
                 {
                     types: ['(cities)'],
-                    componentRestrictions: {'helperCountry': currentCountry}
+                    componentRestrictions: {'country': currentCountry}
                 }
         );
-
         document.getElementById("helperCountry").value = currentCountry;
         places = new google.maps.places.PlacesService(map);
         cities.addListener('place_changed', onPlaceChanged);

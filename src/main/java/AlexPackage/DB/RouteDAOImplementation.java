@@ -272,7 +272,6 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
     @Override
     public Map<String, List> getPlaceIdsSequence(List<Route> routesIdsDistance) throws DBException {
 
-        List<HelperPlace> helperPlaces = new ArrayList<>();
         Map<String, List> routePlaces = new HashMap<>();
 
         Connection connection = null;
@@ -285,6 +284,7 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
                 Route route = routeId.next();
                 preparedStatement.setInt(1, Integer.parseInt(route.getRouteId()));
                 ResultSet resultSet = preparedStatement.executeQuery();
+                List<HelperPlace> helperPlaces = new ArrayList<>();
                 while (resultSet.next()) {
                     helperPlaces.add(new HelperPlace(Integer.parseInt(resultSet.getString("PLACEID")),
                             Integer.parseInt(resultSet.getString("SEQNR"))));
@@ -313,7 +313,6 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
 
             connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_COORDINATES_BY_PLACEID);
-            String coordinates = "";
 
             Iterator<Map.Entry<String, List>> iterator = helperPlaces.entrySet().iterator();
             while (iterator.hasNext()) {
@@ -322,21 +321,27 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
 
                 List<HelperPlace> helperPlace = (List<HelperPlace>) currentEntry.getValue();
                 Iterator<HelperPlace> helperPlaceIterator = helperPlace.iterator();
+                String coordinates = "";
                 while (helperPlaceIterator.hasNext()) {
                     HelperPlace sequentialPlace = helperPlaceIterator.next();
+
                     preparedStatement.setInt(1, sequentialPlace.getPlaceId());
                     ResultSet resultSet = preparedStatement.executeQuery();
+
                     String latitude = "";
                     String longitude = "";
+
                     while (resultSet.next()) {
                         latitude = resultSet.getString("LATITUDE");
                         longitude = resultSet.getString("LONGITUDE");
                     }
+
                     if ("".equals(coordinates)) {
                         coordinates = latitude + "," + longitude;
                     } else {
-                        coordinates = "|" + latitude + "," + longitude;
+                        coordinates = coordinates + "|" + latitude + "," + longitude;
                     }
+
                 }
 
                 // assign coordinates to a route
@@ -347,6 +352,7 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
                         route.setRoute(coordinates);
                     }
                 }
+
             }
 
         } catch (Throwable e) {

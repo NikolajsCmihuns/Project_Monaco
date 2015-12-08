@@ -20,4 +20,9 @@ public class HelperPlace {
     public int getPlaceId() {
         return placeId;
     }
+
+    @Override
+    public String toString() {
+        return "Place ID: " + placeId + "," + "Sequence: " + sequence;
+    }
 }
