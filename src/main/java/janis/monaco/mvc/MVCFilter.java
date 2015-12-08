@@ -37,7 +37,7 @@ public class MVCFilter implements Filter {
         }
         controllers = new HashMap<>();
 
-        controllers.put("/spring", getBean(ControllerPlace.class));
+        controllers.put("/place", getBean(ControllerPlace.class));
 
 
 

@@ -161,4 +161,17 @@ public class Place {
     public void setReviewsByPlaceId(Collection<Review> reviewsByPlaceId) {
         this.reviewsByPlaceId = reviewsByPlaceId;
     }
+
+    @Override
+    public String toString() {
+        return "Place{" +
+                "placeId=" + placeId +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", placeName='" + placeName + '\'' +
+                ", placeAddress='" + placeAddress + '\'' +
+                ", placeTypeId=" + placeTypeId +
+                '}';
+    }
 }

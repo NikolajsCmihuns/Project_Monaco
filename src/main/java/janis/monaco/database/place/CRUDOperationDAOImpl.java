@@ -2,9 +2,9 @@ package janis.monaco.database.place;
 
 
 import janis.monaco.database.CRUDOperationDAO;
-import janis.monaco.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
@@ -15,8 +15,8 @@ import java.util.List;
 abstract class CRUDOperationDAOImpl<E> implements CRUDOperationDAO<E> {
 
 
-    private SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
-    private Session session = sessionFactory.openSession();
+    @Autowired
+    private SessionFactory sessionFactory;
 
     protected Class daoType;
 
@@ -27,17 +27,22 @@ abstract class CRUDOperationDAOImpl<E> implements CRUDOperationDAO<E> {
     }
 
 
+    protected Session getSession() {
+        return sessionFactory.getCurrentSession();
+    }
+
+
 
 
     @Override
     public void create(E entity) {
-        session.save(entity);
+        getSession().save(entity);
 
     }
 
     @Override
     public E getById(int id) {
-        E entity = (E) session.get(daoType, id);
+        E entity = (E) getSession().get(daoType, id);
 
         return entity;
     }
@@ -61,17 +66,17 @@ abstract class CRUDOperationDAOImpl<E> implements CRUDOperationDAO<E> {
 
     @Override
     public void update(E entity) {
-        session.saveOrUpdate(entity);
+        getSession().saveOrUpdate(entity);
     }
 
     @Override
     public void delete(E entity) {
-        session.delete(entity);
+        getSession().delete(entity);
     }
 
     @Override
     public List<E> getAll() {
-        List list = session.createCriteria(daoType).list();
+        List list = getSession().createCriteria(daoType).list();
 
         return list;
     }
