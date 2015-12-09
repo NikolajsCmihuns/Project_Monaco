@@ -57,4 +57,12 @@ public class Route {
     public void setRoute(String route) {
         this.route = route;
     }
+
+    @Override
+    public String toString() {
+        return "Route ID: = " + routeId + "\n" +
+                "Route Distance: = " + distance + "\n" +
+                "Route Tag: = " + routeTag + "\n" +
+                "Places Coordintaes: = " + route;
+    }
 }

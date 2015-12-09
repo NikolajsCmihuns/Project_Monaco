@@ -58,7 +58,9 @@
             </select>
             <input type="submit" id="tagPick" name="tagPick" value="Search"/>
 
-            <div id="routePlaceholder" name="routePlaceholder" style="float:left;margin-top: 50px;"></div>
+            <div id="routePlaceholder" name="routePlaceholder"
+                 style="float:left;margin-top: 50px;width: 570px;
+                height: 400px;margin-top: 50px;"></div>
             <div style="float:right;margin-top: 50px;">
                 <table id="routeIds" name="routeIds">
                     <%
@@ -85,7 +87,7 @@
                         <td><%=route.getDistance()%>
                         </td>
                         <td><input type="button" id="chosenRoot" name="chosenRoot" value="View"
-                                   onclick="viewRouteOnMap(<%=route.getRouteId()%>)"></td>
+                                   onclick="viewRouteOnMap('<%=route.getRoute().toString()%>')"></td>
                     </tr>
                     <%
                                 i++;
@@ -99,10 +101,114 @@
 </div>
 
 <script type="text/javascript">
-    function viewRouteOnMap(routeId) {
-        window.alert(routeId);
-    }
-</script>
 
+    function takeItEasyToShowRoot(currentCoordinates) {
+        return function () {
+            var geocoder = new google.maps.Geocoder;
+            var infowindow = new google.maps.InfoWindow;
+            var coordinates = currentCoordinates.split(",");
+            var positionLatLng = {lat: parseFloat(coordinates[0]), lng: parseFloat(coordinates[1])};
+
+            geocoder.geocode({'location': positionLatLng}, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    if (results[1]) {
+                        map.setZoom(15);
+                        var marker = new google.maps.Marker({
+                            position: positionLatLng,
+                            map: map
+                        });
+                        infowindow.setContent(results[1].formatted_address);
+                        infowindow.open(map, marker);
+                    }
+                }
+            });
+        }
+    }
+
+    function viewRouteOnMap(routeCoordinates) {
+
+        var MARKER_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
+        var markers = [];
+
+        var latLng = routeCoordinates.split("|");
+        var startCoordinates = latLng[0].split(",");
+
+        map = new google.maps.Map(document.getElementById('routePlaceholder'), {
+            zoom: 15,
+            center: {lat: parseFloat(startCoordinates[0]), lng: parseFloat(startCoordinates[1])},
+            mapTypeControl: false,
+            panControl: false,
+            zoomControl: false,
+            streetViewControl: false
+        });
+
+        for (i = 0; i < latLng.length; i++) {
+            setTimeout(takeItEasyToShowRoot(latLng[i]), 1000);
+        }
+
+    }
+
+
+    //        var positionLatLng = {lat: parseFloat(startCoordinates[0]), lng: parseFloat(startCoordinates[1])};
+
+
+    //        var routeNodes = [];
+    //        for (i = 0; i < latLng.length; i++) {
+    //            var coordinates = latLng[i].split(",");
+    //
+    //            var position = new google.maps.LatLng(coordinates[0], coordinates[1]);
+    //            var positionLatLng = {lat: parseFloat(coordinates[0]), lng: parseFloat(coordinates[1])};
+    //
+    //            routeNodes.push(position);
+    //
+    //
+    ////            var markerLetter = String.fromCharCode('A'.charCodeAt(0) + i);
+    ////            var markerIcon = MARKER_PATH + markerLetter + '.png';
+    ////            markers[i] = new google.maps.Marker({
+    ////                position: position,
+    ////                animation: google.maps.Animation.DROP,
+    ////                icon: markerIcon
+    ////            });
+    ////            setTimeout(dropMarker(markers[i]), i * 1000);
+    //
+    //        }
+    //        var routePath = new google.maps.Polyline({
+    //            path: routeNodes,
+    //            strokeColor: "#0000FF",
+    //            strokeOpacity: 0.8,
+    //            strokeWeight: 2
+    //        });
+    //        routePath.setMap(map);
+
+
+</script>
+<script src="http://maps.googleapis.com/maps/api/js"></script>
+<script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBtK0VA1Yy5i-vDXEcXq9XHo6vZ4Ke-jc&signed_in=true&libraries=places,geometry">
+</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
