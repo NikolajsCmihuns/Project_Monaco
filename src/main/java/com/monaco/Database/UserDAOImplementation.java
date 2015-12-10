@@ -35,15 +35,24 @@ public class UserDAOImplementation extends DAOImpl implements UserDAOInterface {
     public Optional<User> getUserByID(Integer id) throws DBException {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
         criteria.add(Restrictions.eq("userID", id));
-
         User user = (User) criteria.uniqueResult();
-        return Optional.of(user);
+        if (user != null) {
+            return Optional.of(user);
+        }
+        else {
+            return Optional.empty();
+        }
     }
 
     public Optional<User> getUserByNickname(String nickname) throws DBException {
         Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
         criteria.add(Restrictions.eq("nickname", nickname));
         User user = (User) criteria.uniqueResult();
-        return Optional.of(user);
+        if (user != null) {
+            return Optional.of(user);
+        }
+        else {
+            return Optional.empty();
+        }
     }
 }
