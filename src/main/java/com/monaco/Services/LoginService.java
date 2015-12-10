@@ -14,11 +14,12 @@ import java.util.Optional;
  */
 
 @Component
-public class LoginService extends DAOImpl {
+public class LoginService extends DAOImpl implements LoginServiceInterface {
 
     @Autowired
     UserDAOInterface userDao;
 
+    @Override
     // On success should return logged user entity
     public Optional<User> tryLogin(String nickName, String password) throws DBException {
         Optional<User> loggedUser = Optional.empty();

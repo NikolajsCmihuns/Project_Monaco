@@ -5,6 +5,7 @@ import com.monaco.Entities.User;
 import com.monaco.MVC.MVCController;
 import com.monaco.MVC.MVCModel;
 import com.monaco.Services.LoginService;
+import com.monaco.Services.LoginServiceInterface;
 import lv.javaguru.java2.database.DBException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,7 +22,7 @@ import java.util.Optional;
 public class LoginController implements MVCController {
 
     @Autowired
-    LoginService loginService;
+    LoginServiceInterface loginService;
 
     @Autowired
     LandingPageDS dataSource;
@@ -51,6 +52,12 @@ public class LoginController implements MVCController {
         }
 
         return null;
+    }
+
+    @Override
+    public MVCModel executeGet(HttpServletRequest request) {
+        MVCModel model = new MVCModel("", "/JSPs/Login/LoginPage.jsp");
+        return model;
     }
 }
 

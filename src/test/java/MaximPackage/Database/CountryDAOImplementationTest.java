@@ -2,10 +2,18 @@ package MaximPackage.Database;
 
 import MaximPackage.ConsolePackage.ConsoleOutput;
 import MaximPackage.ConsolePackage.EConsoleMessages;
-import MaximPackage.Entities.Country;
-import com.monaco.Database.CountryDAOImplementation;
+import com.monaco.Entities.Country;
+
+import com.monaco.Database.CountryDAOInterface;
+import com.monaco.MVC.SpringConfig;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
@@ -15,17 +23,16 @@ import static org.junit.Assert.*;
  * Created by maksimspuskels on 01/11/15.
  */
 
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = SpringConfig.class)
 public class CountryDAOImplementationTest {
 
     @Autowired
-    CountryDAOImplementation countryDAO;
-//    CountryDAOImplementation countryDAO = new CountryDAOImplementation();
+    private CountryDAOInterface countryDAO;
 
     @Test
     public void testGetCountryByID() throws Exception {
         Country country = countryDAO.getCountryByID(401);
-        ConsoleOutput.printObject(country);
         assertEquals("Latvia", country.getCountryName());
     }
 

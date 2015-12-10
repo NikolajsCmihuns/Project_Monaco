@@ -1,6 +1,6 @@
 package com.monaco.Database;
 
-import MaximPackage.Entities.Country;
+import com.monaco.Entities.Country;
 import lv.javaguru.java2.database.DBException;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
  */
 
 public interface CountryDAOInterface {
-    Country getCountryByID(int id) throws DBException;
+    Country getCountryByID(Integer id) throws DBException;
 
-    int getIDByCountryName(String countryName) throws DBException;
+    Integer getIDByCountryName(String countryName) throws DBException;
 
     List<Country> getAllCountries() throws DBException;
 }

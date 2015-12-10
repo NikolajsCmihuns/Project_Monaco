@@ -1,7 +1,7 @@
 package com.monaco.DataSources;
 
-import MaximPackage.Entities.City;
-import MaximPackage.Entities.Country;
+import com.monaco.Entities.City;
+import com.monaco.Entities.Country;
 import com.monaco.Database.CityDAOInterface;
 import com.monaco.Database.CountryDAOInterface;
 import com.monaco.Database.TagDAOInterface;
@@ -59,7 +59,8 @@ public class RegistrationPageDS {
         List<City> allCities = new ArrayList<>();
 
         try {
-            allCities = cityDAO.getAllCitiesForCountryID(401);
+            Country country = countryDAO.getCountryByID(401);
+            allCities = country.getCities();
         } catch (DBException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,6 @@
 package com.monaco.Database;
 
-import MaximPackage.Entities.City;
+import com.monaco.Entities.City;
 import lv.javaguru.java2.database.DBException;
 
 import java.util.List;
@@ -10,10 +10,6 @@ import java.util.List;
  */
 
 public interface CityDAOInterface {
-
-    City getCityByID(int id) throws DBException;
-
-    int getIDByCityName(String cityName) throws DBException;
-
-    List<City> getAllCitiesForCountryID(int countryID) throws DBException;
+    City getCityByID(Integer id) throws DBException;
+    Integer getIDByCityName(String cityName) throws DBException;
 }

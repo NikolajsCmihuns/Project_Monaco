@@ -6,6 +6,8 @@ import lv.javaguru.java2.database.DBException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 /**
  * Created by maksimspuskels on 26/11/15.
  */
@@ -30,8 +32,8 @@ public class LandingPageDS {
 
     public void updateUserNicknameFromUserID(Integer userID) {
         try {
-            User userFromDB = userDAO.getUserByID(userID);
-            userNickname = userFromDB.getNickname();
+            Optional<User> userFromDB = userDAO.getUserByID(userID);
+            userNickname = userFromDB.get().getNickname();
         } catch (DBException e) {
             e.printStackTrace();
         }

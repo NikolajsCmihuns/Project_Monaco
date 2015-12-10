@@ -1,9 +1,12 @@
 package com.monaco.Services;
 
 import com.monaco.Database.UserDAOInterface;
+
 import com.monaco.Entities.User;
+
 import lv.javaguru.java2.database.DBException;
 import lv.javaguru.java2.database.jdbc.DAOImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,25 +22,35 @@ public class RegistrationService extends DAOImpl {
     @Autowired
     UserDAOInterface userDao;
 
-    public Optional<User> tryRegistration(String nickName, String password, String email, Integer cityID, Integer countryID, String name, String surname, Integer age, Integer tagID) {
+    public Optional<User> tryRegistration( Optional<String> nickName,
+                                           Optional<String> password,
+                                           Optional<String> email,
+                                           Optional<Integer> cityID,
+                                           Optional<Integer> countryID,
+                                           Optional<String> name,
+                                           Optional<String> surname,
+                                           Optional<Integer> age,
+                                           Optional<Integer> tagID) {
+
         Optional<User> registeredUser = Optional.empty();
+
         // Check mandatory field existence
-        if (    nickName != null && nickName.length() > 0 &&
-                password != null && password.length() > 0 &&
-                email != null && email.length() > 0 &&
-                cityID != null && cityID > 0 &&
-                countryID != null && countryID > 0 ) {
+        if (    nickName.isPresent() &&
+                password.isPresent() &&
+                email.isPresent() &&
+                cityID.isPresent() &&
+                countryID.isPresent() ) {
 
             try {
 
-                User user = new User(nickName, email, cityID, countryID, password);
+                User user = new User(nickName.get(), email.get(), cityID.get(), countryID.get(), password.get());
 
                 Optional<User> optionalUser = Optional.of(user);
 
-                if (name != null && name.length() > 0) {user.setName(name);}
-                if (surname != null && surname.length() > 0) {user.setLastName(surname);}
-                if (age != null && age > 0) {user.setAge(age);}
-                if (tagID != null && tagID > 0) {user.setUserTagID(tagID);}
+                if (name.isPresent()) {user.setName(name.get());}
+                if (surname.isPresent()) {user.setLastName(surname.get());}
+                if (age.isPresent()) {user.setAge(age.get());}
+                if (tagID.isPresent()) {user.setUserTagID(tagID.get());}
 
                 userDao.createUser(user);
 

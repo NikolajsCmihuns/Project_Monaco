@@ -1,6 +1,10 @@
 package com.monaco.Entities;
 
 import javax.persistence.*;
+import java.util.List;
+
+import static javax.persistence.FetchType.EAGER;
+import static javax.persistence.FetchType.LAZY;
 
 /**
  * Created by maksimspuskels on 01/11/15.
@@ -9,6 +13,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "TAGS_REF")
 public class Tag {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="TAG_NAME_ID")
@@ -26,12 +31,20 @@ public class Tag {
         this.tagNameID = tagNameID;
     }
 
+    public Integer getTagNameID() {
+        return tagNameID;
+    }
+
+    public void setTagNameID(Integer tagNameID) {
+        this.tagNameID = tagNameID;
+    }
+
     public String getTagName() {
         return tagName;
     }
 
-    public Integer getTagNameID() {
-        return tagNameID;
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
     }
 
     @Override

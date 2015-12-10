@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="MaximPackage.Entities.City" %>
-<%@ page import="MaximPackage.Entities.Country" %>
+<%@ page import="com.monaco.Entities.City" %>
+<%@ page import="com.monaco.Entities.Country" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.monaco.DataSources.RegistrationPageDS" %>
 <%@ page import="com.monaco.Entities.Tag" %>
@@ -72,7 +72,7 @@
 
       </select>
       <br>
-      Tag:
+      Tag:*
       <br>
       <select name="rTag"><option value="">-- Tag --</option>
         <%
