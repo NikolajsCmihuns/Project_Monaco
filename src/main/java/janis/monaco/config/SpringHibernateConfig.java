@@ -24,7 +24,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class SpringHibernateConfig {
 
-    private static final String DATABASE_PROPERTIES_FILE = "hibernate.properties";
+    private static final String DATABASE_PROPERTIES_FILE = "janis_monako.properties";
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer prodPropertiesPlaceholderConfigurer() {
