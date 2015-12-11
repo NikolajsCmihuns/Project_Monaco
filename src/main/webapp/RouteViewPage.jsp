@@ -102,10 +102,24 @@
 
 <script type="text/javascript">
 
-    function takeItEasyToShowRoot(currentCoordinates) {
+    var markers = [];
+    var MARKER_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
+
+    function dropMarker(marker) {
+        return function () {
+            marker.setMap(map);
+        };
+    }
+
+    function showInfoWindow(marker, address) {
+        var infoWindow = new google.maps.InfoWindow;
+        infoWindow.setContent(address.formatted_address);
+        infoWindow.open(map, marker);
+    }
+
+    function takeItEasyToShowRoot(currentCoordinates, i) {
         return function () {
             var geocoder = new google.maps.Geocoder;
-            var infowindow = new google.maps.InfoWindow;
             var coordinates = currentCoordinates.split(",");
             var positionLatLng = {lat: parseFloat(coordinates[0]), lng: parseFloat(coordinates[1])};
 
@@ -113,12 +127,19 @@
                 if (status === google.maps.GeocoderStatus.OK) {
                     if (results[1]) {
                         map.setZoom(15);
-                        var marker = new google.maps.Marker({
+                        var markerLetter = String.fromCharCode('A'.charCodeAt(0) + i);
+                        var markerIcon = MARKER_PATH + markerLetter + '.png';
+
+                        markers[i] = new google.maps.Marker({
                             position: positionLatLng,
-                            map: map
+                            animation: google.maps.Animation.DROP,
+                            icon: markerIcon
                         });
-                        infowindow.setContent(results[1].formatted_address);
-                        infowindow.open(map, marker);
+                        setTimeout(dropMarker(markers[i]), i * 1000);
+                        google.maps.event.addListener(markers[i], 'click', function () {
+                            showInfoWindow(markers[i], results[1]);
+                        });
+
                     }
                 }
             });
@@ -126,9 +147,6 @@
     }
 
     function viewRouteOnMap(routeCoordinates) {
-
-        var MARKER_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
-        var markers = [];
 
         var latLng = routeCoordinates.split("|");
         var startCoordinates = latLng[0].split(",");
@@ -142,44 +160,22 @@
             streetViewControl: false
         });
 
+        var routeNodes = [];
         for (i = 0; i < latLng.length; i++) {
-            setTimeout(takeItEasyToShowRoot(latLng[i]), 1000);
+            var coordinates = latLng[i].split(",");
+            routeNodes.push(new google.maps.LatLng(parseFloat(coordinates[0]), parseFloat(coordinates[1])));
+            setTimeout(takeItEasyToShowRoot(latLng[i], i), 1000);
         }
 
+        var routePath = new google.maps.Polyline({
+            path: routeNodes,
+            strokeColor: "#0000FF",
+            strokeOpacity: 0.8,
+            strokeWeight: 2
+        });
+        routePath.setMap(map);
+
     }
-
-
-    //        var positionLatLng = {lat: parseFloat(startCoordinates[0]), lng: parseFloat(startCoordinates[1])};
-
-
-    //        var routeNodes = [];
-    //        for (i = 0; i < latLng.length; i++) {
-    //            var coordinates = latLng[i].split(",");
-    //
-    //            var position = new google.maps.LatLng(coordinates[0], coordinates[1]);
-    //            var positionLatLng = {lat: parseFloat(coordinates[0]), lng: parseFloat(coordinates[1])};
-    //
-    //            routeNodes.push(position);
-    //
-    //
-    ////            var markerLetter = String.fromCharCode('A'.charCodeAt(0) + i);
-    ////            var markerIcon = MARKER_PATH + markerLetter + '.png';
-    ////            markers[i] = new google.maps.Marker({
-    ////                position: position,
-    ////                animation: google.maps.Animation.DROP,
-    ////                icon: markerIcon
-    ////            });
-    ////            setTimeout(dropMarker(markers[i]), i * 1000);
-    //
-    //        }
-    //        var routePath = new google.maps.Polyline({
-    //            path: routeNodes,
-    //            strokeColor: "#0000FF",
-    //            strokeOpacity: 0.8,
-    //            strokeWeight: 2
-    //        });
-    //        routePath.setMap(map);
-
 
 </script>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
