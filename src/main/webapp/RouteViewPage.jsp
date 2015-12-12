@@ -104,6 +104,7 @@
 
     var markers = [];
     var MARKER_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
+    var map;
 
     function dropMarker(marker) {
         return function () {
