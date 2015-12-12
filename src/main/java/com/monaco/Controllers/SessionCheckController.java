@@ -5,6 +5,7 @@ import com.monaco.MVC.MVCController;
 import com.monaco.MVC.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,7 +15,7 @@ import java.util.Optional;
  * Created by maksimspuskels on 26/11/15.
  */
 
-@Component
+@Controller
 public class SessionCheckController implements MVCController {
 
     @Autowired

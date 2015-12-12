@@ -3,6 +3,7 @@ package com.monaco.MVC;
 import com.monaco.Controllers.LoginController;
 import com.monaco.Controllers.RegistrationController;
 import com.monaco.Controllers.SessionCheckController;
+import com.monaco.Controllers.UserRestController;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -50,7 +51,10 @@ public class MVCFilter implements Filter {
     }
 
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+    public void doFilter(ServletRequest servletRequest,
+                         ServletResponse servletResponse,
+                         FilterChain filterChain) throws IOException, ServletException {
+
         HttpServletRequest request = (HttpServletRequest)servletRequest;
         HttpServletResponse response = (HttpServletResponse)servletResponse;
 
@@ -58,7 +62,6 @@ public class MVCFilter implements Filter {
         MVCController controller = controllers.get(contextURI);
 
         if (controller != null) {
-
             MVCModel model;
             if (request.getMethod().equals("POST")) {
                 model = controller.executePost(request);

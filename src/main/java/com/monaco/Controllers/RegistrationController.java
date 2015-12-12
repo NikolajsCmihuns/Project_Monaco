@@ -8,6 +8,7 @@ import com.monaco.MVC.MVCModel;
 import com.monaco.Services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
@@ -17,7 +18,7 @@ import java.util.Optional;
  * Created by maximpuskels on 11/26/15.
  */
 
-@Component
+@Controller
 public class RegistrationController implements MVCController {
 
     private static final String EMPTY_STRING = "";

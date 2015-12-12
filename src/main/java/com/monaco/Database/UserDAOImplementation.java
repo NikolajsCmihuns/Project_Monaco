@@ -1,6 +1,5 @@
 package com.monaco.Database;
 
-import com.monaco.Entities.Tag;
 import com.monaco.Entities.User;
 
 import lv.javaguru.java2.database.DBException;
@@ -14,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -54,5 +54,11 @@ public class UserDAOImplementation extends DAOImpl implements UserDAOInterface {
         else {
             return Optional.empty();
         }
+    }
+
+    public List<User> getAllUsers() throws DBException {
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+        List<User> allUsers = (List<User>) criteria.list();
+        return allUsers;
     }
 }

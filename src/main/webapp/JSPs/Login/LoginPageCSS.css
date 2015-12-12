@@ -1,19 +1,21 @@
-/*#loginform {*/
-    /*position: fixed;*/
-    /*top: 25%;*/
-    /*left: 25%;*/
-/*}*/
-
-/*.registrationForm {*/
-    /*position: fixed;*/
-    /*top: 25%;*/
-    /*left: 50%;*/
-/*}*/
-
 #loginDiv {
-    border: 2px solid #0000ff;
+    /* border: 1px solid #0000ff; */
+    width:150px;
+    margin:0 auto;
 }
 
-#registerDiv {
-    border: 2px solid #0000ff;
+#lNickName {
+    width:96%;
+    margin:0 auto;
+}
+
+#lPassword {
+    width:96%;
+    margin:0 auto;
+}
+
+#registerForm {
+    /* border: 1px solid #0000ff; */
+    width:150px;
+    margin:0 auto;
 }
