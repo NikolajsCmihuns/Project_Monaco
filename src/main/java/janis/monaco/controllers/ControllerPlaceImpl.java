@@ -28,37 +28,26 @@ public class ControllerPlaceImpl implements ControllerPlace {
         System.out.println("ControllerPlace is called!!!");
 
         List<Place>  places = placeDAO.getAll();
-        int size = places.size();
-        String [] placeIdStrArr = new String[size];
-        String [] latitudeStrArr = new String[size];
-        String [] longitudeStrArr = new String[size];
-        String [] imageURLStrArr = new String[size];
-        String [] placeNameStrArr = new String[size];
-        String [] placeAddressStrArr = new String[size];
-        String [] placeTypeIdStrArr = new String[size];
+       ;
         List placeList = new ArrayList();
-        int counter = 0;
+
 
             for(Place place : places)
             {
-                counter++;
-                placeIdStrArr [counter-1] = String.valueOf(place.getPlaceId());
-                latitudeStrArr [counter-1] = String.valueOf(place.getLatitude());
-                longitudeStrArr [counter-1] = String.valueOf(place.getLongitude());
-                imageURLStrArr [counter-1] = place.getImageUrl();
-                placeNameStrArr [counter-1] = place.getPlaceName();
-                placeAddressStrArr [counter-1] = place.getPlaceAddress();
-                placeTypeIdStrArr [counter-1] = String.valueOf(place.getPlaceTypeId());
+
+                String [] properties = new String[7];
+                properties [0] = String.valueOf(place.getPlaceId());
+                properties [1] = String.valueOf(place.getLatitude());
+                properties [2] = String.valueOf(place.getLongitude());
+                properties [3] = place.getImageUrl();
+                properties [4] = place.getPlaceName();
+                properties [5] = place.getPlaceAddress();
+                properties [6] = String.valueOf(place.getPlaceTypeId());
+                placeList.add(properties);
 
             }
 
-        placeList.add(placeIdStrArr);
-        placeList.add(latitudeStrArr);
-        placeList.add(longitudeStrArr);
-        placeList.add(imageURLStrArr);
-        placeList.add(placeNameStrArr);
-        placeList.add(placeAddressStrArr);
-        placeList.add(placeTypeIdStrArr);
+
 
 
         return new MVCModel(placeList, "/views/place_views/place.jsp");
