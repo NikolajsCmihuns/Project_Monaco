@@ -35,6 +35,10 @@
         <filter-name>RouteFilter</filter-name>
         <url-pattern>/route_auth</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>RouteFilter</filter-name>
+        <url-pattern>/route_delete</url-pattern>
+    </filter-mapping>
 
     <!--Janis monaco parallel project servlet-->
 

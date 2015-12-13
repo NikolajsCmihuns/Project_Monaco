@@ -20,4 +20,5 @@ public class HelperTags {
     public Integer getTagId() {
         return tagId;
     }
+
 }

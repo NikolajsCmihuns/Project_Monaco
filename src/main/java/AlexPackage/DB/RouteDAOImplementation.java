@@ -28,10 +28,15 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
     private final String SELECT_TAG_TEXT_BY_ID = "SELECT TAG_NAME FROM TAGS_REF WHERE TAG_NAME_ID = ?";
     private final String SELECT_PLACEID_SEQUENCE = "SELECT PLACEID, SEQNR FROM PLACES_IN_ROUTE WHERE ROUTEID = ?";
     private final String SELECT_COORDINATES_BY_PLACEID = "SELECT LATITUDE, LONGITUDE FROM PLACE WHERE PLACEID = ?";
+    private final String SELECT_ROUTES_FOR_DELETION_BY_USER_ID = "SELECT ROUTEID, DISTANCE, ROUTETAGID FROM ROUTE WHERE CREATORID = ?";
 
     private final String SAVE_TO_ROUTE_TABLE = "INSERT INTO ROUTE VALUES (default, ?, 0, ?, ?, 1)";
     private final String SAVE_TO_PLACES_IN_ROUTE_TABLE = "INSERT INTO PLACES_IN_ROUTE VALUES (?, ?, ?)";
     private final String SAVE_TO_PLACE_TABLE = "INSERT INTO PLACE VALUES (default, ?, ?, null, 'null', 'null', null)";
+
+    private final String DELETE_ROUTE = "DELETE FROM ROUTE WHERE ROUTEID = ?";
+    private final String DELETE_PLACE_IN_ROUTE = "DELETE FROM PLACES_IN_ROUTE WHERE ROUTEID = ?";
+    private final String DELETE_PLACE = "DELETE FROM PLACE WHERE PLACEID = ?";
 
     public RouteDAOImplementation() {
 
@@ -366,11 +371,72 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
         return routesIdsDistance;
 
     }
+
+    @Override
+    public List<Route> getUserRoutes(Optional<Integer> userId) throws DBException {
+
+        Connection connection = null;
+        List<Route> userRoutes = new ArrayList<>();
+
+        try {
+            connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ROUTES_FOR_DELETION_BY_USER_ID);
+            preparedStatement.setInt(1, userId.get());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Route route = new Route(null, null, null, resultSet.getString("ROUTETAGID"), null, resultSet.getString("DISTANCE"));
+                route.setRouteId(String.valueOf(resultSet.getInt("ROUTEID")));
+                userRoutes.add(route);
+            }
+        } catch (Throwable e) {
+            System.out.println("Exception while executing RouteDAOImplementation.gerUserRoutes(Optional<Integer> userId)");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+
+        return userRoutes;
+    }
+
+    @Override
+    public void deleteRoutesMass(String[] routesToDeleteIds) throws DBException {
+
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+
+            for (int i = 0; i < routesToDeleteIds.length; i++) {
+
+                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PLACEID_SEQUENCE);
+                preparedStatement.setInt(1, Integer.parseInt(routesToDeleteIds[i]));
+                ResultSet resultSet = preparedStatement.executeQuery();
+
+                PreparedStatement deletePlaceInRoute = connection.prepareStatement(DELETE_PLACE_IN_ROUTE);
+                deletePlaceInRoute.setInt(1, Integer.parseInt(routesToDeleteIds[i]));
+                deletePlaceInRoute.executeUpdate();
+
+                PreparedStatement deleteRoute = connection.prepareStatement(DELETE_ROUTE);
+                deleteRoute.setInt(1, Integer.parseInt(routesToDeleteIds[i]));
+                deleteRoute.executeUpdate();
+
+                while (resultSet.next()) {
+                    PreparedStatement deletePlace = connection.prepareStatement(DELETE_PLACE);
+                    deletePlace.setInt(1, Integer.parseInt(resultSet.getString("PLACEID")));
+                    deletePlace.executeUpdate();
+                }
+
+            }
+        } catch (Throwable e) {
+            System.out.println("Exception while executing RouteDAOImplementation.gerUserRoutes(Optional<Integer> userId)");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+    }
 }
-
-
-
-
 
 
 
