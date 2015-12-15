@@ -5,6 +5,7 @@ import AlexPackage.DB.Helper.HelperChosenTag;
 import AlexPackage.DB.Helper.HelperPlace;
 import AlexPackage.DB.RouteDAOImplementation;
 import AlexPackage.DB.Helper.HelperTags;
+import AlexPackage.DB.RouteDAOInterface;
 import AlexPackage.Model.RouteModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,7 @@ import java.util.Map;
 public class RouteViewController implements RouteController {
 
     @Autowired
-    private RouteDAOImplementation routeMetaInfo;
+    private RouteDAOInterface routeMetaInfo;
 
     private Map<String, List> getTags(Map<String, List> model) {
         try {

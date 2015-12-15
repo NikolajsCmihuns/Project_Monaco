@@ -3,6 +3,7 @@ package AlexPackage.Controller;
 import AlexPackage.DB.Domain.Route;
 import AlexPackage.DB.Helper.HelperTags;
 import AlexPackage.DB.RouteDAOImplementation;
+import AlexPackage.DB.RouteDAOInterface;
 import AlexPackage.Model.RouteModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,7 @@ import java.util.*;
 public class RouteDeleteController implements RouteController {
 
     @Autowired
-    private RouteDAOImplementation routeDAOImplementation;
+    private RouteDAOInterface routeMetaInfo;
 
     private Optional<Integer> getUserIdFromSession(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -27,14 +28,14 @@ public class RouteDeleteController implements RouteController {
 
     private Map<String, List> getRoutes(Map<String, List> model, Optional<Integer> userId) {
         try {
-            List<Route> userRoutes = routeDAOImplementation.getUserRoutes(userId);
+            List<Route> userRoutes = routeMetaInfo.getUserRoutes(userId);
             model.put("routesToDelete", userRoutes);
 
             List<HelperTags> helperTagses = new ArrayList<>();
             Iterator<Route> routeIterator = userRoutes.iterator();
             while (routeIterator.hasNext()) {
                 Route route = routeIterator.next();
-                HelperTags helperTags = new HelperTags(Integer.parseInt(route.getRouteTag()), routeDAOImplementation.getTagById(route.getRouteTag()));
+                HelperTags helperTags = new HelperTags(Integer.parseInt(route.getRouteTag()), routeMetaInfo.getTagById(route.getRouteTag()));
                 helperTagses.add(helperTags);
             }
             model.put("routesToDeleteTags", helperTagses);
@@ -48,7 +49,7 @@ public class RouteDeleteController implements RouteController {
 
     private void deleteRoutes(String[] routesToDeleteIds) {
         try {
-            routeDAOImplementation.deleteRoutesMass(routesToDeleteIds);
+            routeMetaInfo.deleteRoutesMass(routesToDeleteIds);
         } catch (Throwable e) {
             System.out.println("Exception while executing RouteDeleteController.deleteRoutes()");
             e.printStackTrace();

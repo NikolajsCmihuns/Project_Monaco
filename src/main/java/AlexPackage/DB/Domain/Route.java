@@ -13,25 +13,8 @@ public class Route {
     private String distance;
     private String routeId;
 
-    public Route(String routeCountry, String routeCity, String routeName, String routeTag, String route, String distance) {
-        this.routeCountry = routeCountry;
-        this.routeCity = routeCity;
-        this.routeName = routeName;
-        this.routeTag = routeTag;
-        this.route = route;
-        this.distance = distance;
-    }
+    public Route() {
 
-    public String getRouteCountry() {
-        return routeCountry;
-    }
-
-    public String getRouteCity() {
-        return routeCity;
-    }
-
-    public String getRouteName() {
-        return routeName;
     }
 
     public String getRouteTag() {
@@ -64,5 +47,25 @@ public class Route {
                 "Route Distance: = " + distance + "\n" +
                 "Route Tag: = " + routeTag + "\n" +
                 "Places Coordintaes: = " + route;
+    }
+
+    public void setRouteCountry(String routeCountry) {
+        this.routeCountry = routeCountry;
+    }
+
+    public void setRouteCity(String routeCity) {
+        this.routeCity = routeCity;
+    }
+
+    public void setRouteName(String routeName) {
+        this.routeName = routeName;
+    }
+
+    public void setRouteTag(String routeTag) {
+        this.routeTag = routeTag;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
     }
 }

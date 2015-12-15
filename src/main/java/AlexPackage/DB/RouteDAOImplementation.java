@@ -16,6 +16,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static AlexPackage.DB.Domain.RouteBuilder.createRoute;
+
 /**
  * Created by Aborigens on 07-Nov-15.
  */
@@ -55,8 +57,15 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
             preparedStatement.setInt(1, Integer.parseInt(routeTag));
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Route route = new Route(null, null, null, routeTag, null, resultSet.getString("DISTANCE"));
-                route.setRouteId(String.valueOf(resultSet.getInt(1)));
+                Route route = createRoute()
+                        .withRouteCountry(null)
+                        .withRouteCity(null)
+                        .withRouteName(null)
+                        .withRouteTag(routeTag)
+                        .withRoute(null)
+                        .withRouteDistance(resultSet.getString("DISTANCE"))
+                        .withRouteId(String.valueOf(resultSet.getInt(1)))
+                        .build();
                 routeIDs.add(route);
             }
         } catch (Throwable e) {
@@ -384,8 +393,15 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
             preparedStatement.setInt(1, userId.get());
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                Route route = new Route(null, null, null, resultSet.getString("ROUTETAGID"), null, resultSet.getString("DISTANCE"));
-                route.setRouteId(String.valueOf(resultSet.getInt("ROUTEID")));
+                Route route = createRoute()
+                        .withRouteCountry(null)
+                        .withRouteCity(null)
+                        .withRouteName(null)
+                        .withRouteTag(resultSet.getString("ROUTETAGID"))
+                        .withRoute(null)
+                        .withRouteDistance(resultSet.getString("DISTANCE"))
+                        .withRouteId(String.valueOf(resultSet.getInt("ROUTEID")))
+                        .build();
                 userRoutes.add(route);
             }
         } catch (Throwable e) {

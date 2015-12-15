@@ -3,7 +3,7 @@ package com.monaco.MVC;
 import com.monaco.Controllers.LoginController;
 import com.monaco.Controllers.RegistrationController;
 import com.monaco.Controllers.SessionCheckController;
-import com.monaco.Controllers.UserRestController;
+//import com.monaco.Controllers.UserRestController;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
