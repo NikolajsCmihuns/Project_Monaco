@@ -32,6 +32,13 @@ public class Review {
     }
 
 
+    // Default constructor
+    public Review(){
+
+    }
+
+
+
     // Getters
 
 
@@ -72,47 +79,17 @@ public class Review {
     public void setCreationDate(String creationDate) { this.creationDate = creationDate; }
 
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Review review = (Review) o;
-
-        if (!creatorID.equals(review.creatorID)) return false;
-        if (placeID != null ? !placeID.equals(review.placeID) : review.placeID != null) return false;
-        if (routeID != null ? !routeID.equals(review.routeID) : review.routeID != null) return false;
-        if (!title.equals(review.title)) return false;
-        if (!body.equals(review.body)) return false;
-        return !(imageURL != null ? !imageURL.equals(review.imageURL) : review.imageURL != null);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = creatorID.hashCode();
-        result = 31 * result + (placeID != null ? placeID.hashCode() : 0);
-        result = 31 * result + (routeID != null ? routeID.hashCode() : 0);
-        result = 31 * result + title.hashCode();
-        result = 31 * result + body.hashCode();
-        result = 31 * result + (imageURL != null ? imageURL.hashCode() : 0);
-        return result;
-    }
-
-
     @Override
     public String toString() {
         return "Review{" +
                 "reviewID=" + reviewID +
-                "creatorID=" + creatorID +
+                ", creatorID=" + creatorID +
                 ", placeID=" + placeID +
                 ", routeID=" + routeID +
                 ", title='" + title + '\'' +
                 ", body='" + body + '\'' +
                 ", imageURL='" + imageURL + '\'' +
+                ", creationDate='" + creationDate + '\'' +
                 '}';
     }
-
-
 }
