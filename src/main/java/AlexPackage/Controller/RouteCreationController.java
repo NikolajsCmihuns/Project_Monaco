@@ -3,6 +3,7 @@ package AlexPackage.Controller;
 import AlexPackage.DB.Helper.HelperCountry;
 import AlexPackage.DB.Helper.HelperTags;
 import AlexPackage.DB.RouteDAOImplementation;
+import AlexPackage.DB.RouteDAOInterface;
 import AlexPackage.Model.RouteModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,7 +20,7 @@ import java.util.Map;
 public class RouteCreationController implements RouteController {
 
     @Autowired
-    private RouteDAOImplementation routeMetaInfo;
+    private RouteDAOInterface routeMetaInfo;
 
     @Override
     public RouteModel execute(HttpServletRequest request) {

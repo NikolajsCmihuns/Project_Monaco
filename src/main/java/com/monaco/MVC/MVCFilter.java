@@ -3,7 +3,7 @@ package com.monaco.MVC;
 import com.monaco.Controllers.LoginController;
 import com.monaco.Controllers.RegistrationController;
 import com.monaco.Controllers.SessionCheckController;
-import com.monaco.Controllers.UserRestController;
+
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -59,25 +59,32 @@ public class MVCFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse)servletResponse;
 
         String contextURI = request.getServletPath();
-        MVCController controller = controllers.get(contextURI);
 
-        if (controller != null) {
-            MVCModel model;
-            if (request.getMethod().equals("POST")) {
-                model = controller.executePost(request);
-                request.setAttribute("model", model.getData());
-            }
-            else {
-                model = controller.executeGet(request);
-                request.setAttribute("model", model.getData());
-            }
-
-            ServletContext context = request.getServletContext();
-            RequestDispatcher requestDispatcher = context.getRequestDispatcher(model.getViewName());
-
-            requestDispatcher.forward(request, response);
+        if (contextURI.toLowerCase().contains("/rest".toLowerCase())) {
+            filterChain.doFilter(request,response);
         }
-        else filterChain.doFilter(request,response);
+        else {
+            MVCController controller = controllers.get(contextURI);
+
+            if (controller != null) {
+                MVCModel model;
+                if (request.getMethod().equals("POST")) {
+                    model = controller.executePost(request);
+                    request.setAttribute("model", model.getData());
+                }
+                else {
+                    model = controller.executeGet(request);
+                    request.setAttribute("model", model.getData());
+                }
+
+                ServletContext context = request.getServletContext();
+                RequestDispatcher requestDispatcher = context.getRequestDispatcher(model.getViewName());
+
+                requestDispatcher.forward(request, response);
+            }
+            else filterChain.doFilter(request,response);
+        }
+
     }
 
     @Override
