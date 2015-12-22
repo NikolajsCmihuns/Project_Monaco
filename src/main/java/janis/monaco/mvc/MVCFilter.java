@@ -2,6 +2,7 @@ package janis.monaco.mvc;
 
 import janis.monaco.config.SpringHibernateConfig;
 import janis.monaco.controllers.ControllerPlace;
+import janis.monaco.controllers.ControllerPlaceForm;
 import org.jboss.logging.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -38,6 +39,7 @@ public class MVCFilter implements Filter {
         controllers = new HashMap<>();
 
         controllers.put("/place", getBean(ControllerPlace.class));
+        controllers.put("/place/form", getBean(ControllerPlaceForm.class));
 
 
 
