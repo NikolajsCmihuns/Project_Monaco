@@ -22,6 +22,21 @@ public class ReviewBuilder {
         return new ReviewBuilder();
     }
 
+    public ReviewBuilder withReviewID(Integer reviewID){
+        this.reviewID = reviewID;
+        return this;
+    }
+
+    public ReviewBuilder withCreatorID(Integer creatorID){
+        this.creatorID = creatorID;
+        return this;
+    }
+
+    public ReviewBuilder withPlaceID(Integer placeID){
+        this.placeID = placeID;
+        return this;
+    }
+
     public ReviewBuilder withRouteID(Integer routeID){
         this.routeID = routeID;
         return this;
@@ -37,18 +52,30 @@ public class ReviewBuilder {
         return this;
     }
 
-    public ReviewBuilder withCreatorID(Integer creatorID){
-        this.creatorID = creatorID;
+    public ReviewBuilder withCreationDate(String creationDate){
+        this.creationDate = creationDate;
         return this;
     }
 
+    public ReviewBuilder withImageURL(String imageURL){
+        this.imageURL = imageURL;
+        return this;
+    }
+
+
+
+
     public Review build() {
         Review review = new Review();
+        review.setReviewID(reviewID);
+        review.setCreatorID(creatorID);
         review.setRouteID(routeID);
         review.setTitle(title);
         review.setBody(body);
-        review.setCreatorID(creatorID);
+        review.setCreationDate(creationDate);
+        review.setImageURL(imageURL);
         return review;
     }
+
 
 }
