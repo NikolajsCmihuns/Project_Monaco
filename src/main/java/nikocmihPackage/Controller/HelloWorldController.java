@@ -1,4 +1,4 @@
-package nikocmihPackage.servlet.MVC;
+package nikocmihPackage.Controller;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -1,4 +1,4 @@
-package nikocmihPackage.servlet.MVC;
+package nikocmihPackage.Controller;
 
 /**
  * Created by Nikolajs Cmihuns on 11/5/2015.
