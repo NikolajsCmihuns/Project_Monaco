@@ -17,7 +17,7 @@
 <body>
 <div class="container">
   <h2>Place input form</h2>
-  <form role="form" action="/java2/place/rezult">
+  <form role="form" action="/java2/place/form/rezult">
     <div class="form-group">
       <label for="placeName">Place name:</label>
       <input type="text" class="form-control" id="placeName" name="placeName" placeholder="Place name">
