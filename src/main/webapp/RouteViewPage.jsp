@@ -59,7 +59,7 @@
             <input type="submit" id="tagPick" name="tagPick" value="Search"/>
 
             <div id="routePlaceholder" name="routePlaceholder"
-                 style="float:left;margin-top: 50px;width: 570px;
+                 style="float:left;margin-top: 50px;width: 525px;
                 height: 400px;margin-top: 50px;"></div>
             <div style="float:right;margin-top: 50px;">
                 <table id="routeIds" name="routeIds">
@@ -87,7 +87,11 @@
                         <td><%=route.getDistance()%>
                         </td>
                         <td><input type="button" id="chosenRoot" name="chosenRoot" value="View"
-                                   onclick="viewRouteOnMap('<%=route.getRoute().toString()%>')"></td>
+                                   onclick="viewRouteOnMap('<%=route.getRoute().toString()%>')"/></td>
+                        <td><input type="button" id="editRoute" name="editRoute" value="Edit"
+                                   onclick="goRouteUpdate('<%=route.getRouteId()%>', '<%=route.getDistance()%>',
+                                           '<%=route.getRoute().toString()%>','<%=chosenTag.get(0).getChosenTagId()%>')"/>
+                        </td>
                     </tr>
                     <%
                                 i++;
@@ -105,6 +109,16 @@
     var markers = [];
     var MARKER_PATH = 'https://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
     var map;
+
+    function goRouteUpdate(routeId, routeDistance, route, tagId) {
+        location.href = "./route_update?routeToUpdateTagId=" + btoa(tagId) +
+                "&routeToUpdateDistance=" + btoa(routeDistance) +
+                "&routeToUpdateId=" + btoa(routeId) +
+                "&routeToUpdateRoute=" + btoa(route) +
+                "&routeToUpdateCountry=" + btoa("Latvia") +
+                "&routeToUpdateCity=" + btoa("Riga") +
+                "&routeToUpdateName=" + btoa("Walk with Monaco");
+    }
 
     function dropMarker(marker) {
         return function () {

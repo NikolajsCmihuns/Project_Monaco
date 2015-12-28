@@ -1,9 +1,11 @@
 <%@ page import="java.util.Optional" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 <%--
   Created by IntelliJ IDEA.
   User: Aborigens
-  Date: 07-Nov-15
-  Time: 22:26
+  Date: 26-Dec-15
+  Time: 16:39
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -42,9 +44,12 @@
     <title>Route Saved</title>
 </head>
 <body>
-
+<%
+    Map<String, List> routeMetaInfo = (Map<String, List>) request.getAttribute("model");
+    List<String> updateMessage = routeMetaInfo.get("update");
+%>
 <div id="dialog" title="Route Saved">
-    <%=request.getAttribute("model")%>
+    <%=updateMessage.get(0)%>
 </div>
 </body>
 </html>

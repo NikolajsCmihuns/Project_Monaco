@@ -37,7 +37,7 @@ public class ControllerPlaceFormImpl implements ControllerPlaceForm {
             placeRefList.add(properties);
         }
 
-        return new MVCModel(placeRefList, "/views/place_views/PlaceForm.jsp");
+        return new MVCModel(placeRefList, "/views/place_views/placeForm.jsp");
     }
 
 

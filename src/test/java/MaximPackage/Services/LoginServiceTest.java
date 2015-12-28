@@ -1,5 +1,7 @@
 package MaximPackage.Services;
 
+import com.monaco.Database.UserDAOInterface;
+
 import javax.servlet.http.HttpSession;
 
 /**

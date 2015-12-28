@@ -47,6 +47,7 @@ public class RouteFilter implements Filter {
         controllers.put("/route_view", getBean(RouteViewController.class));
         controllers.put("/route_auth", getBean(RouteAuthorizationController.class));
         controllers.put("/route_delete", getBean(RouteDeleteController.class));
+        controllers.put("/route_update", getBean(RouteUpdateController.class));
     }
 
     @Override

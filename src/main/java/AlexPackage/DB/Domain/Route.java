@@ -33,6 +33,18 @@ public class Route {
         return routeId;
     }
 
+    public String getRouteCountry() {
+        return routeCountry;
+    }
+
+    public String getRouteCity() {
+        return routeCity;
+    }
+
+    public String getRouteName() {
+        return routeName;
+    }
+
     public void setRouteId(String routeId) {
         this.routeId = routeId;
     }

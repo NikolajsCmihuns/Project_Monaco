@@ -33,4 +33,6 @@ public interface RouteDAOInterface {
 
     void deleteRoutesMass(String[] routesToDeleteIds) throws DBException;
 
+    boolean updateRoute(Route route) throws DBException;
+
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -39,6 +40,8 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
     private final String DELETE_ROUTE = "DELETE FROM ROUTE WHERE ROUTEID = ?";
     private final String DELETE_PLACE_IN_ROUTE = "DELETE FROM PLACES_IN_ROUTE WHERE ROUTEID = ?";
     private final String DELETE_PLACE = "DELETE FROM PLACE WHERE PLACEID = ?";
+
+    private final String UPDATE_ROUTE = "UPDATE ROUTE SET DISTANCE = ?, ROUTETAGID = ? WHERE ROUTEID = ?";
 
     public RouteDAOImplementation() {
 
@@ -451,6 +454,81 @@ public class RouteDAOImplementation extends DAOImpl implements RouteDAOInterface
         } finally {
             closeConnection(connection);
         }
+    }
+
+    private boolean updateRouteDetails(Route route, Connection connection) {
+        boolean updated = false;
+
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ROUTE, PreparedStatement.RETURN_GENERATED_KEYS);
+            preparedStatement.setString(1, route.getDistance());
+            preparedStatement.setInt(2, Integer.parseInt(route.getRouteTag()));
+            preparedStatement.setInt(3, Integer.parseInt(route.getRouteId()));
+            preparedStatement.executeUpdate();
+            updated = true;
+        } catch (Throwable e) {
+            System.out.println("Exception while executing RouteDAOImplementation.updateRouteDetails()");
+            e.printStackTrace();
+        }
+
+        return updated;
+    }
+
+    @Override
+    public boolean updateRoute(Route route) throws DBException {
+
+        boolean saved = false;
+        Connection connection = null;
+
+        try {
+            connection = getConnection();
+
+            // update route table
+            boolean updated = updateRouteDetails(route, connection);
+            if (updated) {
+
+                // select places id
+                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PLACEID_SEQUENCE);
+                preparedStatement.setInt(1, Integer.parseInt(route.getRouteId()));
+                ResultSet deletedPlaces = preparedStatement.executeQuery();
+
+                // delete places in route - easier to maintain
+                PreparedStatement deletePlaceInRoute = connection.prepareStatement(DELETE_PLACE_IN_ROUTE);
+                deletePlaceInRoute.setInt(1, Integer.parseInt(route.getRouteId()));
+                deletePlaceInRoute.executeUpdate();
+
+                // delete places
+                while (deletedPlaces.next()) {
+                    PreparedStatement deletePlace = connection.prepareStatement(DELETE_PLACE);
+                    deletePlace.setInt(1, Integer.parseInt(deletedPlaces.getString("PLACEID")));
+                    deletePlace.executeUpdate();
+                }
+
+                // save to place & places_in_route
+                ArrayList<HelperCoordinates> routeCoordinates = processCoordinates(route.getRoute());
+                Iterator<HelperCoordinates> iterator = routeCoordinates.iterator();
+                while (iterator.hasNext()) {
+                    HelperCoordinates cortege = iterator.next();
+                    ResultSet resultSet = saveRouteDetails(cortege, connection);
+                    if (resultSet.next()) {
+                        saveRouteDetails(route.getRouteId(), cortege.getSequence(), String.valueOf(resultSet.getLong(1)), connection);
+                    }
+                }
+
+                saved = true;
+
+            }
+
+        } catch (Throwable e) {
+            System.out.println("Exception while executing RouteDAOImplementation.updateRoute()");
+            e.printStackTrace();
+            throw new DBException(e);
+        } finally {
+            closeConnection(connection);
+        }
+
+        return saved;
+
     }
 }
 
