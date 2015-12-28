@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @Controller
-public class ControllerPlaceImpl implements ControllerPlace {
+public class PlaceControllerImpl implements PlaceController {
 
     @Autowired
     PlaceDAO placeDAO;

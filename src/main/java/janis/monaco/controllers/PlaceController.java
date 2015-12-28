@@ -5,5 +5,5 @@ import janis.monaco.mvc.MVCController;
 /**
  * Created by janis on 12/7/15.
  */
-public interface ControllerPlace extends MVCController {
+public interface PlaceController extends MVCController {
 }
