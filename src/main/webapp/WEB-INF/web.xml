@@ -39,6 +39,10 @@
         <filter-name>RouteFilter</filter-name>
         <url-pattern>/route_delete</url-pattern>
     </filter-mapping>
+    <filter-mapping>
+        <filter-name>RouteFilter</filter-name>
+        <url-pattern>/route_update</url-pattern>
+    </filter-mapping>
 
     <!-- REST related dependencies BEGIN-->
 
@@ -68,36 +72,36 @@
     <!--Janis monaco parallel project servlet-->
 
     <!--<filter>-->
-        <!--<filter-name>Janis</filter-name>-->
-        <!--<filter-class>janis.monaco.mvc.MVCFilter</filter-class>-->
+    <!--<filter-name>Janis</filter-name>-->
+    <!--<filter-class>janis.monaco.mvc.MVCFilter</filter-class>-->
     <!--</filter>-->
 
     <!--<filter-mapping>-->
-        <!--<filter-name>Janis</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
+    <!--<filter-name>Janis</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
     <!--</filter-mapping>-->
 
     <!--End of Janis monaco parallel project servlet-->
 
 
     <!--<filter>-->
-        <!--<filter-name>MVCFilterR</filter-name>-->
-        <!--<filter-class>nikocmihPackage.servlet.MVC.MVCFilterR</filter-class>-->
+    <!--<filter-name>MVCFilterR</filter-name>-->
+    <!--<filter-class>nikocmihPackage.servlet.MVC.MVCFilterR</filter-class>-->
     <!--</filter>-->
 
     <!--<filter-mapping>-->
-        <!--<filter-name>MVCFilterR</filter-name>-->
-        <!--<url-pattern>/review</url-pattern>-->
+    <!--<filter-name>MVCFilterR</filter-name>-->
+    <!--<url-pattern>/review</url-pattern>-->
     <!--</filter-mapping>-->
 
     <!--<filter>-->
-        <!--<filter-name>MVCFilterR</filter-name>-->
-        <!--<filter-class>nikocmihPackage.servlet.MVC.MVCFilterR</filter-class>-->
+    <!--<filter-name>MVCFilterR</filter-name>-->
+    <!--<filter-class>nikocmihPackage.servlet.MVC.MVCFilterR</filter-class>-->
     <!--</filter>-->
 
     <!--<filter-mapping>-->
-        <!--<filter-name>MVCFilterR</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
+    <!--<filter-name>MVCFilterR</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
     <!--</filter-mapping>-->
 
 
