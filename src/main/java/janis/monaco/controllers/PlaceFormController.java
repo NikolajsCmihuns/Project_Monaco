@@ -7,7 +7,7 @@ import janis.monaco.mvc.MVCController;
  * Created by janis on 12/15/15.
  */
 
-public interface ControllerPlaceForm extends MVCController {
+public interface PlaceFormController extends MVCController {
 
 
 

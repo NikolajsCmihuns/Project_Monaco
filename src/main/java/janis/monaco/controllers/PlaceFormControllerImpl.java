@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 @Controller
-public class ControllerPlaceFormImpl implements ControllerPlaceForm {
+public class PlaceFormControllerImpl implements PlaceFormController {
 
     @Autowired
     PlaceTypeRefDAO placeTypeRefDAO;
