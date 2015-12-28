@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 
 @Controller
-public class ControllerPlaceRezultImpl implements ControllerPlaceRezult {
+public class PlaceRezulControllertImpl implements PlaceRezultController {
 
 
     public MVCModel execute(HttpServletRequest request) {

@@ -1,9 +1,9 @@
 package janis.monaco.mvc;
 
 import janis.monaco.config.SpringHibernateConfig;
-import janis.monaco.controllers.ControllerPlaceRezult;
 import janis.monaco.controllers.PlaceController;
 import janis.monaco.controllers.PlaceFormController;
+import janis.monaco.controllers.PlaceRezultController;
 import org.jboss.logging.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -41,7 +41,7 @@ public class MVCFilter implements Filter {
 
         controllers.put("/place", getBean(PlaceController.class));
         controllers.put("/place/form", getBean(PlaceFormController.class));
-        controllers.put("/place/form/rezult", getBean(ControllerPlaceRezult.class));
+        controllers.put("/place/form/rezult", getBean(PlaceRezultController.class));
 
 
 
