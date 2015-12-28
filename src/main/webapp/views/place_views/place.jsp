@@ -29,8 +29,8 @@
 
 
 
-<table class="table table-hover" style="width:90%">
-  <tr>
+<table class="table table-hover" style="width:100%" >
+  <tr style="background-color:darkseagreen;">
     <th>PlaceID</th>
     <th>PlaceLatitude</th>
     <th>PlaceLongitude</th>
@@ -41,7 +41,7 @@
   </tr>
 
   <c:forEach var= "place" items='${model}' >
-    <tr>
+    <tr style="background-color:lightcyan;">
       <c:forEach var= "properties" items='${place}' varStatus="count">
 
         <td>${properties}</td>
