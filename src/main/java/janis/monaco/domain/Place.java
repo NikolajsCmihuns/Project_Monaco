@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 /**
- * Created by janis on 11/3/15.
+ * Created by janis on 1/8/16.
  */
 @Entity
 @Table(name = "PLACE", schema = "", catalog = "monaco")
@@ -30,6 +30,8 @@ public class Place {
     @Basic
     @Column(name = "placeTypeID")
     private Integer placeTypeId;
+    @OneToMany(mappedBy = "placeByPlaceId")
+	private Collection<Events> eventsesByPlaceId;
     @ManyToOne
     @JoinColumn(name = "placeTypeID", referencedColumnName = "PLACE_TYPE_ID", insertable=false, updatable=false)
     private PlaceTypeRef placeTypeRefByPlaceTypeId;
@@ -136,6 +138,15 @@ public class Place {
     }
 
 
+    public Collection<Events> getEventsesByPlaceId() {
+        return eventsesByPlaceId;
+    }
+
+    public void setEventsesByPlaceId(Collection<Events> eventsesByPlaceId) {
+        this.eventsesByPlaceId = eventsesByPlaceId;
+    }
+
+   
     public PlaceTypeRef getPlaceTypeRefByPlaceTypeId() {
         return placeTypeRefByPlaceTypeId;
     }

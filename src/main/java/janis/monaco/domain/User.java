@@ -5,11 +5,12 @@ import java.sql.Timestamp;
 import java.util.Collection;
 
 /**
- * Created by janis on 11/3/15.
+ * Created by janis on 1/8/16.
  */
 @Entity
 @Table(name = "USER", schema = "", catalog = "monaco")
 public class User {
+    
     private int userId;
     private String nickname;
     private String firstName;
@@ -22,11 +23,13 @@ public class User {
     private String userPass;
     private Timestamp creationDate;
     private Collection<CommentOnReview> commentOnReviewsByUserId;
+    private Collection<Events> eventsesByUserId;
     private Collection<Review> reviewsByUserId;
     private Collection<Route> routesByUserId;
+    private TagsRef tagsRefByUserTagId;
     private CityRef cityRefByCityId;
     private CountryRef countryRefByCountryId;
-    private TagsRef tagsRefByUserTagId;
+    
 
     @Id
     @Column(name = "userID")
@@ -183,6 +186,15 @@ public class User {
 
     public void setCommentOnReviewsByUserId(Collection<CommentOnReview> commentOnReviewsByUserId) {
         this.commentOnReviewsByUserId = commentOnReviewsByUserId;
+    }
+
+    @OneToMany(mappedBy = "userByUserId")
+    public Collection<Events> getEventsesByUserId() {
+        return eventsesByUserId;
+    }
+
+    public void setEventsesByUserId(Collection<Events> eventsesByUserId) {
+        this.eventsesByUserId = eventsesByUserId;
     }
 
     @OneToMany(mappedBy = "userByCreatorId")
