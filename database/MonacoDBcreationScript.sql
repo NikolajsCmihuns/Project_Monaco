@@ -287,10 +287,10 @@ SHOW WARNINGS;
 -- -----------------------------------------------------
 -- Table `monaco`.`events`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `monaco`.`events` ;
+DROP TABLE IF EXISTS `monaco`.`EVENTS` ;
 
 SHOW WARNINGS;
-CREATE TABLE IF NOT EXISTS `monaco`.`events` (
+CREATE TABLE IF NOT EXISTS `monaco`.`EVENTS` (
   `eventID` INT NOT NULL AUTO_INCREMENT,
   `eventTitle` VARCHAR(100) NULL,
   `eventDescription` VARCHAR(500) NULL,
