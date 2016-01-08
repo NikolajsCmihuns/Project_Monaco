@@ -38,8 +38,8 @@ public class CommentOnReview {
     @JoinColumn(name = "reviewID", referencedColumnName = "reviewID", nullable = false, insertable=false, updatable=false)
     private Review reviewByReviewId;
 
-    @ManyToOne(optional = false)
-    private Review reviews;
+//    @ManyToOne(optional = false)
+//    private Review reviews;
 
 
     public int getCommentId() {
@@ -131,11 +131,11 @@ public class CommentOnReview {
     }
 
 
-    public Review getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(Review reviews) {
-        this.reviews = reviews;
-    }
+//    public Review getReviews() {
+//        return reviews;
+//    }
+//
+//    public void setReviews(Review reviews) {
+//        this.reviews = reviews;
+//    }
 }

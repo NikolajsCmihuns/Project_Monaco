@@ -7,6 +7,7 @@ import java.sql.Timestamp;
  * Created by janis on 1/8/16.
  */
 @Entity
+@Table(name = "EVENTS", schema = "", catalog = "monaco")
 public class Events {
     private int eventId;
     private String eventTitle;
@@ -120,7 +121,7 @@ public class Events {
     }
 
     @ManyToOne
-    @JoinColumn(name = "userID", referencedColumnName = "userID")
+    @JoinColumn(name = "userID", referencedColumnName = "userID", insertable=false, updatable=false)
     public User getUserByUserId() {
         return userByUserId;
     }
@@ -130,7 +131,7 @@ public class Events {
     }
 
     @ManyToOne
-    @JoinColumn(name = "placeID", referencedColumnName = "placeID")
+    @JoinColumn(name = "placeID", referencedColumnName = "placeID", insertable=false, updatable=false)
     public Place getPlaceByPlaceId() {
         return placeByPlaceId;
     }
