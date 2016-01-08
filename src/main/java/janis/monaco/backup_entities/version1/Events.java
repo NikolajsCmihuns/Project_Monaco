@@ -1,4 +1,4 @@
-package janis.monaco.backup_entities;
+package janis.monaco.backup_entities.version1;
 
 import janis.monaco.domain.Place;
 import janis.monaco.domain.User;
