@@ -103,39 +103,7 @@ public class Place {
         this.placeTypeId = placeTypeId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
 
-        Place place = (Place) o;
-
-        if (placeId != place.placeId) return false;
-        if (Double.compare(place.latitude, latitude) != 0) return false;
-        if (Double.compare(place.longitude, longitude) != 0) return false;
-        if (imageUrl != null ? !imageUrl.equals(place.imageUrl) : place.imageUrl != null) return false;
-        if (placeName != null ? !placeName.equals(place.placeName) : place.placeName != null) return false;
-        if (placeAddress != null ? !placeAddress.equals(place.placeAddress) : place.placeAddress != null) return false;
-        if (placeTypeId != null ? !placeTypeId.equals(place.placeTypeId) : place.placeTypeId != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = placeId;
-        temp = Double.doubleToLongBits(latitude);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(longitude);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
-        result = 31 * result + (placeName != null ? placeName.hashCode() : 0);
-        result = 31 * result + (placeAddress != null ? placeAddress.hashCode() : 0);
-        result = 31 * result + (placeTypeId != null ? placeTypeId.hashCode() : 0);
-        return result;
-    }
 
 
     public Collection<Events> getEventsesByPlaceId() {

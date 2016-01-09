@@ -115,23 +115,29 @@ public class PlaceTest {
     }
 
     @Test
-    public void testEquals() throws Exception {
-
+    public void testSetGetReviewsByPlaceId() throws Exception {
+        Integer a=1;
+        Review review1= new Review();
+        review1.setPlaceId(a);
+        Review review2= new Review();
+        a = 2;
+        review2.setPlaceId(a);
+        Review review3= new Review();
+        a = 3;
+        review3.setPlaceId(a);
+        Collection<Review> eventsCollection = new ArrayList();
+        eventsCollection.add(review1);
+        eventsCollection.add(review2);
+        eventsCollection.add(review3);
+        place.setReviewsByPlaceId(eventsCollection);
+        assertEquals(eventsCollection, place.getReviewsByPlaceId());
+        Collection<Review> collection = place.getReviewsByPlaceId();
+        Integer n = 1;
+        for (Iterator i=collection.iterator(); i.hasNext();) {
+            review1 =(Review) i.next();
+            assertEquals(n, review1.getPlaceId());
+            n++;
+        }
     }
 
-    @Test
-    public void testHashCode() throws Exception {
-
-    }
-
-
-    @Test
-    public void testGetReviewsByPlaceId() throws Exception {
-
-    }
-
-    @Test
-    public void testSetReviewsByPlaceId() throws Exception {
-
-    }
 }
