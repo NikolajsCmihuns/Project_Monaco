@@ -92,6 +92,25 @@ public class PlaceTest {
 
     @Test
     public void testSetGetPlacesInRoutesByPlaceId() throws Exception {
+        PlacesInRoute placesInRoute1 = new PlacesInRoute();
+        placesInRoute1.setPlaceId(1);
+        PlacesInRoute placesInRoute2 = new PlacesInRoute();
+        placesInRoute2.setPlaceId(2);
+        PlacesInRoute placesInRoute3 = new PlacesInRoute();
+        placesInRoute3.setPlaceId(3);
+        Collection<PlacesInRoute> placesInRouteCollection = new ArrayList();
+        placesInRouteCollection.add(placesInRoute1);
+        placesInRouteCollection.add(placesInRoute2);
+        placesInRouteCollection.add(placesInRoute3);
+        place.setPlacesInRoutesByPlaceId(placesInRouteCollection);
+        assertEquals(placesInRouteCollection, place.getPlacesInRoutesByPlaceId());
+        Collection<PlacesInRoute> collection = place.getPlacesInRoutesByPlaceId();
+        int n = 1;
+        for (Iterator i=collection.iterator(); i.hasNext();) {
+            placesInRoute1 =(PlacesInRoute) i.next();
+            assertEquals(n, placesInRoute1.getPlaceId());
+            n++;
+        }
 
     }
 
