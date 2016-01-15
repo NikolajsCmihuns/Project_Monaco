@@ -1,4 +1,4 @@
-package com.monaco.MVC;
+package com.monaco.mvc;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;

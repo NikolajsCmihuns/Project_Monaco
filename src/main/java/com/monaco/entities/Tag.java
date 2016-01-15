@@ -1,10 +1,6 @@
-package com.monaco.Entities;
+package com.monaco.entities;
 
 import javax.persistence.*;
-import java.util.List;
-
-import static javax.persistence.FetchType.EAGER;
-import static javax.persistence.FetchType.LAZY;
 
 /**
  * Created by maksimspuskels on 01/11/15.

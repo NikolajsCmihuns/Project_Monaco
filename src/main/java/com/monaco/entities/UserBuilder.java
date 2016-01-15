@@ -1,4 +1,4 @@
-package com.monaco.Entities;
+package com.monaco.entities;
 
 /**
  * Created by maksimspuskels on 15/12/15.

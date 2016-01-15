@@ -1,4 +1,4 @@
-package com.monaco.MVC;
+package com.monaco.mvc;
 
 /**
  * Created by maksimspuskels on 03/11/15.

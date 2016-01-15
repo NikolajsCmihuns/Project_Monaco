@@ -1,4 +1,4 @@
-package com.monaco.MVC;
+package com.monaco.mvc;
 
 import javax.servlet.http.HttpServletRequest;
 

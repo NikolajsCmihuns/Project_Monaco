@@ -1,4 +1,4 @@
-package com.monaco.Entities;
+package com.monaco.entities;
 
 import javax.persistence.*;
 import java.util.Optional;

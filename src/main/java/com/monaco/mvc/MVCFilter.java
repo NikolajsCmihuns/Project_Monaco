@@ -1,4 +1,4 @@
-package com.monaco.MVC;
+package com.monaco.mvc;
 
 import com.monaco.Controllers.LoginController;
 import com.monaco.Controllers.RegistrationController;
