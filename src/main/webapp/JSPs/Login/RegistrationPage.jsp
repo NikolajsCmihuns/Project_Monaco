@@ -1,9 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.monaco.Entities.City" %>
-<%@ page import="com.monaco.Entities.Country" %>
+<%@ page import="com.monaco.entities.City" %>
+<%@ page import="com.monaco.entities.Country" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.monaco.DataSources.RegistrationPageDS" %>
-<%@ page import="com.monaco.Entities.Tag" %>
+<%@ page import="com.monaco.datasources.RegistrationPageDS" %>
+<%@ page import="com.monaco.entities.Tag" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
