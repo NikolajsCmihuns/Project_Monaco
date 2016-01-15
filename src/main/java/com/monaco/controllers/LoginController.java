@@ -1,11 +1,11 @@
 package com.monaco.controllers;
 
-import com.monaco.dataSources.LandingPageDS;
-import com.monaco.Entities.User;
-import com.monaco.MVC.MVCController;
-import com.monaco.MVC.MVCModel;
+import com.monaco.datasources.LandingPageDS;
+import com.monaco.entities.User;
+import com.monaco.mvc.MVCController;
+import com.monaco.mvc.MVCModel;
 
-import com.monaco.Services.LoginServiceInterface;
+import com.monaco.services.LoginServiceInterface;
 import lv.javaguru.java2.database.DBException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
