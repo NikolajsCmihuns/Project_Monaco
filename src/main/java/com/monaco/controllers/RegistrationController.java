@@ -1,11 +1,11 @@
 package com.monaco.controllers;
 
-import com.monaco.dataSources.LandingPageDS;
-import com.monaco.dataSources.RegistrationPageDS;
-import com.monaco.Entities.User;
-import com.monaco.MVC.MVCController;
-import com.monaco.MVC.MVCModel;
-import com.monaco.Services.RegistrationService;
+import com.monaco.datasources.LandingPageDS;
+import com.monaco.datasources.RegistrationPageDS;
+import com.monaco.entities.User;
+import com.monaco.mvc.MVCController;
+import com.monaco.mvc.MVCModel;
+import com.monaco.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
