@@ -1,9 +1,7 @@
-package com.monaco.Database;
+package com.monaco.database;
 
 import com.monaco.Entities.City;
 import lv.javaguru.java2.database.DBException;
-
-import java.util.List;
 
 /**
  * Created by maksimspuskels on 01/11/15.

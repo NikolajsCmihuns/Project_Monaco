@@ -1,4 +1,4 @@
-package com.monaco.Database;
+package com.monaco.database;
 
 import com.monaco.Entities.Tag;
 import lv.javaguru.java2.database.DBException;

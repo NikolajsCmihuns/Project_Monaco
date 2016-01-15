@@ -1,10 +1,9 @@
-package com.monaco.Controllers;
+package com.monaco.controllers;
 
-import com.monaco.DataSources.LandingPageDS;
+import com.monaco.dataSources.LandingPageDS;
 import com.monaco.MVC.MVCController;
 import com.monaco.MVC.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;

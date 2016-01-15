@@ -1,4 +1,4 @@
-package com.monaco.Database;
+package com.monaco.database;
 
 import com.monaco.Entities.Country;
 import lv.javaguru.java2.database.DBException;

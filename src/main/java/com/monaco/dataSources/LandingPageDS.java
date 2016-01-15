@@ -1,6 +1,6 @@
-package com.monaco.DataSources;
+package com.monaco.dataSources;
 
-import com.monaco.Database.UserDAOInterface;
+import com.monaco.database.UserDAOInterface;
 import com.monaco.Entities.User;
 import lv.javaguru.java2.database.DBException;
 import org.springframework.beans.factory.annotation.Autowired;

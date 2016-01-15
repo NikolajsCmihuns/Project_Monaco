@@ -1,6 +1,6 @@
-package com.monaco.Controllers;
+package com.monaco.controllers;
 
-import com.monaco.DataSources.LandingPageDS;
+import com.monaco.dataSources.LandingPageDS;
 import com.monaco.Entities.User;
 import com.monaco.MVC.MVCController;
 import com.monaco.MVC.MVCModel;

@@ -1,10 +1,10 @@
-package com.monaco.DataSources;
+package com.monaco.dataSources;
 
 import com.monaco.Entities.City;
 import com.monaco.Entities.Country;
-import com.monaco.Database.CityDAOInterface;
-import com.monaco.Database.CountryDAOInterface;
-import com.monaco.Database.TagDAOInterface;
+import com.monaco.database.CityDAOInterface;
+import com.monaco.database.CountryDAOInterface;
+import com.monaco.database.TagDAOInterface;
 import com.monaco.Entities.Tag;
 import lv.javaguru.java2.database.DBException;
 import org.springframework.beans.factory.annotation.Autowired;
