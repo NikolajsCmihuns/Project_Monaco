@@ -1,8 +1,8 @@
 package com.monaco.mvc;
 
-import com.monaco.Controllers.LoginController;
-import com.monaco.Controllers.RegistrationController;
-import com.monaco.Controllers.SessionCheckController;
+import com.monaco.controllers.LoginController;
+import com.monaco.controllers.RegistrationController;
+import com.monaco.controllers.SessionCheckController;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
