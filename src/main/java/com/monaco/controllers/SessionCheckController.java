@@ -1,8 +1,8 @@
 package com.monaco.controllers;
 
-import com.monaco.dataSources.LandingPageDS;
-import com.monaco.MVC.MVCController;
-import com.monaco.MVC.MVCModel;
+import com.monaco.datasources.LandingPageDS;
+import com.monaco.mvc.MVCController;
+import com.monaco.mvc.MVCModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
