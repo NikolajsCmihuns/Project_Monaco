@@ -1,6 +1,6 @@
-package com.monaco.Services;
+package com.monaco.services;
 
-import com.monaco.Entities.User;
+import com.monaco.entities.User;
 import lv.javaguru.java2.database.DBException;
 
 import java.util.Optional;
